@@ -1,0 +1,8 @@
+{
+  "name": "v5 multi page nexbeck site ",
+  "description": "Finalized content and this app is remixied from other profile ",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

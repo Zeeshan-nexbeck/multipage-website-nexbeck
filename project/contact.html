@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Document Metadata & Viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact &amp; Free Quote — Nexbeck Trade Web Design</title>
+  <meta name="description" content="Request a free trade website quote for your Australian electrical or trade contracting business. Clear communication tailored to your business." />
+  <meta property="og:title" content="Contact &amp; Free Quote — Nexbeck Trade Web Design" />
+  <meta property="og:description" content="Request a free trade website quote for your Australian electrical or trade contracting business. Clear communication tailored to your business." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Shared Global Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Subtle Ambient Background -->
+  <canvas id="ambient-canvas"></canvas>
+  <div class="ambient-radial-glow"></div>
+
+  <!-- ========================================================================
+       SHARED FIXED HEADER & NAVIGATION
+       ======================================================================== -->
+  <header id="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-link" aria-label="Nexbeck Home">
+        <img src="images/logo.png" alt="Nexbeck" class="brand-logo-img" />
+        <span class="brand-text">NEXBECK</span>
+      </a>
+
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#quote-form-section" class="btn-primary desktop-only-btn">
+          <span>Get a Free Quote</span>
+          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+        </a>
+
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open mobile navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon" style="font-size: 22px;">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">
+          <span>Home</span>
+        </a>
+        <a href="services.html" class="mobile-nav-link">
+          <span>Services</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span>About</span>
+        </a>
+        <a href="contact.html" class="mobile-nav-link active">
+          <span>Contact</span>
+        </a>
+        <div style="padding-top: 12px;">
+          <a href="#quote-form-section" class="btn-primary" style="width: 100%; height: 44px;">
+            <span>Get a Free Quote</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN CONTACT PAGE CONTENT
+       ======================================================================== -->
+  <main style="padding-top: 76px; position: relative;">
+
+    <!-- SECTION 1: CONTACT HERO -->
+    <section class="page-hero-section site-wrapper" style="padding-top: clamp(28px, 4vh, 44px); padding-bottom: clamp(20px, 3vh, 32px);">
+      <div class="page-hero-container">
+        <div class="hero-kicker">
+          <span class="hero-kicker-dot"></span>
+          <span>LET'S TALK</span>
+        </div>
+
+        <h1 class="page-hero-title">
+          Get a Free Trade Website Quote
+        </h1>
+
+        <p class="page-hero-subtitle">
+          Whether you’re considering a new website, thinking about improving your current one, or simply exploring your options, tell us a little about your business. We’ll take a look and help you understand what could work best.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; margin-top: 6px;">
+          <div>
+            <a href="#quote-form-section" class="btn-primary" style="height: 48px; padding: 0 28px;">
+              <span>Fill out the form</span>
+              <span class="material-symbols-outlined" style="font-size: 18px;">expand_more</span>
+            </a>
+          </div>
+          <div style="font-family: var(--font-ui); font-size: 0.8125rem; color: var(--text-dim); display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span>No obligation</span>
+            <span>·</span>
+            <span>Clear communication</span>
+            <span>·</span>
+            <span>Tailored to your business</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: CONTACT FORM & WHAT HAPPENS NEXT -->
+    <section id="quote-form-section" class="site-wrapper" style="padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y);">
+      <div class="contact-layout-grid">
+        <!-- Left: Form -->
+        <div class="contact-card-box">
+          <div id="quote-form-intro" style="margin-bottom: 22px;">
+            <span class="section-eyebrow">
+              <span class="material-symbols-outlined" style="font-size: 15px;">edit_note</span>
+              <span>Project Intake</span>
+            </span>
+            <h2 style="font-family: var(--font-display); font-size: clamp(1.25rem, 2vw, 1.625rem); font-weight: 800; color: var(--text-main);">
+              Request Your Free Quote Online
+            </h2>
+            <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--text-muted); margin-top: 4px;">
+              Takes less than 2 minutes. Simple and straightforward project inquiry.
+            </p>
+          </div>
+
+          <form id="trade-quote-form" action="#" method="POST" novalidate>
+            <!-- 2-Column Grid: Name & Business Name -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+              <!-- Full Name -->
+              <div class="form-group-wrap">
+                <label for="client-name" class="form-label-txt">
+                  <span>Your Name</span>
+                  <span style="color: var(--color-accent);">*</span>
+                </label>
+                <input type="text" id="client-name" name="name" class="form-field-input" placeholder="e.g. Jack Harrison" required />
+                <span class="field-error-msg" id="client-name-error" role="alert"></span>
+              </div>
+
+              <!-- Business Name -->
+              <div class="form-group-wrap">
+                <label for="business-name" class="form-label-txt">
+                  <span>Business Name (or Sole Trader)</span>
+                  <span style="color: var(--color-accent);">*</span>
+                </label>
+                <input type="text" id="business-name" name="business_name" class="form-field-input" placeholder="e.g. Harrison Electrical &amp; Solar" required />
+                <span class="field-error-msg" id="business-name-error" role="alert"></span>
+              </div>
+            </div>
+
+            <!-- 2-Column Grid: Email & Mobile -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+              <!-- Email Address -->
+              <div class="form-group-wrap">
+                <label for="client-email" class="form-label-txt">
+                  <span>Email Address</span>
+                  <span style="color: var(--color-accent);">*</span>
+                </label>
+                <input type="email" id="client-email" name="email" class="form-field-input" placeholder="e.g. jack@harrisonelectrical.com.au" required />
+                <span class="field-error-msg" id="client-email-error" role="alert"></span>
+              </div>
+
+              <!-- Phone Number -->
+              <div class="form-group-wrap">
+                <label for="client-phone" class="form-label-txt">
+                  <span>Mobile Phone Number</span>
+                  <span style="color: var(--color-accent);">*</span>
+                </label>
+                <input type="tel" id="client-phone" name="phone" class="form-field-input" placeholder="e.g. 0400 123 456" required />
+                <span class="field-error-msg" id="client-phone-error" role="alert"></span>
+              </div>
+            </div>
+
+            <!-- Package Selection -->
+            <div class="form-group-wrap">
+              <label for="package-select" class="form-label-txt">
+                <span>Select Package / Inquiry Type</span>
+                <span style="color: var(--color-accent);">*</span>
+              </label>
+              <select id="package-select" name="package" class="form-field-select" required>
+                <option value="professional" selected>Professional Package ($1,000–$1,500 AUD)</option>
+                <option value="essential">Essential Package (Under $1,000 AUD)</option>
+                <option value="premium">Premium Package ($1,500–$2,300 AUD)</option>
+                <option value="redesign">Website Redesign (Custom Quote)</option>
+                <option value="audit">Free Website Audit ($0 AUD)</option>
+                <option value="custom">Custom Trade Project</option>
+              </select>
+            </div>
+
+            <!-- Conditional Website URL (Compulsory for Website Redesign & Free Website Audit) -->
+            <div id="website-url-group" class="form-group-wrap" style="display: none;">
+              <label for="client-website" class="form-label-txt">
+                <span>Current Website URL</span>
+                <span style="color: var(--color-accent);">*</span>
+              </label>
+              <input type="url" id="client-website" name="website_url" class="form-field-input" placeholder="e.g. https://www.yourdomain.com.au or yourdomain.com.au" />
+              <span class="field-error-msg" id="client-website-error" role="alert"></span>
+            </div>
+
+            <!-- Other Instructions / Extra Details -->
+            <div class="form-group-wrap">
+              <label for="project-notes" class="form-label-txt">
+                <span>Other Instructions or Any Extra Details</span>
+                <span style="color: var(--text-dim); font-size: 10px; font-weight: normal;">(Optional)</span>
+              </label>
+              <textarea id="project-notes" name="notes" rows="3" class="form-field-textarea" placeholder="Share any specific requirements, target suburbs, questions, or extra details about your project..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <div style="margin-top: 20px;">
+              <button type="submit" id="quote-submit-btn" class="btn-primary" style="width: 100%; height: 50px; font-size: 0.9375rem;">
+                <span>Submit Form</span>
+                <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+              </button>
+              <p style="font-family: var(--font-ui); font-size: 0.6875rem; color: var(--text-dim); text-align: center; margin-top: 8px;">
+                🔒 Confidential inquiry. We respect your privacy and never share your details.
+              </p>
+            </div>
+          </form>
+
+          <!-- Success Feedback: Covers Full Form Box -->
+          <div id="quote-success-card" class="success-card-feedback">
+            <div class="success-check-icon">
+              <span class="material-symbols-outlined">check</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: clamp(1.375rem, 2vw, 1.75rem); font-weight: 800; color: var(--text-main);">
+              Quote Request Received
+            </h3>
+            <p style="font-family: var(--font-body); font-size: 1rem; color: var(--text-muted); line-height: 1.6; max-width: 480px;">
+              Thank you for getting in touch with Nexbeck. We’ve received your enquiry and will review the details you provided.
+            </p>
+            <div style="padding: 16px 22px; border-radius: var(--radius-sm); background: #F7F4EF; border: 1px solid var(--border-card); font-family: var(--font-ui); font-size: 0.8125rem; color: var(--text-main); line-height: 1.6; max-width: 480px; width: 100%;">
+              We’ll send a confirmation and follow-up message to the email address you provided. We’ll be in touch once we’ve reviewed your requirements.
+            </div>
+            <button type="button" id="reset-quote-btn" class="btn-ghost" style="height: 44px; padding: 0 24px; font-size: 0.8125rem; margin-top: 8px;">
+              <span>Submit Another Enquiry</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: What Happens Next & Direct Contact Info -->
+        <div style="display: flex; flex-direction: column; gap: clamp(24px, 3vw, 36px);">
+          <!-- What Happens Next Box -->
+          <div class="contact-sidebar-card">
+            <span class="section-eyebrow">
+              <span class="material-symbols-outlined" style="font-size: 15px;">timeline</span>
+              <span>Next Steps</span>
+            </span>
+            <h2 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 18px;">
+              What Happens Next
+            </h2>
+
+            <div class="what-next-container">
+              <div class="what-next-step">
+                <div class="what-next-num">01</div>
+                <div>
+                  <h3 style="font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                    We Review Your Enquiry
+                  </h3>
+                  <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                    We’ll review the details you shared through the form to understand your business, requirements, and what you’re looking for.
+                  </p>
+                </div>
+              </div>
+
+              <div class="what-next-step">
+                <div class="what-next-num">02</div>
+                <div>
+                  <h3 style="font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                    Confirmation Email
+                  </h3>
+                  <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                     We’ll send a confirmation to the email address you provided, so you know your enquiry has been received.
+                  </p>
+                </div>
+              </div>
+
+              <div class="what-next-step">
+                <div class="what-next-num">03</div>
+                <div>
+                  <h3 style="font-family: var(--font-display); font-size: 0.9375rem; font-weight: 700; color: var(--text-main); margin-bottom: 4px;">
+                    Let’s Discuss Your Options
+                  </h3>
+                  <p style="font-family: var(--font-body); font-size: 0.8125rem; color: var(--text-muted); line-height: 1.5;">
+                    We’ll get in touch through your preferred method of communication to discuss your goals and explore what could add the most value to your business.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Direct Assistance Box -->
+          <div class="contact-sidebar-card">
+            <span class="section-eyebrow">
+              <span class="material-symbols-outlined" style="font-size: 15px;">contact_phone</span>
+              <span>Direct Assistance</span>
+            </span>
+            <h2 style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 800; color: var(--text-main); margin-bottom: 16px;">
+              Direct Trade Contact
+            </h2>
+
+            <div class="contact-info-list">
+              <a href="mailto:contact@nexbeck.com" class="contact-info-item">
+                <span class="material-symbols-outlined" style="color: var(--color-accent); font-size: 20px;">mail</span>
+                <div>
+                  <span style="display: block; font-family: var(--font-ui); font-size: 0.625rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Direct Email</span>
+                  <span style="font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; color: var(--text-main);">contact@nexbeck.com</span>
+                </div>
+              </a>
+
+              <a href="sms:+923149647176" class="contact-info-item">
+                <span class="material-symbols-outlined" style="color: var(--color-accent); font-size: 20px;">sms</span>
+                <div>
+                  <span style="display: block; font-family: var(--font-ui); font-size: 0.625rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Direct SMS</span>
+                  <span style="font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; color: var(--text-main);">+92 3149647176</span>
+                </div>
+              </a>
+
+              <a href="tel:+923149647176" class="contact-info-item">
+                <span class="material-symbols-outlined" style="color: var(--text-dim); font-size: 20px;">phone_enabled</span>
+                <div>
+                  <span style="display: block; font-family: var(--font-ui); font-size: 0.625rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Trade Phone Line</span>
+                  <span style="font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; color: var(--text-main);">+92 3149647176</span>
+                </div>
+              </a>
+
+              <div class="contact-info-item">
+                <span class="material-symbols-outlined" style="color: var(--color-accent); font-size: 20px;">public</span>
+                <div>
+                  <span style="display: block; font-family: var(--font-ui); font-size: 0.625rem; text-transform: uppercase; color: var(--text-dim); font-weight: 700;">Coverage</span>
+                  <span style="font-family: var(--font-body); font-size: 0.875rem; color: var(--text-main);">Australia-wide: NSW, VIC, QLD, WA, SA, TAS, ACT</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: QUICK CONTACT FAQS (BOXED ACCORDION WITH PROPER RESPONSIVE MARGINS) -->
+    <section class="contact-faq-section">
+      <div class="site-wrapper">
+        <div class="section-header text-center">
+          <span class="section-eyebrow">
+            <span class="material-symbols-outlined" style="font-size: 15px;">help</span>
+            <span>Quick Answers</span>
+          </span>
+          <h2 class="section-title">Common Questions Before Submitting</h2>
+          <p class="section-subtitle">
+            Everything you need to know about getting your quote.
+          </p>
+        </div>
+
+        <div class="faq-editorial-container contact-faq-container">
+          <div class="faq-editorial-item contact-faq-card">
+            <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+              <span class="faq-editorial-question">How quickly will I hear back?</span>
+              <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+            </button>
+            <div class="faq-editorial-panel">
+              <div class="faq-editorial-content">
+                We’ll review your enquiry and send a confirmation to the email address you provided within 24 hours . We’ll then get in touch to discuss your requirements and next steps.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-editorial-item contact-faq-card">
+            <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+              <span class="faq-editorial-question">Is there any commitment required when requesting a quote?</span>
+              <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+            </button>
+            <div class="faq-editorial-panel">
+              <div class="faq-editorial-content">
+                None whatsoever. Submitting a quote request is completely pressure-free so you can explore your options and find what adds value to your bussiness.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-editorial-item contact-faq-card">
+            <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+              <span class="faq-editorial-question">Can I enquire if I’m not sure what I need?</span>
+              <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+            </button>
+            <div class="faq-editorial-panel">
+              <div class="faq-editorial-content">
+                Absolutely. You don't need to have everything figured out before getting in touch. Tell us about your business and what you're considering, and we can discuss the options with you.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GLOBAL STRIP (OPEN UNBOXED BANNER) -->
+    <aside class="qsp-global-strip" aria-label="Nexbeck Core Value Pillars">
+      <div class="site-wrapper">
+        <div class="qsp-open-grid">
+          <div class="qsp-open-col">
+            <span class="material-symbols-outlined qsp-open-icon">phonelink</span>
+            <div>
+              <h4>Trade-Specific Design</h4>
+              <p>Mobile-first, lightning-fast pages with simple service breakdowns that turn visitors into booked jobs.</p>
+            </div>
+          </div>
+
+          <div class="qsp-open-col">
+            <span class="material-symbols-outlined qsp-open-icon">schedule</span>
+            <div>
+              <h4>7 to 18 Day Delivery</h4>
+              <p>Live on your domain in 1 to 3 weeks flat. No drawn-out meetings.</p>
+            </div>
+          </div>
+
+          <div class="qsp-open-col">
+            <span class="material-symbols-outlined qsp-open-icon">payments</span>
+            <div>
+              <h4>Fixed Trade Price</h4>
+              <p>Transparent rates from under $1,000 AUD, 100% code ownership, and zero monthly retainers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- ========================================================================
+       SHARED SITE FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="site-wrapper">
+      <div class="footer-grid">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <a href="index.html" class="brand-link">
+            <img src="images/logo.png" alt="Nexbeck" class="brand-logo-img" />
+            <span class="brand-text" style="color: #FFFFFF !important; font-weight: 800; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 0.02em; display: inline-block;">NEXBECK</span>
+          </a>
+          <p style="font-family: var(--font-body); font-size: 0.875rem; color: #D6CEBE; line-height: 1.6; max-width: 300px;">
+            Web design agency engineered for Australian electricians and trade businesses to win more enquiries, get found locally, and scale online.
+          </p>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #34d399;"></span>
+            <span style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; font-weight: 600;">AUSTRALIA-WIDE SERVICE</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="services.html" class="footer-link">Services &amp; Pricing</a></li>
+            <li><a href="about.html" class="footer-link">About Nexbeck</a></li>
+            <li><a href="contact.html" class="footer-link">Get a Free Quote</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Trade Packages</span>
+          <ul class="footer-links-list">
+            <li><a href="services.html" class="footer-link">Essential (Under $1,000 AUD)</a></li>
+            <li><a href="services.html" class="footer-link">Professional ($1,000–$1,500 AUD)</a></li>
+            <li><a href="services.html" class="footer-link">Premium ($1,500–$2,300 AUD)</a></li>
+            <li><a href="contact.html" class="footer-link">Custom Trade Scope</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Direct Contact</span>
+          <ul class="footer-links-list">
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Email: <a href="mailto:contact@nexbeck.com" style="color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px;">contact@nexbeck.com</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Trade Line: <a href="tel:+923149647176" style="color: #FFFFFF; font-weight: 600;">+92 3149647176</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE; margin-top: 4px;">
+              Hours: Mon–Fri, 8:00 AM – 6:00 PM AEST
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE;">
+          &copy; 2026 Nexbeck. All rights reserved. Websites engineered for Australian trade contractors.
+        </p>
+        <p style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; letter-spacing: 0.04em;">
+          QUALITY • SPEED (7–18 DAYS) • FIXED PRICE
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <button type="button" id="back-to-top-btn" class="back-to-top-btn" aria-label="Scroll back to top">
+    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_upward</span>
+  </button>
+
+  <aside id="mobile-action-bar" class="mobile-action-bar" aria-label="Quick Mobile Actions">
+    <div class="mobile-action-container">
+      <a href="tel:+923149647176" class="btn-ghost" style="flex: 1; height: 42px; font-size: 11px; padding: 0 12px;">
+        <span class="material-symbols-outlined" style="font-size: 16px; color: #34d399;">call</span>
+        <span>Call Directly</span>
+      </a>
+      <a href="#quote-form-section" class="btn-primary" style="flex: 1; height: 42px; font-size: 11px; padding: 0 12px;">
+        <span>Get a Free Quote</span>
+        <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+      </a>
+    </div>
+  </aside>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

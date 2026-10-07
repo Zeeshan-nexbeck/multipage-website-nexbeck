@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Document Metadata & Viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services &amp; Transparent Trade Pricing — Nexbeck</title>
+  <meta name="description" content="Fixed-price websites engineered for Australian electricians and trade contractors. Website redesigns, custom builds from under $1,000 to $2,300 AUD, and free 48-hour audits." />
+  <meta property="og:title" content="Services &amp; Transparent Trade Pricing — Nexbeck" />
+  <meta property="og:description" content="Fixed-price websites engineered for Australian electricians and trade contractors. Website redesigns, custom builds from under $1,000 to $2,300 AUD, and free 48-hour audits." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+  <!-- Shared Global Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Schema.org JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Nexbeck Web Design",
+    "description": "Fixed-price websites designed and built for Australian electricians and trade contractors.",
+    "priceRange": "$$ - From Under $1,000 to $2,300 AUD",
+    "areaServed": "Australia",
+    "serviceType": "Web Design for Electricians and Trade Businesses"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Ambient Subtle Background -->
+  <canvas id="ambient-canvas"></canvas>
+  <div class="ambient-radial-glow"></div>
+
+  <!-- ========================================================================
+       SHARED FIXED HEADER & NAVIGATION
+       ======================================================================== -->
+  <header id="main-header">
+    <div class="header-container">
+      <a href="index.html" class="brand-link" aria-label="Nexbeck Home">
+        <img src="images/logo.png" alt="Nexbeck" class="brand-logo-img" />
+        <span class="brand-text">NEXBECK</span>
+      </a>
+
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Main Navigation">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link active">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="contact.html" class="btn-primary desktop-only-btn">
+          <span>Get a Free Quote</span>
+          <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+        </a>
+
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open mobile navigation menu">
+          <span class="material-symbols-outlined" id="mobile-menu-icon" style="font-size: 22px;">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="mobile-nav-links">
+        <a href="index.html" class="mobile-nav-link">
+          <span>Home</span>
+        </a>
+        <a href="services.html" class="mobile-nav-link active">
+          <span>Services</span>
+        </a>
+        <a href="about.html" class="mobile-nav-link">
+          <span>About</span>
+        </a>
+        <a href="contact.html" class="mobile-nav-link">
+          <span>Contact</span>
+        </a>
+        <div style="padding-top: 12px;">
+          <a href="contact.html" class="btn-primary" style="width: 100%; height: 44px;">
+            <span>Get a Free Quote</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN SERVICES CONTENT
+       ======================================================================== -->
+  <main style="padding-top: 76px; position: relative;">
+
+    <!-- PAGE HERO & VALUE STATEMENT -->
+    <section class="page-hero-section site-wrapper">
+      <div class="page-hero-container">
+        <div class="hero-kicker">
+          <span class="hero-kicker-dot"></span>
+          <span>Websites Engineered for Australian Trades</span>
+        </div>
+
+        <h1 class="page-hero-title">
+          Web Design Services &amp; Transparent Fixed Pricing
+        </h1>
+
+        <p class="page-hero-subtitle">
+          Built exclusively for Australian electricians and trade contractors. Work directly with experienced designers who understand how homeowners search—with fixed quotes in AUD, fast 7–18 day delivery, and zero monthly retainers.
+        </p>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 6px;">
+          <a href="#pricing" class="btn-primary" style="height: 48px; padding: 0 26px;">
+            <span>View Pricing Packages</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">payments</span>
+          </a>
+          <a href="#services" class="btn-ghost" style="height: 48px; padding: 0 24px;">
+            <span>Explore Our Services</span>
+            <span class="material-symbols-outlined" style="font-size: 18px;">expand_more</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 1: OUR SERVICES
+         Website Redesign, Custom Website Build, Free Website Audit
+         Clean editorial 3-column layout without heavy box containers
+         ======================================================================== -->
+    <section id="services" class="site-wrapper" style="padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y);">
+      <div class="section-header">
+        <span class="section-eyebrow">
+          <span class="material-symbols-outlined" style="font-size: 15px;">home_repair_service</span>
+          <span>Our Services</span>
+        </span>
+        <h2 class="section-title">Three Ways We Help Trade Businesses Grow Online</h2>
+      </div>
+
+      <div class="services-editorial-grid">
+        <!-- Service 1: Website Redesign -->
+        <article class="service-editorial-col highlight">
+          <div>
+            <span class="service-editorial-kicker">01 / Existing Websites</span>
+            <h3 class="service-editorial-title">Website Redesign</h3>
+            <p class="service-editorial-desc">
+              Transform an underperforming web presence into a sharp, credible asset that matches the calibre of your trade work. We eliminate clunky layouts and slow load times, turning your existing site into a modern lead-generation engine that commands higher rates and wins homeowner trust.
+            </p>
+
+            <ul class="service-editorial-highlights">
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Safeguards your established Google search rankings and domain equity</span>
+              </li>
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Upgrades to lightweight, mobile-first static architecture with zero downtime</span>
+              </li>
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Custom fixed quote based on your current site structure and business goals</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="padding-top: 8px;">
+            <a href="contact.html?package=redesign" class="btn-primary" style="width: 100%; height: 46px;">
+              <span>Request Redesign Scope</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Service 2: Custom Website Build -->
+        <article class="service-editorial-col">
+          <div>
+            <span class="service-editorial-kicker">02 / Ground-Up Builds</span>
+            <h3 class="service-editorial-title">Custom Website Build</h3>
+            <p class="service-editorial-desc">
+              Take control of your inbound pipeline with a bespoke digital storefront built specifically for your electrical business. Position your brand as the go to specialist in your area, attract clients who value quality workmanship, and break free from relying on expensive directory leads or word of mouth alone.
+            </p>
+
+            <ul class="service-editorial-highlights">
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Tailored specifically to capture high-margin domestic and commercial work</span>
+              </li>
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>1-tap emergency phone dialers and frictionless mobile quote intake</span>
+              </li>
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Transparent fixed pricing across 3 clear packages with zero surprises</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="padding-top: 8px;">
+            <a href="#pricing" class="btn-ghost" style="width: 100%; height: 46px;">
+              <span>Explore Build Packages</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_downward</span>
+            </a>
+          </div>
+        </article>
+
+        <!-- Service 3: Free Website Audit -->
+        <article class="service-editorial-col audit-col">
+          <div>
+            <span class="service-editorial-kicker">03 / Website Diagnostic</span>
+            <h3 class="service-editorial-title">Free Website Audit</h3>
+            <p class="service-editorial-desc">
+              Uncover exactly where your current website is leaking revenue and why potential clients leave without calling. We evaluate your site through the eyes of an impatient homeowner searching for a contractor, revealing hidden conversion bottlenecks and clear opportunities to boost your booked enquiries.
+            </p>
+
+            <div class="service-editorial-note">
+              <strong>Zero obligation to hire Nexbeck:</strong> You are free to make the recommended fixes yourself, hand the report to another developer or agency, or hire us if you want it handled. No aggressive sales pressure, no follow-up spam.
+            </div>
+
+            <ul class="service-editorial-highlights">
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Detailed plain-English report delivered directly to your inbox within 48 hours</span>
+              </li>
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Forensic audit of mobile 4G speed, local suburb schema, and lead intake friction</span>
+              </li>
+              <li class="service-editorial-highlight-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>100% free with no credit card required and zero sales pressure</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="padding-top: 8px;">
+            <a href="contact.html?package=audit" class="btn-ghost" style="width: 100%; height: 46px; border-color: rgba(30, 130, 86, 0.45); color: var(--color-success);">
+              <span>Claim Free Audit</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 2: PRICING & PACKAGES
+         Simple, comparative 4-package grid with plain-text deliverables
+         ======================================================================== -->
+    <section id="pricing" class="site-wrapper" style="padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y); border-top: 1px solid var(--border-subtle);">
+      <div class="section-header">
+        <span class="section-eyebrow">
+          <span class="material-symbols-outlined" style="font-size: 15px;">sell</span>
+          <span>Pricing &amp; Packages</span>
+        </span>
+        <h2 class="section-title">Simple, Fixed Pricing with Zero Retainers</h2>
+        <p class="section-subtitle">
+          Guaranteed turnaround times, 100% full code ownership, and zero monthly lock-in contracts. Compare our packages below:
+        </p>
+      </div>
+
+      <div class="pricing-clean-grid">
+        <!-- Tier 1: Essential -->
+        <div class="pricing-clean-card">
+          <div>
+            <div class="pricing-card-header-row">
+              <h3 class="pricing-clean-title">Essential</h3>
+            </div>
+
+            <div class="pricing-clean-price-box">
+              <span class="pricing-clean-period" style="margin-left: 0; margin-right: 4px; font-weight: 700; color: var(--text-muted);">Under</span>
+              <span class="pricing-clean-currency">$</span>
+              <span class="pricing-clean-amount">1000</span>
+              <span class="pricing-clean-period">AUD</span>
+            </div>
+
+            <ul class="pricing-clean-features">
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>1–3 custom pages</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Delivered in 7 days</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Pages: Home, Services, Contact, Call-to-Action</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>On-page SEO setup</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>1 revision round</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>100% code ownership</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>One-time payment (zero ongoing retainers)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <a href="contact.html?package=essential" class="btn-ghost" style="width: 100%; height: 44px;">
+              <span>Select Essential</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 2: Professional (Featured) -->
+        <div class="pricing-clean-card featured">
+          <div>
+            <div class="pricing-card-header-row">
+              <h3 class="pricing-clean-title">Professional</h3>
+              <span class="pricing-badge-popular">Most popular</span>
+            </div>
+
+            <div class="pricing-clean-price-box">
+              <span class="pricing-clean-currency">$</span>
+              <span class="pricing-clean-amount">1000–1500</span>
+              <span class="pricing-clean-period">AUD</span>
+            </div>
+
+            <ul class="pricing-clean-features">
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Up to 10 custom pages</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Delivered in 7–14 days</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Dedicated pages for core trade services</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>On-page SEO setup</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>3 revision rounds</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>100% code ownership</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>One-time payment (zero ongoing retainers)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <a href="contact.html?package=professional" class="btn-primary" style="width: 100%; height: 44px;">
+              <span>Select Professional</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 3: Premium -->
+        <div class="pricing-clean-card">
+          <div>
+            <div class="pricing-card-header-row">
+              <h3 class="pricing-clean-title">Premium</h3>
+            </div>
+
+            <div class="pricing-clean-price-box">
+              <span class="pricing-clean-currency">$</span>
+              <span class="pricing-clean-amount">1500–2300</span>
+              <span class="pricing-clean-period">AUD</span>
+            </div>
+
+            <ul class="pricing-clean-features">
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Up to 15 custom pages</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Delivered in 14–18 days</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Dedicated pages for services, areas served &amp; gallery</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>On-page SEO setup</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>5 revision rounds</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>100% code ownership</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>One-time payment</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <a href="contact.html?package=premium" class="btn-ghost" style="width: 100%; height: 44px;">
+              <span>Select Premium</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Tier 4: Website Redesign -->
+        <div class="pricing-clean-card">
+          <div>
+            <div class="pricing-card-header-row">
+              <h3 class="pricing-clean-title">Website Redesign</h3>
+            </div>
+
+            <div class="pricing-clean-price-box">
+              <span class="pricing-clean-amount" style="font-size: clamp(1.5rem, 1.8vw, 1.75rem);">Custom Quote</span>
+            </div>
+
+            <ul class="pricing-clean-features">
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Full redesign &amp; speed modernization</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Delivered in 7–14 days</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Existing text, photos &amp; reviews migrated</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>On-page SEO setup</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>100% code ownership</span>
+              </li>
+              <li class="pricing-clean-feature-item">
+                <span class="material-symbols-outlined">check_circle</span>
+                <span>Fixed one-time payment</span>
+              </li>
+            </ul>
+          </div>
+
+          <div style="margin-top: 16px;">
+            <a href="contact.html?package=redesign" class="btn-ghost" style="width: 100%; height: 44px;">
+              <span>Request Redesign Quote</span>
+              <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Consultation & Guidance Banner -->
+      <div class="pricing-advisor-banner">
+        <div class="pricing-advisor-content">
+          <span class="material-symbols-outlined pricing-advisor-icon">contact_support</span>
+          <div>
+            <h3 class="pricing-advisor-title">Not sure which package is right for your trade business?</h3>
+            <p class="pricing-advisor-text">
+              Tell us a little about your business goals, target suburbs, and whether you have an existing website. We will review your setup and recommend the most effective option—with zero obligation and no pushy sales calls.
+            </p>
+          </div>
+        </div>
+        <div class="pricing-advisor-action">
+          <a href="contact.html?package=general" class="btn-primary" style="height: 46px; padding: 0 24px; white-space: nowrap;">
+            <span>Find the Right Fit</span>
+            <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+
+      <p style="font-family: var(--font-body); font-size: 0.75rem; color: var(--text-dim); text-align: center; margin-top: 14px;">
+        Optional all-in-one .com.au domain + fast edge hosting add-on available for $149 AUD/year. Setup is 100% free if you bring your own hosting.
+      </p>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 3: WHAT'S INCLUDED
+         Short and practical deliverables checklist.
+         Only tangible build deliverables — no repeated quality claims.
+         ======================================================================== -->
+    <section id="inclusions" class="site-wrapper" style="padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y); border-top: 1px solid var(--border-subtle);">
+      <div class="section-header">
+        <span class="section-eyebrow">
+          <span class="material-symbols-outlined" style="font-size: 15px;">checklist</span>
+          <span>What's Included</span>
+        </span>
+        <h2 class="section-title">Standard Deliverables Included with Every Build</h2>
+        <p class="section-subtitle">
+          Every website we deliver includes these tangible deliverables upon project handover—ensuring you receive a complete, production-ready website with zero hidden costs.
+        </p>
+      </div>
+
+      <div class="deliverables-manifest-grid">
+        <!-- Deliverable 1 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">search</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Basic SEO Setup</h3>
+            <p class="deliverable-manifest-desc">Page titles, meta descriptions, OpenGraph social cards, sitemap, and local Schema.org trade structured data.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 2 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">image</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Image Optimization</h3>
+            <p class="deliverable-manifest-desc">Next-gen WebP image compression, responsive sizing, and lazy loading for instant mobile display.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 3 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">history_edu</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Trade &amp; Business Copywriting</h3>
+            <p class="deliverable-manifest-desc">Clear, professional service descriptions and headlines tailored specifically for Australian homeowners and builders.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 4 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">link</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Domain Setup &amp; DNS Linking</h3>
+            <p class="deliverable-manifest-desc">Full DNS record configuration and domain connection for your custom .com.au or trade web address.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 5 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">cloud_done</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Hosting Setup &amp; Deployment</h3>
+            <p class="deliverable-manifest-desc">High-speed global edge network deployment configured and tested with zero database lag.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 6 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">lock</span>
+          <div>
+            <h3 class="deliverable-manifest-name">SSL Security Certificate</h3>
+            <p class="deliverable-manifest-desc">Automated HTTPS encryption, security headers, and annual renewal configuration included.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 7 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">mail</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Contact &amp; Quote Intake Forms</h3>
+            <p class="deliverable-manifest-desc">Mobile-optimized enquiry forms routing customer job requests directly to your primary email inbox.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 8 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">analytics</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Analytics &amp; Tracking Setup</h3>
+            <p class="deliverable-manifest-desc">Privacy-compliant visitor tracking configured to measure incoming enquiries without intrusive cookie banners.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 9 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">call</span>
+          <div>
+            <h3 class="deliverable-manifest-name">1-Tap Emergency Dialers</h3>
+            <p class="deliverable-manifest-desc">Header and mobile tap-to-call buttons configured to dial your business mobile or office line directly.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 10 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">verified_user</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Trade Licence &amp; Credentials Display</h3>
+            <p class="deliverable-manifest-desc">Prominent formatting of your Registered Electrical Contractor (REC) licence number, ABN, and insurance badges.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 11 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">preview</span>
+          <div>
+            <h3 class="deliverable-manifest-name">Private Mobile Staging Link</h3>
+            <p class="deliverable-manifest-desc">Private preview link to review, test, and approve the complete website on your smartphone before it goes live.</p>
+          </div>
+        </div>
+
+        <!-- Deliverable 12 -->
+        <div class="deliverable-manifest-item">
+          <span class="material-symbols-outlined deliverable-manifest-icon">key</span>
+          <div>
+            <h3 class="deliverable-manifest-name">100% Code Handover &amp; Ownership</h3>
+            <p class="deliverable-manifest-desc">Complete source code and asset export provided upon launch with zero ongoing platform lock-ins.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 4: HOW HOSTING WORKS
+         Keep information accurate, improve presentation (open editorial 3-col)
+         ======================================================================== -->
+    <section id="hosting" class="site-wrapper" style="padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y); border-top: 1px solid var(--border-subtle);">
+      <div class="section-header">
+        <span class="section-eyebrow">
+          <span class="material-symbols-outlined" style="font-size: 15px;">cloud_sync</span>
+          <span>How Hosting Works</span>
+        </span>
+        <h2 class="section-title">Hosting Transparency: $0/Month Self-Hosted or $149/Year All-Inclusive</h2>
+        <p class="section-subtitle">
+          Most web agencies charge Australian tradesmen $250 to $400 every single month for "hosting and maintenance" on bloated WordPress sites. Here is our honest, straightforward approach:
+        </p>
+      </div>
+
+      <div class="hosting-editorial-row">
+        <!-- Col 1: BYO Hosting -->
+        <div class="hosting-editorial-col">
+          <span class="hosting-editorial-price success">$0 Setup</span>
+          <h3 class="hosting-editorial-title">Bring Your Own Hosting</h3>
+          <p class="hosting-editorial-desc">
+            If you already have your own domain and hosting provider, setup and deployment is 100% free. We configure DNS records and launch your site with zero added fees or configuration surcharges.
+          </p>
+          <div class="hosting-editorial-badge">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>100% Free Setup &amp; DNS Connection</span>
+          </div>
+        </div>
+
+        <!-- Col 2: Managed Hosting Add-on -->
+        <div class="hosting-editorial-col">
+          <span class="hosting-editorial-price accent">$149/year</span>
+          <h3 class="hosting-editorial-title">Managed Domain + Edge Hosting</h3>
+          <p class="hosting-editorial-desc">
+            Prefer not to manage domain renewals or server consoles? Our optional add-on covers your .com.au domain registration, SSL certificate, and blazing-fast edge cloud hosting for just $149 AUD/year.
+          </p>
+          <div class="hosting-editorial-badge" style="color: var(--color-accent);">
+            <span class="material-symbols-outlined">lock_open</span>
+            <span>Optional All-In-One Management</span>
+          </div>
+        </div>
+
+        <!-- Col 3: Zero Retainer -->
+        <div class="hosting-editorial-col">
+          <span class="hosting-editorial-price">$0 Retainer</span>
+          <h3 class="hosting-editorial-title">Zero Agency Lock-In</h3>
+          <p class="hosting-editorial-desc">
+            Because we build with clean, standards-compliant static code rather than vulnerable WordPress plugins, your website requires virtually zero ongoing maintenance. You own the code outright forever.
+          </p>
+          <div class="hosting-editorial-badge">
+            <span class="material-symbols-outlined">check_circle</span>
+            <span>No Monthly Maintenance Fees</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 5: FINAL CTA
+         Clear, convincing conversion section with dual action paths
+         ======================================================================== -->
+    <section class="site-wrapper" style="padding-top: clamp(40px, 6vh, 64px); padding-bottom: clamp(48px, 7vh, 80px);">
+      <div class="final-cta-editorial">
+        <div class="final-cta-editorial-inner">
+          <span class="section-eyebrow" style="color: var(--color-accent); justify-content: center;">
+            <span class="material-symbols-outlined" style="font-size: 15px;">rocket_launch</span>
+            <span>Get Started</span>
+          </span>
+          <h2 class="final-cta-editorial-title">
+            Ready to Turn Local Searches into Booked Jobs?
+          </h2>
+          <p class="final-cta-editorial-desc">
+            Whether you need a new high-converting website built from scratch, an existing site overhauled, or a website audit, we're ready to help.
+          </p>
+
+          <div class="final-cta-editorial-actions">
+            <a href="contact.html" class="btn-primary" style="height: 50px; padding: 0 30px;">
+              <span>Get a Free Fixed Quote</span>
+              <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
+            </a>
+            <a href="contact.html?package=audit" class="final-cta-secondary-btn" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 50px; padding: 0 26px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.08); color: #F7F4EF; font-family: var(--font-ui); font-size: 0.8125rem; font-weight: 600; text-decoration: none; border: 1px solid rgba(255, 255, 255, 0.35); transition: all 0.2s ease; cursor: pointer;">
+              <span>Claim Free Website Audit</span>
+              <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-accent);">troubleshoot</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         SECTION 6: FAQS
+         Clean, hairline-separated accordion rows
+         ======================================================================== -->
+    <section id="faq" class="site-wrapper" style="padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y); border-top: 1px solid var(--border-subtle);">
+      <div class="section-header text-center">
+        <span class="section-eyebrow">
+          <span class="material-symbols-outlined" style="font-size: 15px;">help</span>
+          <span>Package Questions</span>
+        </span>
+        <h2 class="section-title">Frequently Asked Questions About Our Services</h2>
+        <p class="section-subtitle">
+          Clear answers for electrical contractors and trade business owners before getting started.
+        </p>
+      </div>
+
+      <div class="faq-clean-container">
+        <!-- FAQ 1: Hidden Fees -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">Are there any hidden monthly fees or hosting lock-ins?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              None. All packages are one-time fixed prices with zero ongoing agency retainers. You own 100% of your code and domain. If you want managed domain and edge hosting, we offer an optional add-on for $149 AUD/year; otherwise, setup is 100% free on your own host.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 2: Payment Terms (Moved to 2nd position & updated to 30/30/40) -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">How does payment work for the build?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              We work on three clear milestones: 30% after the plan is agreed to start the build, 30% once the frontend is completed, and the remaining 40% only when the site is fully reviewed, approved, and ready to go live.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 3: Free Audit -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">How does the Free Website Audit work, and is there any obligation?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              Zero obligation. Submit your website URL, and we'll audit your mobile speed, local SEO schema, and enquiry bottlenecks within 48 hours. We send a plain-English report directly to your inbox with actionable fixes you can implement yourself, hand to another developer, or hire us to handle.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 4: Upgrading Packages -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">Can I upgrade between packages later as my business expands?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              Yes. Because we use clean, standard static code rather than proprietary page builders, expanding your pages or adding target suburbs down the road is straightforward—you simply pay the difference between packages.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 5: What Client Provides -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">What do I need to provide to start the build?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              Just 15 minutes. We need your business name, contractor licence number, service suburbs, phone number, and the primary services you want to promote. We handle the copywriting, site structure, and technical build.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 6: Domain & Email Configuration -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">Can you help configure my custom domain and email?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              Yes. We connect your custom domain and configure DNS records to ensure your existing business email (Google Workspace, Microsoft 365, etc.) continues working without interruption.
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ 7: Revision Rounds -->
+        <div class="faq-editorial-item">
+          <button type="button" class="faq-editorial-trigger" aria-expanded="false">
+            <span class="faq-editorial-question">How do revisions work before the site goes live?</span>
+            <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
+          </button>
+          <div class="faq-editorial-panel">
+            <div class="faq-editorial-content">
+              We send you a private staging link to review on your smartphone and desktop. You can test buttons, review text, check licence details, and request adjustments during your included revision rounds before launch.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       SECTION 8: SHARED SITE FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="site-wrapper">
+      <div class="footer-grid">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <a href="index.html" class="brand-link">
+            <img src="images/logo.png" alt="Nexbeck" class="brand-logo-img" />
+            <span class="brand-text" style="color: #FFFFFF !important; font-weight: 800; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 0.02em; display: inline-block;">NEXBECK</span>
+          </a>
+          <p style="font-family: var(--font-body); font-size: 0.875rem; color: #D6CEBE; line-height: 1.6; max-width: 300px;">
+            Web design agency engineered for Australian electricians and trade businesses to win more enquiries, get found locally, and scale online.
+          </p>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #34d399;"></span>
+            <span style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; font-weight: 600;">AUSTRALIA-WIDE SERVICE</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links-list">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="services.html" class="footer-link">Services &amp; Pricing</a></li>
+            <li><a href="about.html" class="footer-link">About Nexbeck</a></li>
+            <li><a href="contact.html" class="footer-link">Get a Free Quote</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Trade Packages</span>
+          <ul class="footer-links-list">
+            <li><a href="services.html#pricing" class="footer-link">Essential (Under $1,000 AUD)</a></li>
+            <li><a href="services.html#pricing" class="footer-link">Professional ($1,000–$1,500 AUD)</a></li>
+            <li><a href="services.html#pricing" class="footer-link">Premium ($1,500–$2,300 AUD)</a></li>
+            <li><a href="contact.html?package=custom" class="footer-link">Custom Trade Scope</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Direct Contact</span>
+          <ul class="footer-links-list">
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Email: <a href="mailto:contact@nexbeck.com" style="color: #FFFFFF; text-decoration: underline; text-underline-offset: 3px;">contact@nexbeck.com</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Trade Line: <a href="tel:+923149647176" style="color: #FFFFFF; font-weight: 600;">+92 3149647176</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE; margin-top: 4px;">
+              Hours: Mon–Fri, 8:00 AM – 6:00 PM AEST
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE;">
+          &copy; 2026 Nexbeck. All rights reserved. Websites engineered for Australian trade contractors.
+        </p>
+        <p style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; letter-spacing: 0.04em;">
+          QUALITY &bull; SPEED (7–18 DAYS) &bull; FIXED PRICE
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button type="button" id="back-to-top-btn" class="back-to-top-btn" aria-label="Scroll back to top">
+    <span class="material-symbols-outlined" style="font-size: 18px;">arrow_upward</span>
+  </button>
+
+  <!-- Mobile Sticky Action Bar -->
+  <aside id="mobile-action-bar" class="mobile-action-bar" aria-label="Quick Mobile Actions">
+    <div class="mobile-action-container">
+      <a href="tel:+923149647176" class="btn-ghost" style="flex: 1; height: 42px; font-size: 11px; padding: 0 12px;">
+        <span class="material-symbols-outlined" style="font-size: 16px; color: #34d399;">call</span>
+        <span>Call Directly</span>
+      </a>
+      <a href="contact.html" class="btn-primary" style="flex: 1; height: 42px; font-size: 11px; padding: 0 12px;">
+        <span>Get a Free Quote</span>
+        <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+      </a>
+    </div>
+  </aside>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
