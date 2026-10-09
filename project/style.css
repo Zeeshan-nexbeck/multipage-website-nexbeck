@@ -3881,6 +3881,274 @@ section[id], [id] {
   font-weight: 700;
 }
 
+/* 1b. Mobile Dropdown Selector for Trade Services (Mobile View Only) */
+.calc-mobile-dropdown-container {
+  display: none;
+  margin-top: 18px;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 30;
+}
+
+.calc-dropdown-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 0 2px;
+}
+
+.calc-dropdown-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+}
+
+.calc-dropdown-icon {
+  font-size: 16px;
+  color: var(--color-accent-text);
+}
+
+.calc-custom-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.calc-dropdown-trigger {
+  width: 100%;
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-primary);
+  border: 1px solid var(--border-card);
+  color: var(--text-main);
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 2px 6px rgba(20, 18, 14, 0.08);
+  transition: border-color var(--duration-fast) ease, background-color var(--duration-fast) ease, box-shadow var(--duration-fast) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.calc-dropdown-trigger:hover {
+  border-color: var(--text-main);
+  background: var(--bg-surface);
+}
+
+.calc-dropdown-trigger:focus-visible {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(201, 138, 44, 0.25);
+}
+
+.calc-custom-dropdown.open .calc-dropdown-trigger {
+  border-color: var(--color-accent);
+  background: var(--bg-surface);
+  box-shadow: 0 4px 12px rgba(201, 138, 44, 0.15), 0 0 0 1px var(--color-accent);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.calc-dropdown-trigger-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.calc-dropdown-selected-name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  letter-spacing: -0.01em;
+}
+
+.calc-dropdown-selected-price {
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-accent-text);
+  letter-spacing: 0.01em;
+}
+
+.calc-dropdown-trigger-chevron-wrap {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--duration-fast) ease, border-color var(--duration-fast) ease;
+}
+
+.calc-dropdown-chevron {
+  font-size: 22px;
+  color: var(--color-accent-text);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.calc-custom-dropdown.open .calc-dropdown-chevron {
+  transform: rotate(180deg);
+}
+
+.calc-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: var(--bg-primary);
+  border: 1px solid var(--color-accent);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom-left-radius: var(--radius-sm);
+  border-bottom-right-radius: var(--radius-sm);
+  box-shadow: 0 14px 28px rgba(20, 18, 14, 0.16), 0 2px 6px rgba(20, 18, 14, 0.08);
+  max-height: 300px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.calc-custom-dropdown.open .calc-dropdown-menu {
+  display: block;
+  animation: calcDropdownSlideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes calcDropdownSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.calc-dropdown-item {
+  width: 100%;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border: none;
+  border-bottom: 1px solid var(--bg-surface-elevated);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--duration-fast) ease, color var(--duration-fast) ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.calc-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.calc-dropdown-item:hover,
+.calc-dropdown-item:focus-visible {
+  background: var(--bg-surface);
+  outline: none;
+}
+
+.calc-dropdown-item.active {
+  background: rgba(201, 138, 44, 0.14);
+  border-left: 4px solid var(--color-accent);
+  padding-left: 13px;
+}
+
+.calc-dropdown-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+
+.calc-dropdown-item-name {
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.3;
+}
+
+.calc-dropdown-item.active .calc-dropdown-item-name {
+  color: var(--text-main);
+  font-weight: 800;
+}
+
+.calc-dropdown-item-price {
+  font-family: var(--font-ui);
+  font-size: 0.78125rem;
+  font-weight: 700;
+  color: var(--color-accent-text);
+}
+
+.calc-dropdown-item-check {
+  font-size: 20px;
+  color: var(--color-accent-text);
+  display: none;
+  flex-shrink: 0;
+}
+
+.calc-dropdown-item.active .calc-dropdown-item-check {
+  display: inline-flex;
+}
+
+/* Visually hidden native select for accessibility & form synchronization */
+.calc-mobile-native-select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Responsive control: hide dropdown on desktop / tablet (min-width: 641px) */
+@media (min-width: 641px) {
+  .calc-mobile-dropdown-container {
+    display: none !important;
+  }
+}
+
+/* Responsive control: on mobile (max-width: 640px), show dropdown & hide grid */
+@media (max-width: 640px) {
+  #roi-calculator .calc-job-buttons-grid,
+  .calc-job-buttons-grid {
+    display: none !important;
+  }
+
+  #roi-calculator .calc-mobile-dropdown-container,
+  .calc-mobile-dropdown-container {
+    display: block !important;
+  }
+}
+
 .calc-display-panel {
   margin-top: 32px;
   padding: clamp(24px, 3.5vw, 36px) clamp(20px, 3vw, 32px);
@@ -5577,22 +5845,21 @@ section[id], [id] {
 
 @media (max-width: 580px) {
   .calc-job-buttons-grid {
-    grid-template-columns: 1fr !important;
+    display: none !important;
   }
 
-  .calc-job-btn {
-    padding: 12px 14px;
-    width: 100%;
+  .calc-mobile-dropdown-container {
+    display: block !important;
   }
 }
 
 @media (max-width: 480px) {
   .calc-job-buttons-grid {
-    grid-template-columns: 1fr !important;
+    display: none !important;
   }
 
-  .calc-job-btn {
-    padding: 12px 14px;
+  .calc-mobile-dropdown-container {
+    display: block !important;
   }
 
   .showcase-device-toggle-bar {

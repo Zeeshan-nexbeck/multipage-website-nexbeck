@@ -440,6 +440,83 @@
             </p>
           </div>
 
+          <!-- Job Selection for Mobile (Professional Custom Dropdown - Mobile View Only) -->
+          <div class="calc-mobile-dropdown-container">
+            <div class="calc-dropdown-header">
+              <label for="calc-dropdown-trigger" class="calc-dropdown-label">
+                <span class="material-symbols-outlined calc-dropdown-icon">tune</span>
+                <span>Select Trade Service</span>
+              </label>
+            </div>
+
+            <div class="calc-custom-dropdown" id="calc-mobile-dropdown">
+              <button
+                type="button"
+                class="calc-dropdown-trigger"
+                id="calc-dropdown-trigger"
+                aria-haspopup="listbox"
+                aria-expanded="false"
+                aria-controls="calc-dropdown-menu"
+                aria-label="Select electrical trade service"
+              >
+                <div class="calc-dropdown-trigger-main">
+                  <span class="calc-dropdown-selected-name" id="calc-dropdown-selected-name">Switchboard Upgrade</span>
+                  <span class="calc-dropdown-selected-price" id="calc-dropdown-selected-price">Typical Ticket: $1,200 – $3,500</span>
+                </div>
+                <div class="calc-dropdown-trigger-chevron-wrap">
+                  <span class="material-symbols-outlined calc-dropdown-chevron">expand_more</span>
+                </div>
+              </button>
+
+              <div class="calc-dropdown-menu" id="calc-dropdown-menu" role="listbox" tabindex="-1">
+                <button type="button" role="option" class="calc-dropdown-item active" data-job="switchboard" aria-selected="true">
+                  <div class="calc-dropdown-item-text">
+                    <span class="calc-dropdown-item-name">Switchboard Upgrade</span>
+                    <span class="calc-dropdown-item-price">$1,200 – $3,500</span>
+                  </div>
+                  <span class="material-symbols-outlined calc-dropdown-item-check">check_circle</span>
+                </button>
+                <button type="button" role="option" class="calc-dropdown-item" data-job="emergency" aria-selected="false">
+                  <div class="calc-dropdown-item-text">
+                    <span class="calc-dropdown-item-name">Smoke Alarm &amp; Safety Compliance</span>
+                    <span class="calc-dropdown-item-price">$500 – $2,000</span>
+                  </div>
+                  <span class="material-symbols-outlined calc-dropdown-item-check">check_circle</span>
+                </button>
+                <button type="button" role="option" class="calc-dropdown-item" data-job="rcd" aria-selected="false">
+                  <div class="calc-dropdown-item-text">
+                    <span class="calc-dropdown-item-name">House Rewire (Partial to Full)</span>
+                    <span class="calc-dropdown-item-price">$4,000 – $12,000</span>
+                  </div>
+                  <span class="material-symbols-outlined calc-dropdown-item-check">check_circle</span>
+                </button>
+                <button type="button" role="option" class="calc-dropdown-item" data-job="downlights" aria-selected="false">
+                  <div class="calc-dropdown-item-text">
+                    <span class="calc-dropdown-item-name">3KW - 5KW Solar Installation</span>
+                    <span class="calc-dropdown-item-price">$1,000 – $2,000</span>
+                  </div>
+                  <span class="material-symbols-outlined calc-dropdown-item-check">check_circle</span>
+                </button>
+                <button type="button" role="option" class="calc-dropdown-item" data-job="gpo" aria-selected="false">
+                  <div class="calc-dropdown-item-text">
+                    <span class="calc-dropdown-item-name">EV Charger Installation</span>
+                    <span class="calc-dropdown-item-price">$1,000 – $3,500</span>
+                  </div>
+                  <span class="material-symbols-outlined calc-dropdown-item-check">check_circle</span>
+                </button>
+              </div>
+
+              <!-- Native select for accessibility & assistive tech synchronization -->
+              <select id="calc-mobile-select-native" class="calc-mobile-native-select" aria-label="Select Trade Service">
+                <option value="switchboard" selected>Switchboard Upgrade ($1,200 – $3,500)</option>
+                <option value="emergency">Smoke Alarm &amp; Safety Compliance ($500 – $2,000)</option>
+                <option value="rcd">House Rewire (Partial to Full) ($4,000 – $12,000)</option>
+                <option value="downlights">3KW - 5KW Solar Installation ($1,000 – $2,000)</option>
+                <option value="gpo">EV Charger Installation ($1,000 – $3,500)</option>
+              </select>
+            </div>
+          </div>
+
           <!-- Job Selection Tabs (Unboxed Architectural Selectors) -->
           <div class="calc-job-buttons-grid">
             <button type="button" class="calc-job-btn active" data-job="switchboard">

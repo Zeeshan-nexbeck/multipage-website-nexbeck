@@ -500,6 +500,7 @@ function initPaybackCalculator() {
   const jobData = {
     switchboard: {
       name: 'Main Switchboard Upgrade & Safety Verification',
+      shortName: 'Switchboard Upgrade',
       priceRange: '$1,200 – $3,500',
       avgTicket: 2350,
       netProfit: 1550,
@@ -508,6 +509,7 @@ function initPaybackCalculator() {
     },
     emergency: {
       name: 'Smoke Alarm & Safety Compliance Upgrade',
+      shortName: 'Smoke Alarm & Safety Compliance',
       priceRange: '$500 – $2,000',
       avgTicket: 1250,
       netProfit: 800,
@@ -516,6 +518,7 @@ function initPaybackCalculator() {
     },
     rcd: {
       name: 'House Rewire (Partial to Full)',
+      shortName: 'House Rewire (Partial to Full)',
       priceRange: '$4,000 – $12,000',
       avgTicket: 8000,
       netProfit: 5000,
@@ -524,6 +527,7 @@ function initPaybackCalculator() {
     },
     downlights: {
       name: '3KW - 5KW Solar Installation',
+      shortName: '3KW - 5KW Solar Installation',
       priceRange: '$1,000 – $2,000',
       avgTicket: 1500,
       netProfit: 950,
@@ -532,6 +536,7 @@ function initPaybackCalculator() {
     },
     gpo: {
       name: 'EV Charger Installation',
+      shortName: 'EV Charger Installation',
       priceRange: '$1,000 – $3,500',
       avgTicket: 2250,
       netProfit: 1400,
@@ -544,6 +549,48 @@ function initPaybackCalculator() {
   let previousRevenue = 0;
   let previousWaste = 0;
   let previousNetSavings = 0;
+
+  // Mobile Dropdown Elements
+  const dropdownContainer = document.getElementById('calc-mobile-dropdown');
+  const dropdownTrigger = document.getElementById('calc-dropdown-trigger');
+  const dropdownItems = document.querySelectorAll('.calc-dropdown-item');
+  const dropdownSelectedName = document.getElementById('calc-dropdown-selected-name');
+  const dropdownSelectedPrice = document.getElementById('calc-dropdown-selected-price');
+  const nativeSelect = document.getElementById('calc-mobile-select-native');
+
+  function selectJob(jobKey) {
+    if (!jobData[jobKey]) return;
+    currentJobKey = jobKey;
+
+    // Sync desktop button states
+    calcButtons.forEach((btn) => {
+      const isMatch = btn.getAttribute('data-job') === jobKey;
+      btn.classList.toggle('active', isMatch);
+    });
+
+    // Sync mobile dropdown items
+    dropdownItems.forEach((item) => {
+      const isMatch = item.getAttribute('data-job') === jobKey;
+      item.classList.toggle('active', isMatch);
+      item.setAttribute('aria-selected', isMatch ? 'true' : 'false');
+    });
+
+    // Update mobile dropdown display trigger
+    const d = jobData[jobKey];
+    if (dropdownSelectedName) {
+      dropdownSelectedName.textContent = d.shortName || d.name;
+    }
+    if (dropdownSelectedPrice) {
+      dropdownSelectedPrice.textContent = `Typical Ticket: ${d.priceRange}`;
+    }
+
+    // Sync native select value
+    if (nativeSelect && nativeSelect.value !== jobKey) {
+      nativeSelect.value = jobKey;
+    }
+
+    updateCalculatorView(false);
+  }
 
   function updateCalculatorView(isLiveDrag = false) {
     const data = jobData[currentJobKey] || jobData.switchboard;
@@ -580,15 +627,58 @@ function initPaybackCalculator() {
     }
   }
 
-  // Job selection button handlers
+  // Job selection button handlers (Desktop / Tablet)
   calcButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      calcButtons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentJobKey = btn.getAttribute('data-job') || 'switchboard';
-      updateCalculatorView(false);
+      const jobKey = btn.getAttribute('data-job') || 'switchboard';
+      selectJob(jobKey);
     });
   });
+
+  // Mobile Custom Dropdown Handlers
+  if (dropdownTrigger && dropdownContainer) {
+    dropdownTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = dropdownContainer.classList.toggle('open');
+      dropdownTrigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    dropdownItems.forEach((item) => {
+      item.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const jobKey = item.getAttribute('data-job');
+        if (jobKey) {
+          selectJob(jobKey);
+        }
+        dropdownContainer.classList.remove('open');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!dropdownContainer.contains(e.target)) {
+        dropdownContainer.classList.remove('open');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Close dropdown on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dropdownContainer.classList.contains('open')) {
+        dropdownContainer.classList.remove('open');
+        dropdownTrigger.setAttribute('aria-expanded', 'false');
+        dropdownTrigger.focus();
+      }
+    });
+  }
+
+  // Native select change handler for mobile accessibility
+  if (nativeSelect) {
+    nativeSelect.addEventListener('change', (e) => {
+      selectJob(e.target.value);
+    });
+  }
 
   // Slider change handler with responsive drag easing
   if (volumeSlider) {
@@ -600,8 +690,8 @@ function initPaybackCalculator() {
     });
   }
 
-  // Initialize initial state
-  updateCalculatorView(false);
+  // Initialize initial state with default switchboard
+  selectJob('switchboard');
 }
 
 /* ==========================================================================
