@@ -5,7 +5,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Subtle electrical ambient background with mouse interaction & click sparks
+  // 1. Subtle electrical ambient background
   initAmbientCanvas();
 
   // 2. Scroll-triggered reveal animations with auto-observing engine
@@ -39,13 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 11. Sticky mobile bar and back-to-top button
   initBackToTopAndMobileBar();
-
-  // 12. Micro-interactions: 3D perspective tilt & tactile hover
-  initTiltEffect();
 });
 
 /* ==========================================================================
-   1. ELECTRICAL AMBIENT CANVAS (With Subtle Cursor Reaction & Click Sparks)
+   1. ELECTRICAL AMBIENT CANVAS (Subtle, Performant, Motion-Sensitive)
    ========================================================================== */
 function initAmbientCanvas() {
   const canvas = document.getElementById('ambient-canvas');
@@ -78,45 +75,40 @@ function initAmbientCanvas() {
     mouse.active = false;
   });
 
-  // Click spark particle engine
-  const clickSparks = [];
-  window.addEventListener('click', (e) => {
-    const numSparks = 10;
-    for (let i = 0; i < numSparks; i++) {
-      const angle = (Math.PI * 2 * i) / numSparks + (Math.random() - 0.5) * 0.6;
-      const speed = Math.random() * 3.2 + 1.2;
-      clickSparks.push({
-        x: e.clientX,
-        y: e.clientY,
-        vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed,
-        life: 1.0,
-        decay: Math.random() * 0.035 + 0.025,
-        color: Math.random() > 0.3 ? '201, 138, 44' : '28, 26, 23',
-        size: Math.random() * 2 + 1
-      });
-    }
-  });
-
   // Subtle electrical nodes with hairline connections
-  const numNodes = 16;
+  const numNodes = 14;
   const nodes = [];
 
   for (let i = 0; i < numNodes; i++) {
     nodes.push({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.22,
-      vy: (Math.random() - 0.5) * 0.22,
-      radius: Math.random() * 1.5 + 1.0,
-      alpha: Math.random() * 0.2 + 0.08
+      vx: (Math.random() - 0.5) * 0.18,
+      vy: (Math.random() - 0.5) * 0.18,
+      radius: Math.random() * 1.2 + 0.8,
+      alpha: Math.random() * 0.16 + 0.08
     });
   }
 
+  let rafId = null;
+  let isTabVisible = !document.hidden;
+
+  document.addEventListener('visibilitychange', () => {
+    isTabVisible = !document.hidden;
+    if (isTabVisible && !rafId) {
+      animate();
+    }
+  });
+
   function animate() {
+    if (!isTabVisible) {
+      rafId = null;
+      return;
+    }
+
     ctx.clearRect(0, 0, width, height);
 
-    // 1. Draw and update ambient floating electrical nodes
+    // Draw and update ambient floating electrical nodes
     for (let i = 0; i < nodes.length; i++) {
       const n = nodes[i];
       n.x += n.vx;
@@ -133,17 +125,16 @@ function initAmbientCanvas() {
         const mdx = mouse.x - n.x;
         const mdy = mouse.y - n.y;
         const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mdist < 180) {
-          currentAlpha = Math.min(0.45, n.alpha + (1 - mdist / 180) * 0.25);
-          // Very gentle attraction drift
-          n.x += (mdx / mdist) * 0.15;
-          n.y += (mdy / mdist) * 0.15;
+        if (mdist < 160) {
+          currentAlpha = Math.min(0.38, n.alpha + (1 - mdist / 160) * 0.2);
+          n.x += (mdx / mdist) * 0.12;
+          n.y += (mdy / mdist) * 0.12;
 
           // Draw faint spark hairline to cursor
           ctx.beginPath();
           ctx.moveTo(n.x, n.y);
           ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(201, 138, 44, ${(1 - mdist / 180) * 0.12})`;
+          ctx.strokeStyle = `rgba(201, 138, 44, ${(1 - mdist / 160) * 0.1})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
@@ -162,45 +153,25 @@ function initAmbientCanvas() {
         const dy = n.y - n2.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 155) {
+        if (dist < 140) {
           ctx.beginPath();
           ctx.moveTo(n.x, n.y);
           ctx.lineTo(n2.x, n2.y);
-          ctx.strokeStyle = `rgba(201, 138, 44, ${0.05 * (1 - dist / 155)})`;
+          ctx.strokeStyle = `rgba(201, 138, 44, ${0.045 * (1 - dist / 140)})`;
           ctx.lineWidth = 1;
           ctx.stroke();
         }
       }
     }
 
-    // 2. Draw and update click sparks
-    for (let i = clickSparks.length - 1; i >= 0; i--) {
-      const s = clickSparks[i];
-      s.x += s.vx;
-      s.y += s.vy;
-      s.vy += 0.06; // subtle gravity
-      s.vx *= 0.97; // drag
-      s.life -= s.decay;
-
-      if (s.life <= 0) {
-        clickSparks.splice(i, 1);
-        continue;
-      }
-
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.size * s.life, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${s.color}, ${s.life * 0.85})`;
-      ctx.fill();
-    }
-
-    requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
   }
 
   animate();
 }
 
 /* ==========================================================================
-   2. SCROLL REVEAL ANIMATIONS (IntersectionObserver Auto Engine)
+   2. SCROLL REVEAL ANIMATIONS (Fast, subtle, and accessible)
    ========================================================================== */
 function initScrollAnimations() {
   const autoSelectors = [
@@ -209,14 +180,24 @@ function initScrollAnimations() {
     '.calc-open-container',
     '.editorial-pillars-grid > *',
     '.editorial-value-split',
+    '.process-timeline-flow',
     '.process-timeline-flow > *',
     '.faq-editorial-item',
+    '.faq-item',
+    '.contact-faq-card',
     '.final-cta-open',
     '.pricing-card',
+    '.pricing-clean-card',
     '.feature-matrix-table',
     '.about-mission-open',
     '.about-diff-row',
-    '.turf-simulator-container'
+    '.tradie-standard-card',
+    '.turf-simulator-container',
+    '.service-editorial-col',
+    '.scope-estimator-wrap',
+    '.deliverable-manifest-item',
+    '.contact-card-box',
+    '.contact-sidebar-card'
   ];
 
   autoSelectors.forEach((sel) => {
@@ -236,8 +217,8 @@ function initScrollAnimations() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -40px 0px',
-    threshold: 0.06
+    rootMargin: '0px 0px -15px 0px',
+    threshold: 0.05
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -245,12 +226,26 @@ function initScrollAnimations() {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
         obs.unobserve(entry.target);
+        setTimeout(() => {
+          entry.target.style.willChange = 'auto';
+        }, 400);
       }
     });
   }, observerOptions);
 
   const targets = document.querySelectorAll('.reveal-on-scroll, .reveal-stagger');
-  targets.forEach((target) => observer.observe(target));
+  const vh = window.innerHeight || document.documentElement.clientHeight;
+
+  // Immediately display elements already within or near initial viewport
+  targets.forEach((target) => {
+    const rect = target.getBoundingClientRect();
+    if (rect.top < vh - 15) {
+      target.classList.add('is-visible');
+      target.style.willChange = 'auto';
+    } else {
+      observer.observe(target);
+    }
+  });
 }
 
 /* ==========================================================================
@@ -258,13 +253,21 @@ function initScrollAnimations() {
    ========================================================================== */
 function initHeaderAndNav() {
   const header = document.getElementById('main-header');
+  const progressBar = document.getElementById('header-scroll-progress');
 
   window.addEventListener('scroll', () => {
-    if (!header) return;
-    if (window.scrollY > 30) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
+    if (header) {
+      if (window.scrollY > 30) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+
+    if (progressBar) {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+      progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
     }
   }, { passive: true });
 
@@ -343,16 +346,27 @@ function initProjectShowcaseToggle() {
 
   toggleBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
+      if (btn.classList.contains('active')) return;
       toggleBtns.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       const view = btn.getAttribute('data-showcase-view');
-      if (view === 'mobile') {
-        laptopView.style.display = 'none';
-        phoneView.style.display = 'flex';
-      } else {
-        laptopView.style.display = 'flex';
-        phoneView.style.display = 'none';
-      }
+
+      const outgoing = view === 'mobile' ? laptopView : phoneView;
+      const incoming = view === 'mobile' ? phoneView : laptopView;
+
+      outgoing.style.opacity = '0';
+      outgoing.style.transition = 'opacity 0.15s ease';
+
+      setTimeout(() => {
+        outgoing.style.display = 'none';
+        outgoing.style.opacity = '';
+        incoming.style.display = 'flex';
+        incoming.style.opacity = '0';
+        incoming.style.transition = 'opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1)';
+        requestAnimationFrame(() => {
+          incoming.style.opacity = '1';
+        });
+      }, 150);
     });
   });
 }
@@ -443,11 +457,18 @@ function initPhoneIframeScaling() {
 
 /* ==========================================================================
    ANIMATED NUMBER COUNTER ENGINE
-   Smooth numerical count-up easing
+   Smooth numerical count-up easing with frame cancellation
    ========================================================================== */
-function animateNumber(element, startVal, endVal, prefix = '', suffix = '', duration = 400) {
+function animateNumber(element, startVal, endVal, prefix = '', suffix = '', duration = 380) {
   if (!element) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+  // Cancel any running animation on this element to prevent competing loops
+  if (element._animId) {
+    cancelAnimationFrame(element._animId);
+    element._animId = null;
+  }
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || duration <= 0 || startVal === endVal) {
     element.textContent = `${prefix}${endVal.toLocaleString('en-AU')}${suffix}`;
     return;
   }
@@ -464,13 +485,14 @@ function animateNumber(element, startVal, endVal, prefix = '', suffix = '', dura
     element.textContent = `${prefix}${currentVal.toLocaleString('en-AU')}${suffix}`;
 
     if (progress < 1) {
-      requestAnimationFrame(step);
+      element._animId = requestAnimationFrame(step);
     } else {
       element.textContent = `${prefix}${endVal.toLocaleString('en-AU')}${suffix}`;
+      element._animId = null;
     }
   }
 
-  requestAnimationFrame(step);
+  element._animId = requestAnimationFrame(step);
 }
 
 /* ==========================================================================
@@ -538,8 +560,9 @@ function initPaybackCalculator() {
   let currentJobKey = 'switchboard';
   let previousRevenue = 0;
   let previousWaste = 0;
+  let previousNetSavings = 0;
 
-  function updateCalculatorView() {
+  function updateCalculatorView(isLiveDrag = false) {
     const data = jobData[currentJobKey] || jobData.switchboard;
     const monthlyJobs = volumeSlider ? parseInt(volumeSlider.value, 10) : 3;
 
@@ -556,18 +579,21 @@ function initPaybackCalculator() {
     const calculatedLeadWaste = Math.round(monthlyJobs * 2.2 * 65 * 12);
     const calculatedNetSavings = calculatedAnnualRevenue - 1000;
 
+    const animDuration = isLiveDrag ? 120 : 380;
+
     if (annualRevenueEl) {
-      animateNumber(annualRevenueEl, previousRevenue, calculatedAnnualRevenue, '$', ' AUD/yr', 450);
+      animateNumber(annualRevenueEl, previousRevenue, calculatedAnnualRevenue, '$', ' AUD/yr', animDuration);
       previousRevenue = calculatedAnnualRevenue;
     }
 
     if (hipagesWasteEl) {
-      animateNumber(hipagesWasteEl, previousWaste, calculatedLeadWaste, '$', ' AUD/yr Saved', 450);
+      animateNumber(hipagesWasteEl, previousWaste, calculatedLeadWaste, '$', ' AUD/yr Saved', animDuration);
       previousWaste = calculatedLeadWaste;
     }
 
     if (netSavingsEl) {
-      animateNumber(netSavingsEl, 0, calculatedNetSavings, '+$', ' Net Gain', 450);
+      animateNumber(netSavingsEl, previousNetSavings, calculatedNetSavings, '+$', ' Net Gain', animDuration);
+      previousNetSavings = calculatedNetSavings;
     }
   }
 
@@ -577,19 +603,22 @@ function initPaybackCalculator() {
       calcButtons.forEach((b) => b.classList.remove('active'));
       btn.classList.add('active');
       currentJobKey = btn.getAttribute('data-job') || 'switchboard';
-      updateCalculatorView();
+      updateCalculatorView(false);
     });
   });
 
-  // Slider change handler
+  // Slider change handler with responsive drag easing
   if (volumeSlider) {
     volumeSlider.addEventListener('input', () => {
-      updateCalculatorView();
+      updateCalculatorView(true);
+    });
+    volumeSlider.addEventListener('change', () => {
+      updateCalculatorView(false);
     });
   }
 
   // Initialize initial state
-  updateCalculatorView();
+  updateCalculatorView(false);
 }
 
 /* ==========================================================================
@@ -605,6 +634,8 @@ function initScopeEstimator() {
   const deliveryTimeEl = document.getElementById('estimator-delivery-time');
   const breakevenJobsEl = document.getElementById('estimator-breakeven-jobs');
   const selectBtn = document.getElementById('estimator-select-btn');
+
+  let previousScopePrice = 1250;
 
   function calculateScope() {
     let basePrice = 1250;
@@ -640,7 +671,8 @@ function initScopeEstimator() {
     });
 
     if (totalCostEl) {
-      animateNumber(totalCostEl, 0, basePrice, '$', ' AUD', 300);
+      animateNumber(totalCostEl, previousScopePrice, basePrice, '$', ' AUD', 260);
+      previousScopePrice = basePrice;
     }
     if (deliveryTimeEl) {
       deliveryTimeEl.textContent = deliveryDays;
@@ -759,7 +791,9 @@ function initContactFormHandler() {
         packageSelect.value = 'redesign';
       } else if (selectedPkg === 'audit') {
         packageSelect.value = 'audit';
-      } else if (selectedPkg === 'custom' || selectedPkg === 'general') {
+      } else if (selectedPkg === 'general' || selectedPkg === 'general_inquiry' || selectedPkg === 'general-inquiry' || selectedPkg === 'inquiry') {
+        packageSelect.value = 'general';
+      } else if (selectedPkg === 'custom') {
         packageSelect.value = 'custom';
       }
     }
@@ -787,7 +821,11 @@ function initContactFormHandler() {
 
   // --- Validation Helpers ---
   function setFieldError(inputEl, errorEl, message) {
-    if (inputEl) inputEl.classList.add('has-error');
+    if (inputEl) {
+      inputEl.classList.remove('has-error');
+      void inputEl.offsetWidth; // Force CSS reflow to re-trigger field-shake animation
+      inputEl.classList.add('has-error');
+    }
     if (errorEl) {
       errorEl.textContent = message;
       errorEl.classList.add('visible');
@@ -1102,10 +1140,10 @@ function initBackToTopAndMobileBar() {
     const scrollY = window.scrollY;
 
     if (bttBtn) {
-      if (scrollY > 500) {
-        bttBtn.style.display = 'flex';
+      if (scrollY > 400) {
+        bttBtn.classList.add('visible');
       } else {
-        bttBtn.style.display = 'none';
+        bttBtn.classList.remove('visible');
       }
     }
 
@@ -1263,66 +1301,4 @@ function initSuburbTurfSimulator() {
 
   // Initialize Sydney by default
   renderRegion('sydney');
-}
-
-/* ==========================================================================
-   12. MICRO-INTERACTIONS: 3D PERSPECTIVE TILT
-   ========================================================================== */
-function initTiltEffect() {
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if ('ontouchstart' in window) return;
-
-  // 1. Hero Showcase Browser Frame (Subtle Floating Animation + 3D Perspective Tilt on Mouse-Hover)
-  const heroWrapper = document.querySelector('#home-hero .hero-visual .showcase-wrapper');
-  const heroFrame = heroWrapper ? heroWrapper.querySelector('.browser-frame') : null;
-
-  if (heroFrame) {
-    heroFrame.addEventListener('mousemove', (e) => {
-      const rect = heroFrame.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -4.5;
-      const rotateY = ((x - centerX) / centerX) * 4.5;
-
-      heroFrame.style.animationPlayState = 'paused';
-      heroFrame.style.transform = `perspective(1200px) translateY(-10px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.012, 1.012, 1.012)`;
-    });
-
-    heroFrame.addEventListener('mouseleave', () => {
-      heroFrame.style.animationPlayState = 'running';
-      heroFrame.style.transform = '';
-      heroFrame.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease';
-    });
-
-    heroFrame.addEventListener('mouseenter', () => {
-      heroFrame.style.transition = 'transform 0.12s ease-out, box-shadow 0.3s ease';
-    });
-  }
-
-  // 2. Featured cards tilt
-  const otherTiltElements = document.querySelectorAll('.tradie-comp-card.highlight, .pricing-card.featured');
-  otherTiltElements.forEach((el) => {
-    el.addEventListener('mousemove', (e) => {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -3.5;
-      const rotateY = ((x - centerX) / centerX) * 3.5;
-
-      el.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg)`;
-    });
-
-    el.addEventListener('mouseleave', () => {
-      el.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-      el.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
-    });
-
-    el.addEventListener('mouseenter', () => {
-      el.style.transition = 'transform 0.1s ease-out';
-    });
-  });
 }
