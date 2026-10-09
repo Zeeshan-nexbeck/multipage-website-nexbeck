@@ -54,9 +54,9 @@
   --space-4xl: 80px;
 
   /* Standardized Section Spacing & Rhythm */
-  --section-padding-y: clamp(40px, 5.5vh, 64px);
-  --section-margin-y: clamp(16px, 2.5vh, 28px);
-  --section-header-gap: clamp(20px, 3vh, 32px);
+  --section-padding-y: clamp(52px, 7vh, 84px);
+  --section-margin-y: clamp(40px, 5.5vh, 64px);
+  --section-header-gap: clamp(24px, 3.5vh, 36px);
   
   --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -608,10 +608,11 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 10;
   width: 100%;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  border-top: none;
+  border-bottom: none;
   background: var(--bg-surface-elevated);
-  padding: 14px 0;
+  padding: 18px 0;
+  margin-bottom: var(--section-margin-y);
   overflow: hidden;
 }
 
@@ -669,6 +670,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   ALTERNATING SECTION ARCHITECTURE & SHADING (Zero Dividing Lines)
+   ========================================================================== */
+.section-shaded,
+.section-alt-shade {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background: var(--bg-surface);
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  margin-bottom: var(--section-margin-y);
+  border: none !important;
+}
+
+.section-base {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  margin-bottom: var(--section-margin-y);
+  border: none !important;
+}
+
+/* ==========================================================================
    LIVE PROJECT SHOWCASE SECTION
    Side-by-side 2-column layout: copy & CTAs on left, device frame on right.
    Compact laptop frame fits in single viewport with 4-side margins.
@@ -682,7 +708,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: var(--section-padding-y);
   margin-bottom: var(--section-margin-y);
   background: var(--bg-surface);
-  border-bottom: 1px solid var(--border-subtle);
+  border-bottom: none;
 }
 
 .showcase-split-grid {
@@ -1527,7 +1553,7 @@ h1, h2, h3, h4, h5, h6 {
 .pillars-section {
   padding: var(--section-padding-y) 0;
   margin-bottom: var(--section-margin-y);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 .pillars-grid {
@@ -1640,7 +1666,7 @@ h1, h2, h3, h4, h5, h6 {
 .trade-value-section {
   padding: var(--section-padding-y) 0;
   margin-bottom: var(--section-margin-y);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 .trade-value-grid {
@@ -1705,7 +1731,7 @@ h1, h2, h3, h4, h5, h6 {
 .quick-links-section {
   padding: var(--section-padding-y) 0;
   margin-bottom: var(--section-margin-y);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 .quick-links-grid {
@@ -1761,7 +1787,7 @@ h1, h2, h3, h4, h5, h6 {
 .how-it-works-section {
   padding: var(--section-padding-y) 0;
   margin-bottom: var(--section-margin-y);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 .steps-grid {
@@ -1832,7 +1858,7 @@ h1, h2, h3, h4, h5, h6 {
 .faq-section {
   padding: var(--section-padding-y) 0;
   margin-bottom: var(--section-margin-y);
-  border-top: 1px solid var(--border-subtle);
+  border-top: none;
 }
 
 @media (max-width: 767px) {
@@ -2342,11 +2368,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .about-editorial-divider {
-  border: 0;
-  height: 1px;
-  background: var(--border-subtle);
-  margin: 0;
-  width: 100%;
+  display: none !important;
 }
 
 /* Why Trades: Reality List */
@@ -2717,8 +2739,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Contact FAQ Section & Responsive Margin Fixes for Mobile & Tablet */
 .contact-faq-section {
-  padding: clamp(48px, 7vh, 88px) 0;
-  border-top: 1px solid var(--border-subtle);
+  padding: clamp(52px, 7vh, 88px) 0;
+  border-top: none;
+  background: var(--bg-surface);
+  margin-bottom: var(--section-margin-y);
 }
 
 .contact-faq-container {
@@ -3898,8 +3922,8 @@ h1, h2, h3, h4, h5, h6 {
 /* 5. Tradie Fast-Lane Quick Contact (OPEN ACCENT BAR — ZERO BOX) */
 .tradie-fast-lane {
   padding: 18px 0;
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  border-top: none;
+  border-bottom: none;
   background: transparent;
   display: flex;
   flex-direction: column;
@@ -4596,8 +4620,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Trust & Guarantee Strip */
 .services-trust-strip {
-  border-top: 1px solid var(--border-subtle);
-  border-bottom: 1px solid var(--border-subtle);
+  border-top: none;
+  border-bottom: none;
   background: var(--bg-surface);
   padding: 14px 0;
   margin-top: 24px;
