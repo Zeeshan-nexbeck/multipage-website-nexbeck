@@ -11,6 +11,7 @@
   --bg-primary: #F7F4EF;
   --bg-surface: #EDE8DF;
   --bg-surface-elevated: #E5DFD5;
+  --bg-alt-shade: #DDD6CA; /* Approach B: Deeper Earthy Architectural Sandstone (WCAG AAA 18.5:1 text contrast) */
   --bg-card: #FFFFFF;
   --bg-card-hover: #F2ECE2;
   --bg-darker: #1C1A17;
@@ -672,12 +673,22 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================================================
    ALTERNATING SECTION ARCHITECTURE & SHADING (Zero Dividing Lines)
    ========================================================================== */
-.section-shaded,
-.section-alt-shade {
+.section-shaded {
   position: relative;
   z-index: 10;
   width: 100%;
   background: var(--bg-surface);
+  padding-top: var(--section-padding-y);
+  padding-bottom: var(--section-padding-y);
+  margin-bottom: var(--section-margin-y);
+  border: none !important;
+}
+
+.section-alt-shade {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  background: var(--bg-alt-shade);
   padding-top: var(--section-padding-y);
   padding-bottom: var(--section-padding-y);
   margin-bottom: var(--section-margin-y);
