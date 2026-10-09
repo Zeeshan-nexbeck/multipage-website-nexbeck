@@ -390,6 +390,7 @@ function initLaptopIframeScaling() {
   toggleBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       setTimeout(updateScales, 40);
+      setTimeout(updateScales, 180);
     });
   });
 }
@@ -432,6 +433,7 @@ function initPhoneIframeScaling() {
   toggleBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       setTimeout(updateScales, 40);
+      setTimeout(updateScales, 180);
     });
   });
 }
@@ -710,6 +712,16 @@ function initFaqAccordions() {
       } else {
         item.classList.add('active');
         trigger.setAttribute('aria-expanded', 'true');
+        panel.style.maxHeight = (panel.scrollHeight + 32) + 'px';
+      }
+    });
+  });
+
+  // Recalculate heights of any currently open FAQ panels on screen resize or device orientation change
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.faq-item.active, .faq-editorial-item.active').forEach((activeItem) => {
+      const panel = activeItem.querySelector('.faq-panel, .faq-editorial-panel');
+      if (panel && panel.style.maxHeight && panel.style.maxHeight !== '0px') {
         panel.style.maxHeight = (panel.scrollHeight + 32) + 'px';
       }
     });
