@@ -5,186 +5,167 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Subtle electrical ambient background
+  // 1. Subtle electrical ambient cleanup (canvas disabled in favor of CSS radial glow)
   initAmbientCanvas();
 
   // 2. Scroll-triggered reveal animations with auto-observing engine
   initScrollAnimations();
 
-  // 3. Header scroll styling & multi-page active nav
+  // 3. Smooth native anchor scrolling
+  initSmoothAnchorScrolling();
+
+  // 4. Header scroll styling & multi-page active nav
   initHeaderAndNav();
 
-  // 4. Mobile navigation drawer
+  // 5. Mobile navigation drawer
   initMobileDrawer();
 
-  // 5. Live Project Showcase Toggle (Desktop | Mobile Frame)
+  // 6. Live Project Showcase Toggle (Desktop | Mobile Frame)
   initProjectShowcaseToggle();
   initLaptopIframeScaling();
   initPhoneIframeScaling();
 
-  // 6. Interactive Job Payback / ROI Calculator with Live Volume Slider & Count-Up
+  // 7. Interactive Job Payback / ROI Calculator with Live Volume Slider & Count-Up
   initPaybackCalculator();
 
-  // 7. Interactive Suburb Turf Coverage & Demand Simulator
+  // 8. Interactive Suburb Turf Coverage & Demand Simulator
   initSuburbTurfSimulator();
 
-  // 8. Interactive Package Scope & Inclusions Estimator (Services page)
+  // 9. Interactive Package Scope & Inclusions Estimator (Services page)
   initScopeEstimator();
 
-  // 9. FAQ Accordions (Homepage, Services, About, Contact)
+  // 10. FAQ Accordions (Homepage, Services, About, Contact)
   initFaqAccordions();
 
-  // 10. Contact form handling with Live Progress & Trade Presets
+  // 11. Contact form handling with Live Progress & Trade Presets
   initContactFormHandler();
 
-  // 11. Sticky mobile bar and back-to-top button
+  // 12. Sticky mobile bar and back-to-top button
   initBackToTopAndMobileBar();
 });
 
 /* ==========================================================================
-   1. ELECTRICAL AMBIENT CANVAS (Subtle, Performant, Motion-Sensitive)
+   1. AMBIENT BACKGROUND CLEANUP
+   Canvas animation removed to eliminate CPU/GPU overhead.
+   Retains ultra-lightweight, composited CSS .ambient-radial-glow.
    ========================================================================== */
 function initAmbientCanvas() {
   const canvas = document.getElementById('ambient-canvas');
-  if (!canvas) return;
-
-  const ctx = canvas.getContext('2d');
-  if (!ctx) return;
-
-  // Respect user preference for reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    return;
+  if (canvas) {
+    canvas.remove();
   }
-
-  let width = (canvas.width = window.innerWidth);
-  let height = (canvas.height = window.innerHeight);
-
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }, { passive: true });
-
-  let mouse = { x: -1000, y: -1000, active: false };
-  window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-    mouse.active = true;
-  }, { passive: true });
-
-  window.addEventListener('mouseleave', () => {
-    mouse.active = false;
-  });
-
-  // Subtle electrical nodes with hairline connections
-  const numNodes = 14;
-  const nodes = [];
-
-  for (let i = 0; i < numNodes; i++) {
-    nodes.push({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.18,
-      vy: (Math.random() - 0.5) * 0.18,
-      radius: Math.random() * 1.2 + 0.8,
-      alpha: Math.random() * 0.16 + 0.08
-    });
-  }
-
-  let rafId = null;
-  let isTabVisible = !document.hidden;
-
-  document.addEventListener('visibilitychange', () => {
-    isTabVisible = !document.hidden;
-    if (isTabVisible && !rafId) {
-      animate();
-    }
-  });
-
-  function animate() {
-    if (!isTabVisible) {
-      rafId = null;
-      return;
-    }
-
-    ctx.clearRect(0, 0, width, height);
-
-    // Draw and update ambient floating electrical nodes
-    for (let i = 0; i < nodes.length; i++) {
-      const n = nodes[i];
-      n.x += n.vx;
-      n.y += n.vy;
-
-      if (n.x < 0) n.x = width;
-      if (n.x > width) n.x = 0;
-      if (n.y < 0) n.y = height;
-      if (n.y > height) n.y = 0;
-
-      // Mouse interactive attraction & glow
-      let currentAlpha = n.alpha;
-      if (mouse.active) {
-        const mdx = mouse.x - n.x;
-        const mdy = mouse.y - n.y;
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mdist < 160) {
-          currentAlpha = Math.min(0.38, n.alpha + (1 - mdist / 160) * 0.2);
-          n.x += (mdx / mdist) * 0.12;
-          n.y += (mdy / mdist) * 0.12;
-
-          // Draw faint spark hairline to cursor
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(201, 138, 44, ${(1 - mdist / 160) * 0.1})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-
-      // Draw amber node particle
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201, 138, 44, ${currentAlpha})`;
-      ctx.fill();
-
-      // Draw subtle connecting hairlines between nearby nodes
-      for (let j = i + 1; j < nodes.length; j++) {
-        const n2 = nodes[j];
-        const dx = n.x - n2.x;
-        const dy = n.y - n2.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < 140) {
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(n2.x, n2.y);
-          ctx.strokeStyle = `rgba(201, 138, 44, ${0.045 * (1 - dist / 140)})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-    }
-
-    rafId = requestAnimationFrame(animate);
-  }
-
-  animate();
 }
 
 /* ==========================================================================
-   2. SCROLL REVEAL ANIMATIONS (Fast, subtle, and accessible)
+   2. SMOOTH NATIVE ANCHOR SCROLLING
+   Accounts for fixed header offset + mobile sticky bar and updates URL history.
+   ========================================================================== */
+function initSmoothAnchorScrolling() {
+  document.addEventListener('click', (e) => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+
+    const hash = anchor.getAttribute('href');
+    if (!hash || hash === '#' || hash.length < 2) return;
+
+    const targetEl = document.querySelector(hash);
+    if (!targetEl) return;
+
+    e.preventDefault();
+
+    const header = document.querySelector('.site-header');
+    const headerHeight = header ? header.offsetHeight : 76;
+    const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = Math.max(0, elementPosition - headerHeight - 16);
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, null, hash);
+    }
+
+    targetEl.setAttribute('tabindex', '-1');
+    targetEl.focus({ preventScroll: true });
+  });
+
+  // Deep-link anchor on initial page load
+  if (window.location.hash) {
+    setTimeout(() => {
+      try {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          const header = document.querySelector('.site-header');
+          const headerHeight = header ? header.offsetHeight : 76;
+          const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: Math.max(0, elementPosition - headerHeight - 16),
+            behavior: 'smooth'
+          });
+        }
+      } catch (err) {
+        // Safe fallback for invalid hash
+      }
+    }, 120);
+  }
+}
+
+/* ==========================================================================
+   2. SCROLL REVEAL ANIMATIONS (IntersectionObserver for all major sections)
+   Fades in and glides content upward as user scrolls through the page
    ========================================================================== */
 function initScrollAnimations() {
-  const autoSelectors = [
+  const majorSectionSelectors = [
+    '#showcase',
+    '#comparison',
+    '#roi-calculator',
+    '#why-a-website',
+    '#how-it-works',
+    '#turf-simulator',
+    '#faq',
+    '#final-cta',
+    '.final-cta-section',
+    '#services',
+    '#pricing',
+    '#inclusions',
+    '#hosting',
+    '#mission',
+    '#why-trades',
+    '#our-principles',
+    '#our-commitment',
+    '#contact-main',
+    '.contact-faq-section',
+    '.qsp-global-strip'
+  ];
+
+  // Apply reveal class to all major sections
+  majorSectionSelectors.forEach((sel) => {
+    document.querySelectorAll(sel).forEach((el) => {
+      if (!el.classList.contains('reveal-on-scroll')) {
+        el.classList.add('reveal-on-scroll');
+      }
+    });
+  });
+
+  // Also ensure every main section on the page (excluding heroes with page-load entrance) has reveal-on-scroll
+  document.querySelectorAll('main > section:not(#home-hero):not(.page-hero-section)').forEach((sec) => {
+    if (!sec.classList.contains('reveal-on-scroll')) {
+      sec.classList.add('reveal-on-scroll');
+    }
+  });
+
+  // Inner components and content blocks that benefit from distinct reveals
+  const innerSelectors = [
     '.section-header',
     '.comp-asymmetric-split',
     '.calc-open-container',
     '.editorial-pillars-grid > *',
     '.editorial-value-split',
     '.process-timeline-flow',
-    '.process-timeline-flow > *',
     '.faq-editorial-item',
     '.faq-item',
-    '.contact-faq-card',
     '.final-cta-open',
     '.pricing-card',
     '.pricing-clean-card',
@@ -200,7 +181,7 @@ function initScrollAnimations() {
     '.contact-sidebar-card'
   ];
 
-  autoSelectors.forEach((sel) => {
+  innerSelectors.forEach((sel) => {
     document.querySelectorAll(sel).forEach((el) => {
       if (!el.classList.contains('reveal-on-scroll') && !el.classList.contains('reveal-stagger')) {
         el.classList.add('reveal-on-scroll');
@@ -217,8 +198,8 @@ function initScrollAnimations() {
 
   const observerOptions = {
     root: null,
-    rootMargin: '0px 0px -15px 0px',
-    threshold: 0.05
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.08
   };
 
   const observer = new IntersectionObserver((entries, obs) => {
@@ -228,7 +209,7 @@ function initScrollAnimations() {
         obs.unobserve(entry.target);
         setTimeout(() => {
           entry.target.style.willChange = 'auto';
-        }, 400);
+        }, 800);
       }
     });
   }, observerOptions);
@@ -236,10 +217,10 @@ function initScrollAnimations() {
   const targets = document.querySelectorAll('.reveal-on-scroll, .reveal-stagger');
   const vh = window.innerHeight || document.documentElement.clientHeight;
 
-  // Immediately display elements already within or near initial viewport
+  // Immediately display only elements already well within upper viewport on load
   targets.forEach((target) => {
     const rect = target.getBoundingClientRect();
-    if (rect.top < vh - 15) {
+    if (rect.top < vh * 0.65 && rect.bottom > 80) {
       target.classList.add('is-visible');
       target.style.willChange = 'auto';
     } else {
@@ -692,7 +673,7 @@ function initScopeEstimator() {
 }
 
 /* ==========================================================================
-   5. FAQ ACCORDION SYSTEM (Works across all pages)
+   5. FAQ ACCORDION SYSTEM (Unified behaviour across Home, Services, About, Contact)
    ========================================================================== */
 function initFaqAccordions() {
   const faqItems = document.querySelectorAll('.faq-item, .faq-editorial-item');
@@ -704,23 +685,23 @@ function initFaqAccordions() {
 
     if (!trigger || !panel) return;
 
-    trigger.addEventListener('click', () => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault();
       const isActive = item.classList.contains('active');
 
-      // Close sibling FAQs in the same container for clean accordion flow
-      const container = item.closest('.faq-accordion-container, .faq-editorial-container');
-      if (container) {
-        const siblings = container.querySelectorAll('.faq-item.active, .faq-editorial-item.active');
-        siblings.forEach((sibling) => {
-          if (sibling !== item) {
-            sibling.classList.remove('active');
-            const sibTrigger = sibling.querySelector('.faq-trigger, .faq-editorial-trigger');
-            if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
-            const sibPanel = sibling.querySelector('.faq-panel, .faq-editorial-panel');
-            if (sibPanel) sibPanel.style.maxHeight = '0px';
+      // Close all other open FAQs across the page so only one remains open at a time
+      const allActive = document.querySelectorAll('.faq-item.active, .faq-editorial-item.active');
+      allActive.forEach((sibling) => {
+        if (sibling !== item) {
+          sibling.classList.remove('active');
+          const sibTrigger = sibling.querySelector('.faq-trigger, .faq-editorial-trigger');
+          if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
+          const sibPanel = sibling.querySelector('.faq-panel, .faq-editorial-panel');
+          if (sibPanel) {
+            sibPanel.style.maxHeight = '0px';
           }
-        });
-      }
+        }
+      });
 
       if (isActive) {
         item.classList.remove('active');
@@ -729,7 +710,7 @@ function initFaqAccordions() {
       } else {
         item.classList.add('active');
         trigger.setAttribute('aria-expanded', 'true');
-        panel.style.maxHeight = panel.scrollHeight + 32 + 'px';
+        panel.style.maxHeight = (panel.scrollHeight + 32) + 'px';
       }
     });
   });

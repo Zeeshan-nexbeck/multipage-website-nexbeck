@@ -82,6 +82,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 84px;
   color-scheme: light;
 }
 
@@ -124,15 +125,9 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-accent);
 }
 
-/* Subtle Ambient Background */
+/* Subtle Ambient Background (Lightweight zero-CPU radial glow, heavy canvas disabled) */
 #ambient-canvas {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.5;
+  display: none !important;
 }
 
 .ambient-radial-glow {
@@ -613,7 +608,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: none;
   background: var(--bg-surface-elevated);
   padding: 18px 0;
-  margin-bottom: var(--section-margin-y);
+  margin-bottom: 0;
   overflow: hidden;
 }
 
@@ -631,6 +626,9 @@ h1, h2, h3, h4, h5, h6 {
   gap: 36px;
   width: max-content;
   animation: marquee-scroll 34s linear infinite;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .trust-marquee-wrap:hover .trust-marquee-track {
@@ -715,6 +713,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   z-index: 10;
   width: 100%;
+  margin-top: 0;
   padding-top: var(--section-padding-y);
   padding-bottom: var(--section-padding-y);
   margin-bottom: var(--section-margin-y);
@@ -1362,7 +1361,7 @@ h1, h2, h3, h4, h5, h6 {
 .showcase-wrapper:hover .browser-frame {
   border-color: var(--color-accent);
   box-shadow: 0 20px 48px -12px rgba(28, 26, 23, 0.16), 0 0 20px -6px var(--color-accent-subtle);
-  transform: translateY(-3px);
+  transform: none;
 }
 
 .browser-frame.mobile-mode {
@@ -1881,47 +1880,71 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.faq-accordion-container {
+.faq-accordion-container,
+.faq-editorial-container,
+.faq-clean-container,
+.contact-faq-container {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  max-width: 900px;
+  max-width: 860px;
   margin: 0 auto;
+  width: 100%;
 }
 
-.faq-item {
-  border-radius: var(--radius-md);
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
+.faq-item,
+.faq-editorial-item {
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1px solid var(--border-subtle) !important;
   overflow: hidden;
-  transition: border-color 0.2s ease, background 0.2s ease;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease;
+}
+
+.faq-item:first-child,
+.faq-editorial-item:first-child {
+  border-top: 1px solid var(--border-subtle) !important;
 }
 
 .faq-item:hover,
-.faq-item.active {
-  border-color: var(--border-strong);
+.faq-item.active,
+.faq-editorial-item:hover,
+.faq-editorial-item.active {
+  border-color: var(--border-strong) !important;
+  background: transparent !important;
 }
 
-.faq-trigger {
+.faq-trigger,
+.faq-editorial-trigger {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: clamp(16px, 2vw, 22px);
+  padding: clamp(16px, 2.2vw, 22px) 0;
   background: transparent;
   border: none;
   cursor: pointer;
   text-align: left;
 }
 
-.faq-question-text {
+.faq-question-text,
+.faq-editorial-question {
   font-family: var(--font-display);
-  font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+  font-size: clamp(0.9375rem, 1.15vw, 1.0625rem);
   font-weight: 700;
   color: var(--text-main);
   letter-spacing: -0.01em;
   line-height: 1.4;
+  transition: color 0.2s ease;
+}
+
+.faq-item:hover .faq-question-text,
+.faq-item.active .faq-question-text,
+.faq-editorial-item:hover .faq-editorial-question,
+.faq-editorial-item.active .faq-editorial-question {
+  color: var(--text-main);
 }
 
 .faq-icon-toggle {
@@ -1932,25 +1955,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .faq-item.active .faq-icon-toggle,
-.faq-editorial-item.active .faq-icon-toggle,
-.contact-faq-card.active .faq-icon-toggle {
+.faq-editorial-item.active .faq-icon-toggle {
   transform: rotate(180deg);
 }
 
-.faq-panel {
+.faq-panel,
+.faq-editorial-panel {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: max-height 0.32s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.faq-panel-content {
-  padding: 0 clamp(16px, 2vw, 22px) clamp(16px, 2vw, 22px);
+.faq-panel-content,
+.faq-editorial-content {
+  padding: 0 0 clamp(16px, 2.4vw, 22px);
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: clamp(0.875rem, 1.05vw, 0.9375rem);
   color: var(--text-muted);
   line-height: 1.65;
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 14px;
+  border-top: none;
 }
 
 /* ==========================================================================
@@ -2069,46 +2092,198 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.5;
 }
 
+/* Target Anchors with Sticky Header Clearance */
+section[id], [id] {
+  scroll-margin-top: 86px;
+}
+
 /* ==========================================================================
-   SERVICES & PRICING PAGE STYLING
+   PAGE HERO SECTIONS (Unified across Home, About, Services, Contact)
+   Small Screens / Mobile: Natural height flow, never squeezed or clipped
+   Larger Screens: Balanced 1-viewport presence with generous, breathable spacing
+   between kicker, title, description, and CTAs—preventing both congested text
+   and excessive bottom voids.
    ========================================================================== */
 .page-hero-section {
   position: relative;
   z-index: 10;
   width: 100%;
-  min-height: clamp(260px, 36vh, 420px);
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: clamp(24px, 3.5vh, 40px);
-  padding-bottom: clamp(20px, 3vh, 32px);
-  margin-bottom: var(--section-margin-y);
+  padding-top: clamp(32px, 5vh, 48px);
+  padding-bottom: clamp(32px, 5vh, 48px);
+  margin-bottom: clamp(20px, 3vh, 36px);
   box-sizing: border-box;
+}
+
+/* Tablet (768px – 1023px): Natural, proportional hero presence without massive empty voids */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-hero-section {
+    min-height: auto !important;
+    padding-top: clamp(40px, 5.5vh, 58px);
+    padding-bottom: clamp(36px, 5vh, 50px);
+    margin-bottom: clamp(24px, 3.2vh, 38px);
+  }
+
+  .page-hero-container {
+    max-width: 740px !important;
+    gap: 20px !important;
+  }
+
+  .page-hero-title {
+    font-size: clamp(2.35rem, 4.4vw, 3rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em !important;
+  }
+
+  .page-hero-subtitle {
+    font-size: 1.0625rem !important;
+    line-height: 1.62 !important;
+    max-width: 660px !important;
+  }
+
+  .page-hero-container .hero-kicker {
+    padding: 6px 14px;
+    font-size: 0.8125rem;
+  }
+
+  .hero-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+    align-items: center !important;
+    gap: 14px !important;
+    margin-top: 8px !important;
+  }
+
+  .hero-actions .btn-primary,
+  .hero-actions .btn-ghost {
+    height: 48px !important;
+    padding: 0 26px !important;
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Large Desktop (1024px+): Intentional viewport presence bounded to avoid bottom voids */
+@media (min-width: 1024px) {
+  .page-hero-section {
+    min-height: clamp(480px, 70vh, 640px);
+    padding-top: clamp(48px, 6.5vh, 76px);
+    padding-bottom: clamp(44px, 6vh, 68px);
+    margin-bottom: clamp(20px, 3vh, 36px);
+  }
+
+  .page-hero-container {
+    max-width: 860px;
+    gap: clamp(18px, 2.5vh, 26px);
+  }
+
+  .page-hero-title {
+    font-size: clamp(2.75rem, 3.8vw, 3.5rem);
+    line-height: 1.14;
+    letter-spacing: -0.03em;
+  }
+
+  .page-hero-subtitle {
+    font-size: clamp(1.1rem, 1.25vw, 1.25rem);
+    line-height: 1.66;
+    max-width: 740px;
+  }
 }
 
 .page-hero-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: clamp(14px, 2vh, 20px);
-  max-width: 820px;
+  gap: clamp(18px, 2.8vh, 28px);
+  max-width: 860px;
 }
 
 .page-hero-title {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  font-size: clamp(2.125rem, 3.8vw, 3.5rem);
   font-weight: 800;
   color: var(--text-main);
   letter-spacing: -0.03em;
-  line-height: 1.15;
+  line-height: 1.18;
   text-wrap: balance;
+  margin: 0;
 }
 
 .page-hero-subtitle {
   font-family: var(--font-body);
-  font-size: clamp(1rem, 1.25vw, 1.1875rem);
+  font-size: clamp(1.05rem, 1.35vw, 1.25rem);
   color: var(--text-muted);
-  line-height: 1.6;
+  line-height: 1.68;
+  max-width: 760px;
+  margin: 0;
+}
+
+.page-hero-container .hero-kicker {
+  margin-bottom: 2px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: clamp(8px, 1.4vh, 16px);
+}
+
+.page-hero-container > div:last-child {
+  margin-top: clamp(8px, 1.4vh, 16px);
+}
+
+/* ==========================================================================
+   HERO CHOREOGRAPHED ENTRANCE ON PAGE LOAD
+   Sequenced progressive fade-and-lift entrance for kicker, title, copy, and CTAs.
+   Uses hardware acceleration and gracefully disables on prefers-reduced-motion.
+   ========================================================================== */
+@keyframes heroChoreographedFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-hero-container > * {
+  animation: heroChoreographedFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  will-change: opacity, transform;
+}
+
+.page-hero-container > *:nth-child(1) {
+  animation-delay: 0.06s;
+}
+
+.page-hero-container > *:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.page-hero-container > *:nth-child(3) {
+  animation-delay: 0.26s;
+}
+
+.page-hero-container > *:nth-child(4) {
+  animation-delay: 0.36s;
+}
+
+.page-hero-container > *:nth-child(5) {
+  animation-delay: 0.46s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-hero-container > * {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 
 .pricing-grid {
@@ -2748,76 +2923,7 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(4px);
 }
 
-/* Contact FAQ Section & Responsive Margin Fixes for Mobile & Tablet */
-.contact-faq-section {
-  padding: clamp(52px, 7vh, 88px) 0;
-  border-top: none;
-  background: var(--bg-surface);
-  margin-bottom: var(--section-margin-y);
-}
-
-.contact-faq-container {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  max-width: 860px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.contact-faq-card {
-  background: #FFFFFF !important;
-  border: 1px solid var(--border-card) !important;
-  border-radius: var(--radius-md) !important;
-  box-shadow: 0 4px 14px -6px rgba(28, 26, 23, 0.06);
-  overflow: hidden;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.contact-faq-card:hover,
-.contact-faq-card.active {
-  border-color: var(--color-accent) !important;
-  box-shadow: 0 6px 20px -8px rgba(201, 138, 44, 0.18);
-}
-
-.contact-faq-card .faq-editorial-trigger {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: clamp(18px, 2.5vw, 24px) clamp(18px, 3.5vw, 28px);
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-}
-
-.contact-faq-card .faq-editorial-question {
-  font-family: var(--font-display);
-  font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
-  font-weight: 700;
-  color: var(--text-main);
-  line-height: 1.45;
-}
-
-.contact-faq-card .faq-editorial-panel {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.contact-faq-card .faq-editorial-content {
-  padding: 0 clamp(18px, 3.5vw, 28px) clamp(18px, 2.5vw, 24px);
-  border-top: 1px solid var(--border-subtle);
-  margin-top: 2px;
-  padding-top: 16px;
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
+/* Contact Responsive Margin Fixes for Mobile & Tablet */
 @media (max-width: 767px) {
   .contact-layout-grid {
     gap: 24px;
@@ -2834,29 +2940,9 @@ h1, h2, h3, h4, h5, h6 {
   .contact-sidebar-card {
     padding: 22px 18px;
   }
-
-  .contact-faq-container {
-    padding: 0 4px;
-    gap: 12px;
-  }
-
-  .contact-faq-card .faq-editorial-trigger {
-    padding: 16px 18px;
-    gap: 12px;
-  }
-
-  .contact-faq-card .faq-editorial-content {
-    padding: 0 18px 18px;
-    padding-top: 14px;
-    font-size: 0.875rem;
-  }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-  .contact-faq-container {
-    padding: 0 8px;
-  }
-
   .contact-hero-box {
     padding: 32px 28px;
   }
@@ -4001,11 +4087,11 @@ h1, h2, h3, h4, h5, h6 {
    Scroll-triggered reveals, interactive counters, and tactile feedback
    ========================================================================== */
 
-/* 1. Scroll-triggered reveal animations */
+/* 1. Scroll-triggered reveal animations (Clear, prominent fade-in and vertical glide) */
 .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity var(--duration-smooth) var(--ease-out), transform var(--duration-smooth) var(--ease-out);
+  transform: translateY(32px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -4016,16 +4102,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .reveal-stagger > * {
   opacity: 0;
-  transform: translateY(10px);
-  transition: opacity var(--duration-normal) var(--ease-out), transform var(--duration-normal) var(--ease-out);
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.03s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.07s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.11s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.19s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.23s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 0.04s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 0.10s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 0.16s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 0.22s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 0.28s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 0.34s; opacity: 1; transform: translateY(0); }
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-on-scroll,

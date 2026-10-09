@@ -89,7 +89,7 @@
   <main style="padding-top: 76px; position: relative;">
 
     <!-- SECTION 1: CONTACT HERO -->
-    <section class="page-hero-section site-wrapper" style="padding-top: clamp(28px, 4vh, 44px); padding-bottom: clamp(20px, 3vh, 32px);">
+    <section class="page-hero-section site-wrapper">
       <div class="page-hero-container">
         <div class="hero-kicker">
           <span class="hero-kicker-dot"></span>
@@ -123,7 +123,7 @@
     </section>
 
     <!-- SECTION 2: CONTACT FORM & WHAT HAPPENS NEXT -->
-    <section id="quote-form-section" class="site-wrapper" style="padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y);">
+    <section id="quote-form-section" class="site-wrapper" style="padding-top: var(--section-padding-y); padding-bottom: var(--section-padding-y); margin-bottom: var(--section-margin-y);">
       <div class="contact-layout-grid">
         <!-- Left: Form -->
         <div class="contact-card-box">
@@ -354,8 +354,8 @@
       </div>
     </section>
 
-    <!-- SECTION 3: QUICK CONTACT FAQS (BOXED ACCORDION WITH PROPER RESPONSIVE MARGINS) -->
-    <section class="contact-faq-section">
+    <!-- SECTION 3: QUICK CONTACT FAQS (CLEAN EDITORIAL ACCORDION — MATCHING HOMEPAGE, SERVICES, ABOUT) -->
+    <section id="faq" class="faq-section">
       <div class="site-wrapper">
         <div class="section-header text-center">
           <span class="section-eyebrow">
@@ -368,32 +368,35 @@
           </p>
         </div>
 
-        <div class="faq-editorial-container contact-faq-container">
-          <div class="faq-editorial-item contact-faq-card">
+        <div class="faq-editorial-container">
+          <!-- FAQ 1 -->
+          <div class="faq-editorial-item">
             <button type="button" class="faq-editorial-trigger" aria-expanded="false">
               <span class="faq-editorial-question">How quickly will I hear back?</span>
               <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
             </button>
             <div class="faq-editorial-panel">
               <div class="faq-editorial-content">
-                We’ll review your enquiry and send a confirmation to the email address you provided within 24 hours . We’ll then get in touch to discuss your requirements and next steps.
+                We’ll review your enquiry and send a confirmation to the email address you provided within 24 hours. We’ll then get in touch to discuss your requirements and next steps.
               </div>
             </div>
           </div>
 
-          <div class="faq-editorial-item contact-faq-card">
+          <!-- FAQ 2 -->
+          <div class="faq-editorial-item">
             <button type="button" class="faq-editorial-trigger" aria-expanded="false">
               <span class="faq-editorial-question">Is there any commitment required when requesting a quote?</span>
               <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
             </button>
             <div class="faq-editorial-panel">
               <div class="faq-editorial-content">
-                None whatsoever. Submitting a quote request is completely pressure-free so you can explore your options and find what adds value to your bussiness.
+                None whatsoever. Submitting a quote request is completely pressure-free so you can explore your options and find what adds value to your business.
               </div>
             </div>
           </div>
 
-          <div class="faq-editorial-item contact-faq-card">
+          <!-- FAQ 3 -->
+          <div class="faq-editorial-item">
             <button type="button" class="faq-editorial-trigger" aria-expanded="false">
               <span class="faq-editorial-question">Can I enquire if I’m not sure what I need?</span>
               <span class="material-symbols-outlined faq-icon-toggle">expand_more</span>
