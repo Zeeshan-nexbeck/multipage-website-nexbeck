@@ -42,6 +42,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 12. Sticky mobile bar and back-to-top button
   initBackToTopAndMobileBar();
+
+  // 13. Mobile pricing cards carousel & active card tracker
+  initPricingMobileSlider();
 });
 
 /* ==========================================================================
@@ -1385,3 +1388,322 @@ function initSuburbTurfSimulator() {
   // Initialize Sydney by default
   renderRegion('sydney');
 }
+
+/* ==========================================================================
+   13. PRICING MOBILE SLIDER & INFINITE LOOP TRACKER (Services page)
+   - Professional package card centered initially
+   - Single-card change per swipe (e.g. 3/5 -> 4/5)
+   - Smooth cubic-bezier spring-like animation
+   - Previous and next card peeks visible on screen
+   - Seamless infinite loop: 5/5 swipe right -> 1/5, and 1/5 swipe left -> 5/5
+   ========================================================================== */
+function initPricingMobileSlider() {
+  const pricingGrid = document.getElementById('pricing-clean-grid') || document.querySelector('.pricing-clean-grid');
+  const counterPill = document.getElementById('pricing-mobile-counter-pill');
+  if (!pricingGrid) return;
+
+  const allCards = Array.from(pricingGrid.querySelectorAll('.pricing-clean-card'));
+  if (!allCards.length) return;
+
+  // Indices with 2-clone buffer:
+  // 0: Clone 4, 1: Clone 5,
+  // 2: Card 1 (Essential), 3: Card 2 (Professional - Featured), 4: Card 3 (Premium),
+  // 5: Card 4 (Redesign), 6: Card 5 (Custom Fit),
+  // 7: Clone 1, 8: Clone 2
+  let currentIndex = 3; // Start on Card 2 (Professional package)
+  let isDragging = false;
+  let isHorizontalDrag = null;
+  let startX = 0;
+  let startY = 0;
+  let startTime = 0;
+  let startTranslateX = 0;
+  let currentTranslateX = 0;
+  let isAnimating = false;
+  let animationSafetyTimer = null;
+  let hasMoved = false;
+
+  function isCarouselActive() {
+    return window.innerWidth <= 767 || window.getComputedStyle(pricingGrid).display === 'flex';
+  }
+
+  function getCardPosition(index) {
+    const card = allCards[index];
+    if (!card) return 0;
+    const viewport = pricingGrid.parentElement;
+    const viewportWidth = viewport ? viewport.clientWidth : window.innerWidth;
+    const cardWidth = card.offsetWidth || (viewportWidth * 0.76);
+    const cardLeft = card.offsetLeft;
+    // Perfect horizontal centering of active card inside the viewport
+    return ((viewportWidth - cardWidth) / 2) - cardLeft;
+  }
+
+  function getDisplayNumber(index) {
+    if (index >= 2 && index <= 6) return index - 1; // 2->1, 3->2, 4->3, 5->4, 6->5
+    if (index === 0) return 4;
+    if (index === 1) return 5;
+    if (index === 7) return 1;
+    if (index === 8) return 2;
+    return 1;
+  }
+
+  function updateCounter(index) {
+    if (!counterPill) return;
+    const displayNumber = getDisplayNumber(index);
+    counterPill.textContent = `${displayNumber}/5`;
+  }
+
+  function updateActiveCard(index) {
+    allCards.forEach((card, i) => {
+      if (i === index) {
+        card.classList.add('active-carousel-card');
+      } else {
+        card.classList.remove('active-carousel-card');
+      }
+    });
+  }
+
+  function setTransform(translateX, withTransition = true) {
+    if (withTransition) {
+      pricingGrid.style.transition = 'transform 0.38s cubic-bezier(0.22, 1, 0.36, 1)';
+    } else {
+      pricingGrid.style.transition = 'none';
+    }
+    pricingGrid.style.transform = `translate3d(${Math.round(translateX)}px, 0, 0)`;
+    currentTranslateX = translateX;
+  }
+
+  function jumpToRealCardIfNeeded() {
+    if (currentIndex === 7) {
+      currentIndex = 2; // Jump from Clone 1 to Real Card 1
+      setTransform(getCardPosition(2), false);
+      updateActiveCard(2);
+    } else if (currentIndex === 8) {
+      currentIndex = 3; // Jump from Clone 2 to Real Card 2
+      setTransform(getCardPosition(3), false);
+      updateActiveCard(3);
+    } else if (currentIndex === 1) {
+      currentIndex = 6; // Jump from Clone 5 to Real Card 5
+      setTransform(getCardPosition(6), false);
+      updateActiveCard(6);
+    } else if (currentIndex === 0) {
+      currentIndex = 5; // Jump from Clone 4 to Real Card 4
+      setTransform(getCardPosition(5), false);
+      updateActiveCard(5);
+    }
+  }
+
+  function goToIndex(targetIndex, animate = true) {
+    currentIndex = targetIndex;
+    updateCounter(currentIndex);
+    updateActiveCard(currentIndex);
+
+    if (!isCarouselActive()) {
+      pricingGrid.style.transform = '';
+      pricingGrid.style.transition = '';
+      return;
+    }
+
+    const targetPos = getCardPosition(currentIndex);
+    clearTimeout(animationSafetyTimer);
+
+    if (animate) {
+      isAnimating = true;
+      setTransform(targetPos, true);
+      // Safety timeout in case transitionend does not fire
+      animationSafetyTimer = setTimeout(() => {
+        if (isAnimating) {
+          isAnimating = false;
+          jumpToRealCardIfNeeded();
+        }
+      }, 420);
+    } else {
+      isAnimating = false;
+      setTransform(targetPos, false);
+    }
+  }
+
+  // Handle transition end for seamless infinite loop reset
+  pricingGrid.addEventListener('transitionend', (e) => {
+    if (e.target !== pricingGrid || e.propertyName !== 'transform') return;
+    isAnimating = false;
+    clearTimeout(animationSafetyTimer);
+
+    if (!isCarouselActive()) return;
+    jumpToRealCardIfNeeded();
+  });
+
+  // Start gesture (Thumb Touch or Mouse Drag)
+  function handleDragStart(clientX, clientY) {
+    if (!isCarouselActive()) return;
+
+    if (isAnimating) {
+      pricingGrid.style.transition = 'none';
+      isAnimating = false;
+      clearTimeout(animationSafetyTimer);
+    }
+    jumpToRealCardIfNeeded();
+
+    isDragging = true;
+    hasMoved = false;
+    isHorizontalDrag = null;
+    startX = clientX;
+    startY = clientY;
+    startTime = Date.now();
+    startTranslateX = getCardPosition(currentIndex);
+    pricingGrid.style.transition = 'none';
+  }
+
+  // Move gesture with thumb-arc compensation
+  function handleDragMove(clientX, clientY, cancelableEvent) {
+    if (!isDragging || !isCarouselActive()) return;
+    const diffX = clientX - startX;
+    const diffY = clientY - startY;
+    const absX = Math.abs(diffX);
+    const absY = Math.abs(diffY);
+
+    if (isHorizontalDrag === null) {
+      // Natural thumb gesture detection:
+      // If movement is predominantly vertical (absY > 12 and significantly greater than absX), let page scroll
+      if (absY > 12 && absY > absX * 1.5) {
+        isHorizontalDrag = false;
+        isDragging = false;
+        return;
+      }
+      // If user moved horizontally at least 7px with thumb
+      if (absX > 7 && absX >= absY * 0.65) {
+        isHorizontalDrag = true;
+      }
+    }
+
+    if (isHorizontalDrag) {
+      hasMoved = true;
+      if (cancelableEvent && cancelableEvent.cancelable) {
+        cancelableEvent.preventDefault();
+      }
+      setTransform(startTranslateX + diffX, false);
+    }
+  }
+
+  // End gesture: one swipe advances exactly one card
+  function handleDragEnd(clientX) {
+    if (!isDragging) return;
+    isDragging = false;
+
+    if (!isHorizontalDrag || !hasMoved) {
+      isHorizontalDrag = null;
+      return;
+    }
+
+    const diffX = clientX - startX;
+    const elapsed = Math.max(1, Date.now() - startTime);
+    const velocityX = diffX / elapsed;
+
+    // Detect flick or standard thumb drag threshold
+    const isFlick = Math.abs(velocityX) > 0.22 && Math.abs(diffX) > 16;
+    const isSwipe = Math.abs(diffX) > 26;
+
+    if (isFlick || isSwipe) {
+      if (diffX < 0) {
+        // Swiped left with thumb -> advance forward one card
+        goToIndex(currentIndex + 1, true);
+      } else {
+        // Swiped right with thumb -> go back one card
+        goToIndex(currentIndex - 1, true);
+      }
+    } else {
+      // Small touch movement didn't meet threshold -> snap back smoothly to current card
+      goToIndex(currentIndex, true);
+    }
+
+    isHorizontalDrag = null;
+  }
+
+  // --- Attach Touch Event Handlers to both Grid and Viewport ---
+  const sliderViewport = pricingGrid.parentElement;
+  const touchTargets = [pricingGrid, sliderViewport].filter(Boolean);
+
+  touchTargets.forEach((target) => {
+    target.addEventListener('touchstart', (e) => {
+      if (e.touches.length === 1) {
+        handleDragStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: true });
+  });
+
+  window.addEventListener('touchmove', (e) => {
+    if (isDragging && e.touches.length === 1) {
+      handleDragMove(e.touches[0].clientX, e.touches[0].clientY, e);
+    }
+  }, { passive: false });
+
+  window.addEventListener('touchend', (e) => {
+    if (isDragging) {
+      const touch = e.changedTouches ? e.changedTouches[0] : e;
+      handleDragEnd(touch.clientX);
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchcancel', (e) => {
+    if (isDragging) {
+      const touch = e.changedTouches ? e.changedTouches[0] : e;
+      handleDragEnd(touch.clientX);
+    }
+  }, { passive: true });
+
+  // --- Mouse Drag Support for Desktop testing / DevTools ---
+  let isMouseDown = false;
+  touchTargets.forEach((target) => {
+    target.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isMouseDown = true;
+      handleDragStart(e.clientX, e.clientY);
+    });
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (isMouseDown) {
+      handleDragMove(e.clientX, e.clientY, e);
+    }
+  });
+
+  window.addEventListener('mouseup', (e) => {
+    if (isMouseDown) {
+      isMouseDown = false;
+      handleDragEnd(e.clientX);
+    }
+  });
+
+  // Prevent link navigation if the user was swiping with thumb
+  pricingGrid.addEventListener('click', (e) => {
+    if (hasMoved) {
+      e.preventDefault();
+      e.stopPropagation();
+      hasMoved = false;
+    }
+  }, true);
+
+  // Initial layout & positioning
+  function initLayout() {
+    if (isCarouselActive()) {
+      goToIndex(3, false); // Initialize Professional package (Card 2) centered
+    } else {
+      pricingGrid.style.transform = '';
+      pricingGrid.style.transition = '';
+    }
+  }
+
+  // Run on ready and after layout settle
+  requestAnimationFrame(() => {
+    initLayout();
+    setTimeout(initLayout, 80);
+    setTimeout(initLayout, 250);
+  });
+
+  window.addEventListener('resize', () => {
+    initLayout();
+  });
+  window.addEventListener('orientationchange', () => {
+    setTimeout(initLayout, 100);
+  });
+}
+
