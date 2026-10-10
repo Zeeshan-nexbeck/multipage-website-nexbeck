@@ -237,7 +237,6 @@ function initScrollAnimations() {
    ========================================================================== */
 function initHeaderAndNav() {
   const header = document.getElementById('main-header');
-  const progressBar = document.getElementById('header-scroll-progress');
 
   window.addEventListener('scroll', () => {
     if (header) {
@@ -246,12 +245,6 @@ function initHeaderAndNav() {
       } else {
         header.classList.remove('scrolled');
       }
-    }
-
-    if (progressBar) {
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const pct = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
-      progressBar.style.width = `${Math.min(100, Math.max(0, pct))}%`;
     }
   }, { passive: true });
 
@@ -291,12 +284,16 @@ function initMobileDrawer() {
   const menuBtn = document.getElementById('mobile-menu-btn');
   const drawer = document.getElementById('mobile-drawer');
   const menuIcon = document.getElementById('mobile-menu-icon');
+  const header = document.getElementById('main-header');
 
   if (!menuBtn || !drawer) return;
 
   menuBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     const isOpen = drawer.classList.toggle('open');
+    if (header) {
+      header.classList.toggle('drawer-open', isOpen);
+    }
     if (menuIcon) {
       menuIcon.textContent = isOpen ? 'close' : 'menu';
     }
@@ -306,6 +303,9 @@ function initMobileDrawer() {
   links.forEach((a) => {
     a.addEventListener('click', () => {
       drawer.classList.remove('open');
+      if (header) {
+        header.classList.remove('drawer-open');
+      }
       if (menuIcon) menuIcon.textContent = 'menu';
     });
   });
@@ -313,6 +313,9 @@ function initMobileDrawer() {
   document.addEventListener('click', (e) => {
     if (drawer.classList.contains('open') && !drawer.contains(e.target) && !menuBtn.contains(e.target)) {
       drawer.classList.remove('open');
+      if (header) {
+        header.classList.remove('drawer-open');
+      }
       if (menuIcon) menuIcon.textContent = 'menu';
     }
   });

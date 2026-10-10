@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <!-- Shared Global Stylesheet -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2.4" />
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -91,9 +91,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Header Scroll Progress Bar (Scroll Depth Indicator) -->
-    <div id="header-scroll-progress" class="header-scroll-progress" aria-hidden="true"></div>
   </header>
 
   <!-- ========================================================================
@@ -887,7 +884,7 @@
       <div class="hosting-editorial-row">
         <!-- Col 1: BYO Hosting -->
         <div class="hosting-editorial-col">
-          <span class="hosting-editorial-price accent" style="color: var(--color-accent);">$0 Setup</span>
+          <span class="hosting-editorial-price" style="color: #000000;">$0 Setup</span>
           <h3 class="hosting-editorial-title">Bring Your Own Hosting</h3>
           <p class="hosting-editorial-desc">
             If you already have your own domain and hosting provider, setup and deployment is 100% free. We configure DNS records and launch your site with zero added fees or configuration surcharges.
@@ -900,7 +897,7 @@
 
         <!-- Col 2: Managed Hosting Add-on -->
         <div class="hosting-editorial-col">
-          <span class="hosting-editorial-price accent" style="color: var(--color-accent);">$149/year</span>
+          <span class="hosting-editorial-price" style="color: #000000;">$149/year</span>
           <h3 class="hosting-editorial-title">Managed Domain + Edge Hosting</h3>
           <p class="hosting-editorial-desc">
             Prefer not to manage domain renewals or server consoles? Our optional add-on covers your .com.au domain registration, SSL certificate, and blazing-fast edge cloud hosting for just $149 AUD/year.
@@ -913,7 +910,7 @@
 
         <!-- Col 3: Zero Retainer -->
         <div class="hosting-editorial-col">
-          <span class="hosting-editorial-price accent" style="color: var(--color-accent);">$0 Retainer</span>
+          <span class="hosting-editorial-price" style="color: #000000;">$0 Retainer</span>
           <h3 class="hosting-editorial-title">Zero Agency Lock-In</h3>
           <p class="hosting-editorial-desc">
             Because we build with clean, standards-compliant static code rather than vulnerable WordPress plugins, your website requires virtually zero ongoing maintenance. You own the code outright forever.
@@ -1147,13 +1144,13 @@
   <!-- Mobile Sticky Action Bar -->
   <aside id="mobile-action-bar" class="mobile-action-bar" aria-label="Quick Mobile Actions">
     <div class="mobile-action-container">
-      <a href="tel:+923149647176" class="btn-ghost" style="flex: 1; height: 42px; font-size: 11px; padding: 0 12px;">
-        <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-accent);">call</span>
-        <span>Call Directly</span>
+      <a href="#pricing" class="mobile-action-btn mobile-action-btn-secondary">
+        <span class="material-symbols-outlined" style="font-size: 16px; color: var(--color-accent);">payments</span>
+        <span>See Pricing</span>
       </a>
-      <a href="contact.html" class="btn-primary" style="flex: 1; height: 42px; font-size: 11px; padding: 0 12px;">
+      <a href="contact.html" class="mobile-action-btn mobile-action-btn-primary">
         <span>Get a Free Quote</span>
-        <span class="material-symbols-outlined" style="font-size: 14px;">arrow_forward</span>
+        <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
       </a>
     </div>
   </aside>
