@@ -155,9 +155,7 @@ function initScrollAnimations() {
     '.editorial-value-split',
     '.process-timeline-flow',
     '.faq-editorial-item',
-    '.faq-item',
     '.final-cta-open',
-    '.pricing-card',
     '.pricing-clean-card',
     '.feature-matrix-table',
     '.about-mission-open',
@@ -730,12 +728,12 @@ function initPaybackCalculator() {
    6. FAQ ACCORDION SYSTEM (Unified behaviour across Home, Services, About, Contact)
    ========================================================================== */
 function initFaqAccordions() {
-  const faqItems = document.querySelectorAll('.faq-item, .faq-editorial-item');
+  const faqItems = document.querySelectorAll('.faq-editorial-item');
   if (!faqItems.length) return;
 
   faqItems.forEach((item) => {
-    const trigger = item.querySelector('.faq-trigger, .faq-editorial-trigger');
-    const panel = item.querySelector('.faq-panel, .faq-editorial-panel');
+    const trigger = item.querySelector('.faq-editorial-trigger');
+    const panel = item.querySelector('.faq-editorial-panel');
 
     if (!trigger || !panel) return;
 
@@ -744,13 +742,13 @@ function initFaqAccordions() {
       const isActive = item.classList.contains('active');
 
       // Close all other open FAQs across the page so only one remains open at a time
-      const allActive = document.querySelectorAll('.faq-item.active, .faq-editorial-item.active');
+      const allActive = document.querySelectorAll('.faq-editorial-item.active');
       allActive.forEach((sibling) => {
         if (sibling !== item) {
           sibling.classList.remove('active');
-          const sibTrigger = sibling.querySelector('.faq-trigger, .faq-editorial-trigger');
+          const sibTrigger = sibling.querySelector('.faq-editorial-trigger');
           if (sibTrigger) sibTrigger.setAttribute('aria-expanded', 'false');
-          const sibPanel = sibling.querySelector('.faq-panel, .faq-editorial-panel');
+          const sibPanel = sibling.querySelector('.faq-editorial-panel');
           if (sibPanel) {
             sibPanel.style.maxHeight = '0px';
           }
@@ -771,8 +769,8 @@ function initFaqAccordions() {
 
   // Recalculate heights of any currently open FAQ panels on screen resize or device orientation change
   window.addEventListener('resize', () => {
-    document.querySelectorAll('.faq-item.active, .faq-editorial-item.active').forEach((activeItem) => {
-      const panel = activeItem.querySelector('.faq-panel, .faq-editorial-panel');
+    document.querySelectorAll('.faq-editorial-item.active').forEach((activeItem) => {
+      const panel = activeItem.querySelector('.faq-editorial-panel');
       if (panel && panel.style.maxHeight && panel.style.maxHeight !== '0px') {
         panel.style.maxHeight = (panel.scrollHeight + 32) + 'px';
       }
