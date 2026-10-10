@@ -123,10 +123,7 @@ function initScrollAnimations() {
     '#hosting',
     '#mission',
     '#why-trades',
-    '#our-principles',
     '#our-commitment',
-    '#contact-main',
-    '.contact-faq-section',
     '.qsp-global-strip'
   ];
 
@@ -157,10 +154,7 @@ function initScrollAnimations() {
     '.faq-editorial-item',
     '.final-cta-open',
     '.pricing-clean-card',
-    '.feature-matrix-table',
     '.about-mission-open',
-    '.about-diff-row',
-    '.tradie-standard-card',
     '.service-editorial-col',
     '.deliverable-manifest-item',
     '.contact-card-box',
@@ -216,7 +210,7 @@ function initScrollAnimations() {
 }
 
 /* ==========================================================================
-   2. HEADER SCROLL & MULTI-PAGE NAVIGATION
+   3. HEADER SCROLL & MULTI-PAGE NAVIGATION
    ========================================================================== */
 function initHeaderAndNav() {
   const header = document.getElementById('main-header');
@@ -261,7 +255,7 @@ function initHeaderAndNav() {
 }
 
 /* ==========================================================================
-   2b. HORIZONTAL SCROLL READING PROGRESS BAR
+   4. HORIZONTAL SCROLL READING PROGRESS BAR
    Expands dynamically from left to right as the user scrolls down
    ========================================================================== */
 function initScrollProgressBar() {
@@ -430,21 +424,19 @@ function initProjectShowcaseToggle() {
 }
 
 /* ==========================================================================
-   SCALED DESKTOP VIEWPORT FOR LAPTOP MOCKUP (1080px Layout)
-   Maintains a crisp 1080px desktop layout width inside the iframe and
-   dynamically computes the scale factor to fit the mockup display cleanly.
-   Ensures natural vertical scrolling inside the mockup.
+   SCALED VIEWPORT ENGINE FOR LAPTOP & IPHONE MOCKUPS
+   Dynamically computes responsive scale factors to fit layout containers cleanly.
    ========================================================================== */
-function initLaptopIframeScaling() {
-  const displays = document.querySelectorAll('.laptop-screen-display');
+function setupMockupIframeScaling(selector, baseWidth, cssVar) {
+  const displays = document.querySelectorAll(selector);
   if (!displays.length) return;
 
   function updateScales() {
     displays.forEach((display) => {
       const width = display.clientWidth;
       if (width > 0) {
-        const scale = width / 1080;
-        display.style.setProperty('--laptop-scale', scale.toString());
+        const scale = width / baseWidth;
+        display.style.setProperty(cssVar, scale.toString());
       }
     });
   }
@@ -452,11 +444,9 @@ function initLaptopIframeScaling() {
   // Initial calculation
   updateScales();
 
-  // ResizeObserver for fluid responsive changes
+  // ResizeObserver for fluid responsive adjustments
   if (window.ResizeObserver) {
-    const ro = new ResizeObserver(() => {
-      updateScales();
-    });
+    const ro = new ResizeObserver(() => updateScales());
     displays.forEach((display) => ro.observe(display));
   }
 
@@ -472,91 +462,16 @@ function initLaptopIframeScaling() {
   });
 }
 
-/* ==========================================================================
-   SCALED MOBILE VIEWPORT FOR IPHONE MOCKUP (390px Standard Layout)
-   Maintains authentic 390px iPhone layout width inside the iframe and
-   dynamically computes the scale factor to fit the phone display cleanly.
-   Ensures natural vertical scrolling and crisp rendering.
-   ========================================================================== */
+function initLaptopIframeScaling() {
+  setupMockupIframeScaling('.laptop-screen-display', 1080, '--laptop-scale');
+}
+
 function initPhoneIframeScaling() {
-  const displays = document.querySelectorAll('.iphone-display-window');
-  if (!displays.length) return;
-
-  function updateScales() {
-    displays.forEach((display) => {
-      const width = display.clientWidth;
-      if (width > 0) {
-        const scale = width / 390;
-        display.style.setProperty('--phone-scale', scale.toString());
-      }
-    });
-  }
-
-  // Initial calculation
-  updateScales();
-
-  // ResizeObserver for fluid responsive changes
-  if (window.ResizeObserver) {
-    const ro = new ResizeObserver(() => {
-      updateScales();
-    });
-    displays.forEach((display) => ro.observe(display));
-  }
-
-  window.addEventListener('resize', updateScales);
-
-  // Recalculate when view toggle buttons are clicked
-  const toggleBtns = document.querySelectorAll('.showcase-toggle-btn');
-  toggleBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      setTimeout(updateScales, 40);
-      setTimeout(updateScales, 180);
-    });
-  });
+  setupMockupIframeScaling('.iphone-display-window', 390, '--phone-scale');
 }
 
 /* ==========================================================================
-   ANIMATED NUMBER COUNTER ENGINE
-   Smooth numerical count-up easing with frame cancellation
-   ========================================================================== */
-function animateNumber(element, startVal, endVal, prefix = '', suffix = '', duration = 380) {
-  if (!element) return;
-
-  // Cancel any running animation on this element to prevent competing loops
-  if (element._animId) {
-    cancelAnimationFrame(element._animId);
-    element._animId = null;
-  }
-
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || duration <= 0 || startVal === endVal) {
-    element.textContent = `${prefix}${endVal.toLocaleString('en-AU')}${suffix}`;
-    return;
-  }
-
-  const startTime = performance.now();
-
-  function step(currentTime) {
-    const elapsed = currentTime - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    // Ease out cubic
-    const easeProgress = 1 - Math.pow(1 - progress, 3);
-    const currentVal = Math.round(startVal + (endVal - startVal) * easeProgress);
-
-    element.textContent = `${prefix}${currentVal.toLocaleString('en-AU')}${suffix}`;
-
-    if (progress < 1) {
-      element._animId = requestAnimationFrame(step);
-    } else {
-      element.textContent = `${prefix}${endVal.toLocaleString('en-AU')}${suffix}`;
-      element._animId = null;
-    }
-  }
-
-  element._animId = requestAnimationFrame(step);
-}
-
-/* ==========================================================================
-   5. INTERACTIVE JOB PAYBACK / ROI CALCULATOR & VOLUME SLIDER
+   7. INTERACTIVE JOB PAYBACK / ROI CALCULATOR
    Demonstrates how 1 booked electrical job pays for the entire website
    ========================================================================== */
 function initPaybackCalculator() {
@@ -572,8 +487,6 @@ function initPaybackCalculator() {
       name: 'Main Switchboard Upgrade & Safety Verification',
       shortName: 'Switchboard Upgrade',
       priceRange: '$1,200 – $3,500',
-      avgTicket: 2350,
-      netProfit: 1550,
       payback: '1 Job',
       note: 'One switchboard upgrade alone covers your Essential or Professional package outright, with real profit left over on day one.'
     },
@@ -581,8 +494,6 @@ function initPaybackCalculator() {
       name: 'Smoke Alarm & Safety Compliance Upgrade',
       shortName: 'Smoke Alarm & Safety Compliance',
       priceRange: '$500 – $2,000',
-      avgTicket: 1250,
-      netProfit: 800,
       payback: '1 or 2 Jobs',
       note: 'Compliance jobs come back every lease cycle. Two bookings and your website is paid off for good — then it just keeps earning.'
     },
@@ -590,8 +501,6 @@ function initPaybackCalculator() {
       name: 'House Rewire (Partial to Full)',
       shortName: 'House Rewire (Partial to Full)',
       priceRange: '$4,000 – $12,000',
-      avgTicket: 8000,
-      netProfit: 5000,
       payback: '1 Job',
       note: 'A single house rewire covers your entire digital investment with significant profit left over.'
     },
@@ -599,8 +508,6 @@ function initPaybackCalculator() {
       name: '3KW - 5KW Solar Installation',
       shortName: '3KW - 5KW Solar Installation',
       priceRange: '$1,000 – $2,000',
-      avgTicket: 1500,
-      netProfit: 950,
       payback: '1 Job',
       note: 'A single solar setup covers your entire digital investment.'
     },
@@ -608,8 +515,6 @@ function initPaybackCalculator() {
       name: 'EV Charger Installation',
       shortName: 'EV Charger Installation',
       priceRange: '$1,000 – $3,500',
-      avgTicket: 2250,
-      netProfit: 1400,
       payback: '1 Job',
       note: 'EV demand keeps climbing. One install can cover your entire site, with most of the job margin still in your pocket.'
     }
@@ -725,7 +630,7 @@ function initPaybackCalculator() {
 }
 
 /* ==========================================================================
-   6. FAQ ACCORDION SYSTEM (Unified behaviour across Home, Services, About, Contact)
+   8. FAQ ACCORDION SYSTEM (Unified behaviour across Home, Services, About, Contact)
    ========================================================================== */
 function initFaqAccordions() {
   const faqItems = document.querySelectorAll('.faq-editorial-item');
@@ -779,7 +684,7 @@ function initFaqAccordions() {
 }
 
 /* ==========================================================================
-   7. CONTACT FORM HANDLER (WITH DYNAMIC WEBSITE URL & RIGOROUS VALIDATION)
+   9. CONTACT FORM HANDLER (WITH DYNAMIC WEBSITE URL & RIGOROUS VALIDATION)
    ========================================================================== */
 function initContactFormHandler() {
   const form = document.getElementById('trade-quote-form');
@@ -790,7 +695,6 @@ function initContactFormHandler() {
   const bizInput = document.getElementById('business-name');
   const emailInput = document.getElementById('client-email');
   const phoneInput = document.getElementById('client-phone');
-  const projectNotesField = document.getElementById('project-notes');
   const submitBtn = document.getElementById('quote-submit-btn');
   const successCard = document.getElementById('quote-success-card');
   const resetBtn = document.getElementById('reset-quote-btn');
@@ -835,7 +739,6 @@ function initContactFormHandler() {
       clearFieldError(websiteInput, document.getElementById('client-website-error'));
       websiteInput.setCustomValidity('');
     }
-    updateFormProgress();
   }
 
   // --- Validation Helpers ---
@@ -1108,7 +1011,7 @@ function initContactFormHandler() {
 }
 
 /* ==========================================================================
-   7. BACK TO TOP & STICKY MOBILE ACTION BAR
+   10. BACK TO TOP & STICKY MOBILE ACTION BAR
    ========================================================================== */
 function initBackToTopAndMobileBar() {
   const bttBtn = document.getElementById('back-to-top-btn');
@@ -1142,7 +1045,7 @@ function initBackToTopAndMobileBar() {
 }
 
 /* ==========================================================================
-   9. PRICING MOBILE SLIDER & INFINITE LOOP TRACKER (Services page)
+   11. PRICING MOBILE SLIDER & INFINITE LOOP TRACKER (Services page)
    - Professional package card centered initially
    - Single-card change per swipe (e.g. 3/5 -> 4/5)
    - Smooth cubic-bezier spring-like animation
