@@ -3,7 +3,7 @@
 <head>
   <!-- Document Metadata & Viewport -->
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Services &amp; Transparent Trade Pricing — Nexbeck</title>
   <meta name="description" content="Fixed-price websites engineered for Australian electricians and trade contractors. Website redesigns, custom builds from under $1,000 to $2,300 AUD, and free 48-hour audits." />
   <meta property="og:title" content="Services &amp; Transparent Trade Pricing — Nexbeck" />
@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <!-- Shared Global Stylesheet -->
-  <link rel="stylesheet" href="style.css?v=2.4" />
+  <link rel="stylesheet" href="style.css?v=3.1" />
 
   <!-- Schema.org JSON-LD Structured Data -->
   <script type="application/ld+json">
@@ -36,7 +36,6 @@
 <body>
 
   <!-- Ambient Subtle Background -->
-  <canvas id="ambient-canvas"></canvas>
   <div class="ambient-radial-glow"></div>
 
   <!-- ========================================================================
@@ -90,6 +89,11 @@
           </a>
         </div>
       </div>
+    </div>
+
+    <!-- Horizontal Scroll Reading Progress Bar attached directly to header bottom -->
+    <div id="scroll-progress-track" class="scroll-progress-track" aria-hidden="true">
+      <div id="scroll-progress-bar" class="scroll-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
     </div>
   </header>
 
@@ -1102,10 +1106,11 @@
         <div>
           <span class="footer-col-title">Trade Packages</span>
           <ul class="footer-links-list">
-            <li><a href="services.html#pricing" class="footer-link">Essential (Under $1,000 AUD)</a></li>
-            <li><a href="services.html#pricing" class="footer-link">Professional ($1,000–$1,500 AUD)</a></li>
-            <li><a href="services.html#pricing" class="footer-link">Premium ($1,500–$2,300 AUD)</a></li>
-            <li><a href="contact.html?package=custom" class="footer-link">Custom Trade Scope</a></li>
+            <li><a href="#services" class="footer-link">Free Audit ($0 AUD)</a></li>
+            <li><a href="#pricing" class="footer-link">Essential (Under $1,000 AUD)</a></li>
+            <li><a href="#pricing" class="footer-link">Professional ($1,000–$1,500 AUD)</a></li>
+            <li><a href="#pricing" class="footer-link">Premium ($1,500–$2,300 AUD)</a></li>
+            <li><a href="#services" class="footer-link">Website Redesign</a></li>
           </ul>
         </div>
 
@@ -1155,6 +1160,6 @@
     </div>
   </aside>
 
-  <script type="module" src="script.js"></script>
+  <script type="module" src="script.js?v=3.1"></script>
 </body>
 </html>

@@ -4,18 +4,18 @@
  * Pure Vanilla JavaScript — Zero Framework Dependencies
  */
 
-document.addEventListener('DOMContentLoaded', () => {
-  // 1. Subtle electrical ambient cleanup (canvas disabled in favor of CSS radial glow)
-  initAmbientCanvas();
+function initApp() {
+  // 1. Smooth native anchor scrolling
+  initSmoothAnchorScrolling();
 
   // 2. Scroll-triggered reveal animations with auto-observing engine
   initScrollAnimations();
 
-  // 3. Smooth native anchor scrolling
-  initSmoothAnchorScrolling();
-
-  // 4. Header scroll styling & multi-page active nav
+  // 3. Header scroll styling & multi-page active nav
   initHeaderAndNav();
+
+  // 4. Horizontal scroll progress indicator bar under navbar
+  initScrollProgressBar();
 
   // 5. Mobile navigation drawer
   initMobileDrawer();
@@ -25,42 +25,30 @@ document.addEventListener('DOMContentLoaded', () => {
   initLaptopIframeScaling();
   initPhoneIframeScaling();
 
-  // 7. Interactive Job Payback / ROI Calculator with Live Volume Slider & Count-Up
+  // 7. Interactive Job Payback / ROI Calculator
   initPaybackCalculator();
 
-  // 8. Interactive Suburb Turf Coverage & Demand Simulator
-  initSuburbTurfSimulator();
-
-  // 9. Interactive Package Scope & Inclusions Estimator (Services page)
-  initScopeEstimator();
-
-  // 10. FAQ Accordions (Homepage, Services, About, Contact)
+  // 8. FAQ Accordions (Homepage, Services, About, Contact)
   initFaqAccordions();
 
-  // 11. Contact form handling with Live Progress & Trade Presets
+  // 9. Contact form handling
   initContactFormHandler();
 
-  // 12. Sticky mobile bar and back-to-top button
+  // 10. Sticky mobile bar and back-to-top button
   initBackToTopAndMobileBar();
 
-  // 13. Mobile pricing cards carousel & active card tracker
+  // 11. Mobile pricing cards carousel & active card tracker
   initPricingMobileSlider();
-});
+}
 
-/* ==========================================================================
-   1. AMBIENT BACKGROUND CLEANUP
-   Canvas animation removed to eliminate CPU/GPU overhead.
-   Retains ultra-lightweight, composited CSS .ambient-radial-glow.
-   ========================================================================== */
-function initAmbientCanvas() {
-  const canvas = document.getElementById('ambient-canvas');
-  if (canvas) {
-    canvas.remove();
-  }
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
 }
 
 /* ==========================================================================
-   2. SMOOTH NATIVE ANCHOR SCROLLING
+   1. SMOOTH NATIVE ANCHOR SCROLLING
    Accounts for fixed header offset + mobile sticky bar and updates URL history.
    ========================================================================== */
 function initSmoothAnchorScrolling() {
@@ -126,7 +114,6 @@ function initScrollAnimations() {
     '#roi-calculator',
     '#why-a-website',
     '#how-it-works',
-    '#turf-simulator',
     '#faq',
     '#final-cta',
     '.final-cta-section',
@@ -176,9 +163,7 @@ function initScrollAnimations() {
     '.about-mission-open',
     '.about-diff-row',
     '.tradie-standard-card',
-    '.turf-simulator-container',
     '.service-editorial-col',
-    '.scope-estimator-wrap',
     '.deliverable-manifest-item',
     '.contact-card-box',
     '.contact-sidebar-card'
@@ -275,6 +260,94 @@ function initHeaderAndNav() {
       link.classList.remove('active');
     }
   });
+}
+
+/* ==========================================================================
+   2b. HORIZONTAL SCROLL READING PROGRESS BAR
+   Expands dynamically from left to right as the user scrolls down
+   ========================================================================== */
+function initScrollProgressBar() {
+  const progressBar = document.getElementById('scroll-progress-bar');
+  if (!progressBar) return;
+
+  let ticking = false;
+
+  function update() {
+    const windowY = (window.pageYOffset !== undefined) ? window.pageYOffset : (window.scrollY || 0);
+    const docElemY = (document.documentElement && document.documentElement.scrollTop) ? document.documentElement.scrollTop : 0;
+    const bodyY = (document.body && document.body.scrollTop) ? document.body.scrollTop : 0;
+    const scrollElY = (document.scrollingElement && document.scrollingElement.scrollTop) ? document.scrollingElement.scrollTop : 0;
+
+    let scrollTop = Math.max(windowY, docElemY, bodyY, scrollElY);
+
+    const docHeight = Math.max(
+      document.documentElement ? document.documentElement.scrollHeight : 0,
+      document.body ? document.body.scrollHeight : 0,
+      document.documentElement ? document.documentElement.offsetHeight : 0,
+      document.body ? document.body.offsetHeight : 0
+    );
+
+    const viewHeight = window.innerHeight || (document.documentElement ? document.documentElement.clientHeight : 0) || (document.body ? document.body.clientHeight : 0) || 0;
+
+    let maxScroll = docHeight - viewHeight;
+
+    // Fallback: If an inner wrapper is scrolling (e.g. iframe container)
+    if (maxScroll <= 0 || scrollTop === 0) {
+      const candidates = [
+        document.querySelector('main'),
+        document.querySelector('.site-wrapper')
+      ];
+      for (const el of candidates) {
+        if (el && el.scrollTop > 0) {
+          scrollTop = el.scrollTop;
+          maxScroll = el.scrollHeight - el.clientHeight;
+          break;
+        }
+      }
+    }
+
+    let pct = 0;
+    if (maxScroll > 0) {
+      pct = Math.min(Math.max((scrollTop / maxScroll) * 100, 0), 100);
+    }
+
+    progressBar.style.width = `${pct}%`;
+    progressBar.setAttribute('aria-valuenow', Math.round(pct).toString());
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      if (window.requestAnimationFrame) {
+        window.requestAnimationFrame(() => {
+          try {
+            update();
+          } finally {
+            ticking = false;
+          }
+        });
+      } else {
+        try {
+          update();
+        } finally {
+          ticking = false;
+        }
+      }
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true });
+  if (document.body) {
+    document.body.addEventListener('scroll', onScroll, { passive: true });
+  }
+  window.addEventListener('resize', onScroll, { passive: true });
+
+  // Initial and delayed updates (ensures custom webfonts/images layout settle)
+  update();
+  setTimeout(update, 100);
+  setTimeout(update, 400);
+  window.addEventListener('load', update);
 }
 
 /* ==========================================================================
@@ -494,13 +567,6 @@ function initPaybackCalculator() {
   const packageComparisonEl = document.getElementById('calc-selected-comparison');
   const paybackJobsEl = document.getElementById('calc-payback-jobs-count');
 
-  // Interactive Volume Slider elements
-  const volumeSlider = document.getElementById('calc-volume-slider');
-  const volumeCountBadge = document.getElementById('calc-volume-count');
-  const annualRevenueEl = document.getElementById('calc-annual-revenue');
-  const hipagesWasteEl = document.getElementById('calc-hipages-waste');
-  const netSavingsEl = document.getElementById('calc-net-savings');
-
   if (!calcButtons.length || !jobTitleEl) return;
 
   const jobData = {
@@ -552,9 +618,6 @@ function initPaybackCalculator() {
   };
 
   let currentJobKey = 'switchboard';
-  let previousRevenue = 0;
-  let previousWaste = 0;
-  let previousNetSavings = 0;
 
   // Mobile Dropdown Elements
   const dropdownContainer = document.getElementById('calc-mobile-dropdown');
@@ -595,42 +658,15 @@ function initPaybackCalculator() {
       nativeSelect.value = jobKey;
     }
 
-    updateCalculatorView(false);
+    updateCalculatorView();
   }
 
-  function updateCalculatorView(isLiveDrag = false) {
+  function updateCalculatorView() {
     const data = jobData[currentJobKey] || jobData.switchboard;
-    const monthlyJobs = volumeSlider ? parseInt(volumeSlider.value, 10) : 3;
 
     if (jobTitleEl) jobTitleEl.textContent = data.name;
     if (packageComparisonEl) packageComparisonEl.textContent = data.note;
     if (paybackJobsEl) paybackJobsEl.textContent = data.payback;
-
-    // Volume Slider Calculations
-    if (volumeCountBadge) {
-      volumeCountBadge.textContent = `${monthlyJobs} ${monthlyJobs === 1 ? 'Job' : 'Jobs'} / Month`;
-    }
-
-    const calculatedAnnualRevenue = monthlyJobs * data.avgTicket * 12;
-    const calculatedLeadWaste = Math.round(monthlyJobs * 2.2 * 65 * 12);
-    const calculatedNetSavings = calculatedAnnualRevenue - 1000;
-
-    const animDuration = isLiveDrag ? 120 : 380;
-
-    if (annualRevenueEl) {
-      animateNumber(annualRevenueEl, previousRevenue, calculatedAnnualRevenue, '$', ' AUD/yr', animDuration);
-      previousRevenue = calculatedAnnualRevenue;
-    }
-
-    if (hipagesWasteEl) {
-      animateNumber(hipagesWasteEl, previousWaste, calculatedLeadWaste, '$', ' AUD/yr Saved', animDuration);
-      previousWaste = calculatedLeadWaste;
-    }
-
-    if (netSavingsEl) {
-      animateNumber(netSavingsEl, previousNetSavings, calculatedNetSavings, '+$', ' Net Gain', animDuration);
-      previousNetSavings = calculatedNetSavings;
-    }
   }
 
   // Job selection button handlers (Desktop / Tablet)
@@ -686,92 +722,12 @@ function initPaybackCalculator() {
     });
   }
 
-  // Slider change handler with responsive drag easing
-  if (volumeSlider) {
-    volumeSlider.addEventListener('input', () => {
-      updateCalculatorView(true);
-    });
-    volumeSlider.addEventListener('change', () => {
-      updateCalculatorView(false);
-    });
-  }
-
   // Initialize initial state with default switchboard
   selectJob('switchboard');
 }
 
 /* ==========================================================================
-   6. INTERACTIVE PACKAGE SCOPE ESTIMATOR (Services Page)
-   ========================================================================== */
-function initScopeEstimator() {
-  const estimatorContainer = document.getElementById('scope-estimator');
-  if (!estimatorContainer) return;
-
-  const pkgRadios = estimatorContainer.querySelectorAll('input[name="estimator-pkg"]');
-  const addonCheckboxes = estimatorContainer.querySelectorAll('.estimator-addon-check');
-  const totalCostEl = document.getElementById('estimator-total-cost');
-  const deliveryTimeEl = document.getElementById('estimator-delivery-time');
-  const breakevenJobsEl = document.getElementById('estimator-breakeven-jobs');
-  const selectBtn = document.getElementById('estimator-select-btn');
-
-  let previousScopePrice = 1250;
-
-  function calculateScope() {
-    let basePrice = 1250;
-    let selectedPkgKey = 'professional';
-    let deliveryDays = '7 to 14 Days';
-
-    pkgRadios.forEach((radio) => {
-      if (radio.checked) {
-        selectedPkgKey = radio.value;
-        if (selectedPkgKey === 'essential' || selectedPkgKey === 'starter') {
-          basePrice = 950;
-          deliveryDays = 'Within 7 Days';
-        } else if (selectedPkgKey === 'premium') {
-          basePrice = 1900;
-          deliveryDays = '14 to 18 Days';
-        } else if (selectedPkgKey === 'custom') {
-          basePrice = 2500;
-          deliveryDays = 'Custom Scope';
-        }
-      }
-    });
-
-    // Check add-on state visually
-    addonCheckboxes.forEach((checkbox) => {
-      const parentLabel = checkbox.closest('.estimator-toggle-item');
-      if (parentLabel) {
-        if (checkbox.checked) {
-          parentLabel.classList.add('checked');
-        } else {
-          parentLabel.classList.remove('checked');
-        }
-      }
-    });
-
-    if (totalCostEl) {
-      animateNumber(totalCostEl, previousScopePrice, basePrice, '$', ' AUD', 260);
-      previousScopePrice = basePrice;
-    }
-    if (deliveryTimeEl) {
-      deliveryTimeEl.textContent = deliveryDays;
-    }
-    if (breakevenJobsEl) {
-      breakevenJobsEl.textContent = '1 Booked Job (100% Breakeven)';
-    }
-    if (selectBtn) {
-      selectBtn.setAttribute('href', `contact.html?package=${selectedPkgKey}`);
-    }
-  }
-
-  pkgRadios.forEach((r) => r.addEventListener('change', calculateScope));
-  addonCheckboxes.forEach((c) => c.addEventListener('change', calculateScope));
-
-  calculateScope();
-}
-
-/* ==========================================================================
-   5. FAQ ACCORDION SYSTEM (Unified behaviour across Home, Services, About, Contact)
+   6. FAQ ACCORDION SYSTEM (Unified behaviour across Home, Services, About, Contact)
    ========================================================================== */
 function initFaqAccordions() {
   const faqItems = document.querySelectorAll('.faq-item, .faq-editorial-item');
@@ -822,32 +778,10 @@ function initFaqAccordions() {
       }
     });
   });
-
-  // Category filter tabs if present (e.g. Services page)
-  const filterBtns = document.querySelectorAll('.faq-filter-btn');
-  const faqGroups = document.querySelectorAll('.faq-group-wrapper');
-
-  if (filterBtns.length && faqGroups.length) {
-    filterBtns.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        filterBtns.forEach((b) => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const cat = btn.getAttribute('data-category');
-        faqGroups.forEach((group) => {
-          if (cat === 'all' || group.getAttribute('data-group') === cat) {
-            group.style.display = 'block';
-          } else {
-            group.style.display = 'none';
-          }
-        });
-      });
-    });
-  }
 }
 
 /* ==========================================================================
-   9. CONTACT FORM HANDLER (WITH DYNAMIC WEBSITE URL & RIGOROUS VALIDATION)
+   7. CONTACT FORM HANDLER (WITH DYNAMIC WEBSITE URL & RIGOROUS VALIDATION)
    ========================================================================== */
 function initContactFormHandler() {
   const form = document.getElementById('trade-quote-form');
@@ -862,8 +796,6 @@ function initContactFormHandler() {
   const submitBtn = document.getElementById('quote-submit-btn');
   const successCard = document.getElementById('quote-success-card');
   const resetBtn = document.getElementById('reset-quote-btn');
-  const progressFill = document.getElementById('form-progress-fill');
-  const progressPercentText = document.getElementById('form-progress-percent');
 
   // Pre-select package from URL parameter (?package=essential, professional, premium, redesign, audit, custom)
   if (packageSelect) {
@@ -1105,48 +1037,8 @@ function initContactFormHandler() {
     });
   }
 
-  // Live Form Progress Bar Calculation
-  function updateFormProgress() {
-    if (!form || !progressFill) return;
-    const requiredInputs = form.querySelectorAll('input[required], select[required]');
-    let filledCount = 0;
-    let activeRequiredCount = 0;
-
-    requiredInputs.forEach((input) => {
-      const parentGroup = input.closest('.form-group-wrap');
-      if (parentGroup && parentGroup.style.display === 'none') return;
-
-      activeRequiredCount++;
-      if (input.value && input.value.trim().length > 0) {
-        filledCount++;
-      }
-    });
-
-    // Optional field bonus
-    if (projectNotesField && projectNotesField.value.trim().length > 0) {
-      filledCount += 0.5;
-    }
-
-    const totalFields = activeRequiredCount + 0.5;
-    const percentage = Math.min(100, Math.round((filledCount / totalFields) * 100));
-
-    progressFill.style.width = `${Math.max(15, percentage)}%`;
-    if (progressPercentText) {
-      progressPercentText.textContent = `${percentage}% Complete`;
-    }
-  }
-
-  if (form) {
-    const inputs = form.querySelectorAll('input, select, textarea');
-    inputs.forEach((input) => {
-      input.addEventListener('input', updateFormProgress);
-      input.addEventListener('change', updateFormProgress);
-    });
-  }
-
-  // Initial synchronization for package selection and progress
+  // Initial synchronization for package selection
   syncWebsiteUrlRequirement();
-  updateFormProgress();
 
   if (!form) return;
 
@@ -1205,7 +1097,6 @@ function initContactFormHandler() {
       });
 
       syncWebsiteUrlRequirement();
-      updateFormProgress();
 
       if (submitBtn) {
         submitBtn.disabled = false;
@@ -1253,147 +1144,7 @@ function initBackToTopAndMobileBar() {
 }
 
 /* ==========================================================================
-   11. INTERACTIVE SUBURB TURF & KEYWORD VISIBILITY SIMULATOR
-   ========================================================================== */
-function initSuburbTurfSimulator() {
-  const container = document.getElementById('suburb-turf-simulator');
-  if (!container) return;
-
-  const tabs = container.querySelectorAll('.turf-region-btn');
-  const regionNameEl = document.getElementById('turf-region-name');
-  const suburbsListEl = document.getElementById('turf-suburbs-list');
-  const searchVolumeEl = document.getElementById('turf-monthly-searches');
-  const avgValueEl = document.getElementById('turf-avg-job-value');
-  const annualOpportunityEl = document.getElementById('turf-annual-opportunity');
-  const previewSnippetTitle = document.getElementById('turf-snippet-title');
-  const customInput = document.getElementById('turf-custom-suburb-input');
-  const customBtn = document.getElementById('turf-custom-suburb-btn');
-  const customFeedback = document.getElementById('turf-custom-feedback');
-
-  const regionData = {
-    sydney: {
-      name: 'Sydney Metro & Eastern Suburbs Radius',
-      suburbs: ['Marrickville', 'Bondi', 'Newtown', 'Surry Hills', 'Coogee', 'Balmain', 'Paddington', 'Leichhardt', 'Randwick', 'Alexandria', 'Double Bay', 'Rose Bay', 'Rozelle', 'Annandale'],
-      searches: 3850,
-      avgTicket: 1350,
-      annualOpp: 46200,
-      sampleSnippet: 'Apex Electrical Sydney • 24/7 Emergency Electrician Inner West & Bondi'
-    },
-    melbourne: {
-      name: 'Melbourne Bayside & Inner East Territory',
-      suburbs: ['Richmond', 'Brighton', 'St Kilda', 'Hawthorn', 'Brunswick', 'Fitzroy', 'South Yarra', 'Camberwell', 'Prahran', 'Port Melbourne', 'Collingwood', 'Elsternwick', 'Footscray'],
-      searches: 3400,
-      avgTicket: 1280,
-      annualOpp: 40960,
-      sampleSnippet: 'Apex Electrical Melbourne • REC Licensed Electrician Bayside & Inner East'
-    },
-    brisbane: {
-      name: 'Brisbane Metro & Gold Coast Corridor',
-      suburbs: ['New Farm', 'Fortitude Valley', 'Paddington (QLD)', 'Bulimba', 'West End', 'Chermside', 'Indooroopilly', 'Carindale', 'Surfers Paradise', 'Southport', 'Robina', 'Burleigh Heads'],
-      searches: 2950,
-      avgTicket: 1200,
-      annualOpp: 35400,
-      sampleSnippet: 'Apex Electrical QLD • Fast Switchboard Upgrades & EV Chargers Brisbane'
-    },
-    perth: {
-      name: 'Perth Metro & Coastal Corridor',
-      suburbs: ['Cottesloe', 'Fremantle', 'Subiaco', 'Scarborough', 'Joondalup', 'Mount Lawley', 'Claremont', 'South Perth', 'Victoria Park', 'Applecross', 'Nedlands'],
-      searches: 2300,
-      avgTicket: 1250,
-      annualOpp: 28750,
-      sampleSnippet: 'Apex Electrical WA • EC Licensed Contractors Perth Metro & Fremantle'
-    },
-    adelaide: {
-      name: 'Adelaide Metro & Hills Territory',
-      suburbs: ['Norwood', 'Glenelg', 'Unley', 'Prospect', 'Burnside', 'North Adelaide', 'Brighton (SA)', 'Stirling', 'Mawson Lakes', 'Henley Beach', 'Hyde Park'],
-      searches: 1850,
-      avgTicket: 1150,
-      annualOpp: 22200,
-      sampleSnippet: 'Apex Electrical SA • Emergency Electrician Adelaide Metro & Coastal'
-    }
-  };
-
-  let previousSearches = 0;
-  let previousOpp = 0;
-
-  function renderRegion(key) {
-    const data = regionData[key] || regionData.sydney;
-
-    if (regionNameEl) regionNameEl.textContent = data.name;
-    if (previewSnippetTitle) previewSnippetTitle.textContent = data.sampleSnippet;
-
-    if (suburbsListEl) {
-      suburbsListEl.innerHTML = data.suburbs.map(sub => `
-        <span class="turf-suburb-tag">
-          <span class="material-symbols-outlined" style="font-size: 13px; color: var(--color-accent);">location_on</span>
-          <span>${sub}</span>
-        </span>
-      `).join('');
-    }
-
-    if (searchVolumeEl) {
-      animateNumber(searchVolumeEl, previousSearches, data.searches, '', ' /mo', 400);
-      previousSearches = data.searches;
-    }
-
-    if (avgValueEl) {
-      avgValueEl.textContent = `$${data.avgTicket.toLocaleString('en-AU')} AUD`;
-    }
-
-    if (annualOpportunityEl) {
-      animateNumber(annualOpportunityEl, previousOpp, data.annualOpp, '+$', ' AUD/yr', 450);
-      previousOpp = data.annualOpp;
-    }
-  }
-
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      const reg = tab.getAttribute('data-region') || 'sydney';
-      renderRegion(reg);
-    });
-  });
-
-  // Custom Suburb Search Handler
-  if (customBtn && customInput) {
-    const handleCustomSuburb = () => {
-      const query = customInput.value.trim();
-      if (!query) return;
-
-      if (customFeedback) {
-        customFeedback.style.display = 'block';
-        customFeedback.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 8px; color: var(--color-accent); font-weight: 700;">
-            <span class="material-symbols-outlined" style="font-size: 16px; animation: spin 1s infinite;">sync</span>
-            <span>Calculating 15km Local Schema Turf for "${query}"...</span>
-          </div>
-        `;
-        setTimeout(() => {
-          customFeedback.innerHTML = `
-            <div style="padding: 12px 14px; background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.3); border-radius: var(--radius-sm); color: #34d399; font-size: 0.8125rem;">
-              <strong>✓ Ready for Launch:</strong> We configure Google Schema.org <code>areaServed</code> tags for <strong>${query}</strong> + surrounding adjacent suburbs so when local homeowners search, your phone rings directly without directory lead auction fees.
-            </div>
-          `;
-        }, 500);
-      }
-    };
-
-    customBtn.addEventListener('click', handleCustomSuburb);
-    customInput.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        handleCustomSuburb();
-      }
-    });
-  }
-
-  // Initialize Sydney by default
-  renderRegion('sydney');
-}
-
-/* ==========================================================================
-   13. PRICING MOBILE SLIDER & INFINITE LOOP TRACKER (Services page)
+   9. PRICING MOBILE SLIDER & INFINITE LOOP TRACKER (Services page)
    - Professional package card centered initially
    - Single-card change per swipe (e.g. 3/5 -> 4/5)
    - Smooth cubic-bezier spring-like animation
