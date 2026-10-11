@@ -344,7 +344,7 @@ body > .scroll-progress-track {
 
 .nav-link:hover::after,
 .nav-link.active::after {
-  width: 100%;
+  width: 100% !important;
 }
 
 .header-actions {
@@ -552,10 +552,13 @@ body > .scroll-progress-track {
 
 .mobile-nav-link.active::after {
   content: '';
-  width: 6px;
-  height: 6px;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--color-accent);
+  box-shadow: 0 0 6px rgba(201, 138, 44, 0.45);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================

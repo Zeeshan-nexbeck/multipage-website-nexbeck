@@ -225,33 +225,77 @@ function initHeaderAndNav() {
     }
   }, { passive: true });
 
-  const path = window.location.pathname;
-  let pageName = path.substring(path.lastIndexOf('/') + 1);
-  if (!pageName || pageName === '/' || pageName === 'index.html') {
-    pageName = 'index.html';
+  function isCurrentPage(href) {
+    if (!href) return false;
+    const path = (window.location.pathname || '').toLowerCase();
+    const cleanCurrentSegment = path
+      .replace(/\/+$/, '')
+      .split('/')
+      .filter(Boolean)
+      .pop() || 'index';
+    const normalizedCurrent = cleanCurrentSegment.replace(/\.html$/, '');
+
+    const cleanHrefSegment = href
+      .toLowerCase()
+      .split('?')[0]
+      .split('#')[0]
+      .replace(/\/+$/, '')
+      .split('/')
+      .filter(Boolean)
+      .pop() || 'index';
+    const normalizedHref = cleanHrefSegment.replace(/\.html$/, '');
+
+    const isCurrentHome = (normalizedCurrent === 'index' || normalizedCurrent === 'home' || normalizedCurrent === '');
+    const isHrefHome = (normalizedHref === 'index' || normalizedHref === 'home' || normalizedHref === '');
+
+    if (isCurrentHome && isHrefHome) return true;
+    if (!isCurrentHome && !isHrefHome && normalizedCurrent === normalizedHref) return true;
+    return false;
   }
 
   // Desktop links
   const desktopLinks = document.querySelectorAll('.desktop-nav .nav-link');
+  let matchedDesktop = false;
   desktopLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    if (href === pageName || (pageName === 'index.html' && (href === 'index.html' || href === './' || href === ''))) {
+    if (isCurrentPage(href)) {
       link.classList.add('active');
+      matchedDesktop = true;
     } else {
       link.classList.remove('active');
     }
   });
 
-  // Mobile links
+  // Mobile drawer links
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  let matchedMobile = false;
   mobileLinks.forEach((link) => {
     const href = link.getAttribute('href');
-    if (href === pageName || (pageName === 'index.html' && (href === 'index.html' || href === './' || href === ''))) {
+    if (isCurrentPage(href)) {
       link.classList.add('active');
+      matchedMobile = true;
     } else {
       link.classList.remove('active');
     }
   });
+
+  // Safe fallback: if path was unparseable or atypical, preserve any pre-rendered active class
+  if (!matchedDesktop) {
+    desktopLinks.forEach((link) => {
+      const href = (link.getAttribute('href') || '').toLowerCase();
+      if (window.location.pathname.toLowerCase().includes(href.replace(/\.html$/, ''))) {
+        link.classList.add('active');
+      }
+    });
+  }
+  if (!matchedMobile) {
+    mobileLinks.forEach((link) => {
+      const href = (link.getAttribute('href') || '').toLowerCase();
+      if (window.location.pathname.toLowerCase().includes(href.replace(/\.html$/, ''))) {
+        link.classList.add('active');
+      }
+    });
+  }
 }
 
 /* ==========================================================================
