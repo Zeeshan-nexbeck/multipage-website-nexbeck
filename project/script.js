@@ -687,7 +687,7 @@ function initFaqAccordions() {
    9. CONTACT FORM HANDLER (WITH DYNAMIC WEBSITE URL & RIGOROUS VALIDATION)
    ========================================================================== */
 function initContactFormHandler() {
-  const form = document.getElementById('trade-quote-form');
+  const form = document.getElementById('trade-quote-form') || document.querySelector('form[action*="web3forms"]');
   const packageSelect = document.getElementById('package-select');
   const websiteGroup = document.getElementById('website-url-group');
   const websiteInput = document.getElementById('client-website');
@@ -971,7 +971,7 @@ function initContactFormHandler() {
       `;
     }
 
-    setTimeout(() => {
+    function showSuccessFeedback() {
       form.style.display = 'none';
       const formIntro = document.getElementById('quote-form-intro');
       if (formIntro) formIntro.style.display = 'none';
@@ -979,7 +979,19 @@ function initContactFormHandler() {
         successCard.style.display = 'flex';
         successCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }
-    }, 700);
+    }
+
+    if (form.action && form.action.includes('web3forms.com')) {
+      const formData = new FormData(form);
+      fetch(form.action, {
+        method: 'POST',
+        body: formData
+      })
+        .then(() => showSuccessFeedback())
+        .catch(() => showSuccessFeedback());
+    } else {
+      setTimeout(showSuccessFeedback, 700);
+    }
   });
 
   if (resetBtn) {
