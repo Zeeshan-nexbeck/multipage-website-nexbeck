@@ -146,6 +146,13 @@
           </div>
 
           <form id="trade-quote-form" action="https://api.web3forms.com/submit" method="POST">
+            <!-- Web3Forms Integration -->
+            <!-- Paste your Access Key from https://web3forms.com below -->
+            <input type="hidden" name="access_key" value="e618bc09-d448-428e-abcd-9f99ef23d346">
+            <input type="hidden" name="subject" value="New Trade Quote Request — Nexbeck" />
+            <input type="hidden" name="from_name" value="Nexbeck Trade Website" />
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
             <!-- 2-Column Grid: Name & Business Name -->
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
               <!-- Full Name -->

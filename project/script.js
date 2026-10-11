@@ -985,10 +985,24 @@ function initContactFormHandler() {
       const formData = new FormData(form);
       fetch(form.action, {
         method: 'POST',
+        headers: {
+          'Accept': 'application/json'
+        },
         body: formData
       })
-        .then(() => showSuccessFeedback())
-        .catch(() => showSuccessFeedback());
+        .then(async (res) => {
+          try {
+            const data = await res.json();
+            if (!data.success) {
+              console.warn('Web3Forms Notice:', data.message);
+            }
+          } catch (_) {}
+          showSuccessFeedback();
+        })
+        .catch((err) => {
+          console.warn('Web3Forms Network Notice:', err);
+          showSuccessFeedback();
+        });
     } else {
       setTimeout(showSuccessFeedback, 700);
     }
