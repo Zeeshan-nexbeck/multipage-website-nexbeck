@@ -215,13 +215,13 @@ function initScrollAnimations() {
 function initHeaderAndNav() {
   const header = document.getElementById('main-header');
 
+  let isScrolled = false;
   window.addEventListener('scroll', () => {
-    if (header) {
-      if (window.scrollY > 30) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
+    if (!header) return;
+    const shouldScroll = window.scrollY > 30;
+    if (shouldScroll !== isScrolled) {
+      isScrolled = shouldScroll;
+      header.classList.toggle('scrolled', isScrolled);
     }
   }, { passive: true });
 
@@ -303,83 +303,58 @@ function initScrollProgressBar() {
   if (!progressBar) return;
 
   let ticking = false;
+  let cachedMaxScroll = 0;
+  let lastPct = -1;
 
-  function update() {
-    const windowY = (window.pageYOffset !== undefined) ? window.pageYOffset : (window.scrollY || 0);
-    const docElemY = (document.documentElement && document.documentElement.scrollTop) ? document.documentElement.scrollTop : 0;
-    const bodyY = (document.body && document.body.scrollTop) ? document.body.scrollTop : 0;
-    const scrollElY = (document.scrollingElement && document.scrollingElement.scrollTop) ? document.scrollingElement.scrollTop : 0;
-
-    let scrollTop = Math.max(windowY, docElemY, bodyY, scrollElY);
-
+  function calculateMaxScroll() {
     const docHeight = Math.max(
       document.documentElement ? document.documentElement.scrollHeight : 0,
-      document.body ? document.body.scrollHeight : 0,
-      document.documentElement ? document.documentElement.offsetHeight : 0,
-      document.body ? document.body.offsetHeight : 0
+      document.body ? document.body.scrollHeight : 0
     );
+    const viewHeight = window.innerHeight || 0;
+    cachedMaxScroll = Math.max(0, docHeight - viewHeight);
+  }
 
-    const viewHeight = window.innerHeight || (document.documentElement ? document.documentElement.clientHeight : 0) || (document.body ? document.body.clientHeight : 0) || 0;
-
-    let maxScroll = docHeight - viewHeight;
-
-    // Fallback: If an inner wrapper is scrolling (e.g. iframe container)
-    if (maxScroll <= 0 || scrollTop === 0) {
-      const candidates = [
-        document.querySelector('main'),
-        document.querySelector('.site-wrapper')
-      ];
-      for (const el of candidates) {
-        if (el && el.scrollTop > 0) {
-          scrollTop = el.scrollTop;
-          maxScroll = el.scrollHeight - el.clientHeight;
-          break;
-        }
-      }
+  function update() {
+    if (cachedMaxScroll <= 0) {
+      calculateMaxScroll();
     }
-
+    const scrollTop = window.scrollY || window.pageYOffset || (document.documentElement ? document.documentElement.scrollTop : 0);
     let pct = 0;
-    if (maxScroll > 0) {
-      pct = Math.min(Math.max((scrollTop / maxScroll) * 100, 0), 100);
+    if (cachedMaxScroll > 0) {
+      pct = Math.min(Math.max((scrollTop / cachedMaxScroll) * 100, 0), 100);
     }
-
-    progressBar.style.width = `${pct}%`;
-    progressBar.setAttribute('aria-valuenow', Math.round(pct).toString());
+    const roundedPct = Math.round(pct);
+    if (roundedPct !== lastPct) {
+      lastPct = roundedPct;
+      progressBar.style.width = `${roundedPct}%`;
+      progressBar.setAttribute('aria-valuenow', roundedPct.toString());
+    }
   }
 
   function onScroll() {
     if (!ticking) {
       ticking = true;
-      if (window.requestAnimationFrame) {
-        window.requestAnimationFrame(() => {
-          try {
-            update();
-          } finally {
-            ticking = false;
-          }
-        });
-      } else {
-        try {
-          update();
-        } finally {
-          ticking = false;
-        }
-      }
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
     }
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  document.addEventListener('scroll', onScroll, { passive: true });
-  if (document.body) {
-    document.body.addEventListener('scroll', onScroll, { passive: true });
-  }
-  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('resize', () => {
+    calculateMaxScroll();
+    onScroll();
+  }, { passive: true });
 
   // Initial and delayed updates (ensures custom webfonts/images layout settle)
+  calculateMaxScroll();
   update();
-  setTimeout(update, 100);
-  setTimeout(update, 400);
-  window.addEventListener('load', update);
+  window.addEventListener('load', () => {
+    calculateMaxScroll();
+    update();
+  });
 }
 
 /* ==========================================================================

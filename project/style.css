@@ -3,9 +3,6 @@
    Warm Editorial Agency Aesthetic for Australian Trade Businesses
    Pure Modern CSS
    ========================================================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* Design Tokens & CSS Variables */
 :root {
   --bg-primary: #F7F4EF;
@@ -4376,6 +4373,27 @@ body.page-contact .mobile-action-bar,
   .mobile-action-bar {
     transition: none !important;
   }
+}
+
+/* ==========================================================================
+   PERFORMANCE & RENDERING OPTIMIZATION
+   content-visibility skips layout & paint calculations for off-screen sections
+   until scrolled into proximity, significantly improving Mobile FCP and LCP.
+   ========================================================================== */
+#comparison,
+#roi-calculator,
+#why-a-website,
+#how-it-works,
+#faq,
+#inclusions,
+#hosting,
+#mission,
+#why-trades,
+#our-commitment,
+.qsp-global-strip,
+.site-footer {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
 }
 
 
