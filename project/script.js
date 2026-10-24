@@ -303,27 +303,26 @@ function initScrollProgressBar() {
   if (!progressBar) return;
 
   let ticking = false;
-  let cachedMaxScroll = 0;
   let lastPct = -1;
 
-  function calculateMaxScroll() {
-    const docHeight = Math.max(
-      document.documentElement ? document.documentElement.scrollHeight : 0,
-      document.body ? document.body.scrollHeight : 0
-    );
-    const viewHeight = window.innerHeight || 0;
-    cachedMaxScroll = Math.max(0, docHeight - viewHeight);
-  }
-
   function update() {
-    if (cachedMaxScroll <= 0) {
-      calculateMaxScroll();
-    }
-    const scrollTop = window.scrollY || window.pageYOffset || (document.documentElement ? document.documentElement.scrollTop : 0);
+    const doc = document.documentElement;
+    const body = document.body;
+    const scrollHeight = Math.max(doc ? doc.scrollHeight : 0, body ? body.scrollHeight : 0);
+    const clientHeight = doc ? doc.clientHeight : window.innerHeight;
+    const maxScroll = Math.max(0, scrollHeight - clientHeight);
+    const scrollTop = window.scrollY || window.pageYOffset || (doc ? doc.scrollTop : 0);
+
     let pct = 0;
-    if (cachedMaxScroll > 0) {
-      pct = Math.min(Math.max((scrollTop / cachedMaxScroll) * 100, 0), 100);
+    if (maxScroll > 0) {
+      // If at or within 2px of absolute bottom, guarantee exactly 100% to touch the other side
+      if (scrollTop >= maxScroll - 2) {
+        pct = 100;
+      } else {
+        pct = Math.min(Math.max((scrollTop / maxScroll) * 100, 0), 100);
+      }
     }
+
     const roundedPct = Math.round(pct);
     if (roundedPct !== lastPct) {
       lastPct = roundedPct;
@@ -343,18 +342,12 @@ function initScrollProgressBar() {
   }
 
   window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', () => {
-    calculateMaxScroll();
-    onScroll();
-  }, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  window.addEventListener('orientationchange', onScroll, { passive: true });
 
-  // Initial and delayed updates (ensures custom webfonts/images layout settle)
-  calculateMaxScroll();
+  // Initial and window load updates
   update();
-  window.addEventListener('load', () => {
-    calculateMaxScroll();
-    update();
-  });
+  window.addEventListener('load', update, { passive: true });
 }
 
 /* ==========================================================================

@@ -4375,25 +4375,4 @@ body.page-contact .mobile-action-bar,
   }
 }
 
-/* ==========================================================================
-   PERFORMANCE & RENDERING OPTIMIZATION
-   content-visibility skips layout & paint calculations for off-screen sections
-   until scrolled into proximity, significantly improving Mobile FCP and LCP.
-   ========================================================================== */
-#comparison,
-#roi-calculator,
-#why-a-website,
-#how-it-works,
-#faq,
-#inclusions,
-#hosting,
-#mission,
-#why-trades,
-#our-commitment,
-.qsp-global-strip,
-.site-footer {
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 700px;
-}
-
 
