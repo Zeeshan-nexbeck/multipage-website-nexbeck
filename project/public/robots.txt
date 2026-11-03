@@ -1,0 +1,6 @@
+# robots.txt for https://nexbeck.com
+User-agent: *
+Allow: /
+
+# Sitemap reference
+Sitemap: https://nexbeck.com/sitemap.xml
