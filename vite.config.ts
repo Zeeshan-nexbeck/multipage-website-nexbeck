@@ -33,6 +33,8 @@ export default defineConfig(() => {
               req.url = `/about.html${query}`;
             } else if (pathname === '/contact') {
               req.url = `/contact.html${query}`;
+            } else if (pathname === '/404') {
+              req.url = `/404.html${query}`;
             } else if (pathname === '/faqs') {
               req.url = `/services.html${query}`;
             } else if (pathname === '/project/index.html' || pathname === '/project/') {
@@ -54,6 +56,7 @@ export default defineConfig(() => {
           services: path.resolve(__dirname, 'project/services.html'),
           about: path.resolve(__dirname, 'project/about.html'),
           contact: path.resolve(__dirname, 'project/contact.html'),
+          not_found: path.resolve(__dirname, 'project/404.html'),
         },
       },
     },

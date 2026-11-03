@@ -4375,4 +4375,64 @@ body.page-contact .mobile-action-bar,
   }
 }
 
+/* ==========================================================================
+   404 ERROR PAGE STYLING
+   ========================================================================== */
+.page-404 main {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-404-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 760px;
+  gap: clamp(16px, 2.4vh, 24px);
+}
+
+.error-404-glance {
+  font-family: var(--font-display);
+  font-size: clamp(4.5rem, 12vw, 8rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  color: var(--color-accent);
+  opacity: 0.9;
+  user-select: none;
+}
+
+.error-quick-links {
+  margin-top: clamp(24px, 4vh, 40px);
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--font-ui);
+  font-size: 0.8125rem;
+}
+
+.error-quick-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.error-quick-links a:hover {
+  color: var(--color-accent);
+}
+
+.error-quick-divider {
+  color: var(--text-dim);
+  opacity: 0.5;
+}
+
 
