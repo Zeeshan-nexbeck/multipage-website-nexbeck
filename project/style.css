@@ -2304,7 +2304,13 @@ select#package-select option:checked {
   color: #D6CEBE;
 }
 
-.site-footer a.brand-link,
+.site-footer a.brand-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  text-decoration: none !important;
+}
+
 .site-footer .brand-text,
 .site-footer a.brand-link span {
   color: #FFFFFF !important;
@@ -2324,7 +2330,7 @@ select#package-select option:checked {
 }
 
 .site-footer .brand-logo-img {
-  height: 44px;
+  height: 38px;
   width: auto;
   object-fit: contain;
   display: block;
