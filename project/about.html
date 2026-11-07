@@ -79,15 +79,71 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About Nexbeck",
-    "description": "Learn why Nexbeck exists and why it focuses on practical, professional web design for Australian electricians.",
-    "publisher": {
-      "@type": "ProfessionalService",
-      "name": "Nexbeck Web Design",
-      "areaServed": "Australia",
-      "serviceType": "Web Design for electricians"
-    }
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://nexbeck.com/#organization",
+        "name": "Nexbeck",
+        "alternateName": "Nexbeck Web Design",
+        "url": "https://nexbeck.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nexbeck.com/nexbeck-logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Professional websites designed and built for Australian electricians.",
+        "email": "contact@nexbeck.com",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "contact@nexbeck.com",
+          "availableLanguage": "English"
+        }
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://nexbeck.com/about#webpage",
+        "url": "https://nexbeck.com/about",
+        "name": "About Nexbeck | Built for Australian Electricians",
+        "description": "Learn why Nexbeck focuses on Australian electricians and builds practical websites that present electrical services, build trust and generate enquiries.",
+        "isPartOf": {
+          "@id": "https://nexbeck.com/#website"
+        },
+        "about": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "publisher": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "inLanguage": "en-AU",
+        "breadcrumb": {
+          "@id": "https://nexbeck.com/about#breadcrumb"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://nexbeck.com/about#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nexbeck.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "About",
+            "item": "https://nexbeck.com/about"
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>

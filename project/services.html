@@ -79,12 +79,125 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Nexbeck Web Design",
-    "description": "Fixed-price websites designed and built for Australian electricians.",
-    "priceRange": "$$ - From Under $1,000 to $2,300 AUD",
-    "areaServed": "Australia",
-    "serviceType": "Web Design for Electricians"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://nexbeck.com/#organization",
+        "name": "Nexbeck",
+        "alternateName": "Nexbeck Web Design",
+        "url": "https://nexbeck.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nexbeck.com/nexbeck-logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Professional websites designed and built for Australian electricians.",
+        "email": "contact@nexbeck.com",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "contact@nexbeck.com",
+          "availableLanguage": "English"
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://nexbeck.com/services#webpage",
+        "url": "https://nexbeck.com/services",
+        "name": "Electrician Website Design Services & Pricing | Nexbeck",
+        "description": "Explore website design services for Australian electricians, including custom websites, redesigns, fixed-price packages and free website audits.",
+        "isPartOf": {
+          "@id": "https://nexbeck.com/#website"
+        },
+        "about": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "publisher": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "inLanguage": "en-AU",
+        "breadcrumb": {
+          "@id": "https://nexbeck.com/services#breadcrumb"
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://nexbeck.com/services#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://nexbeck.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://nexbeck.com/services"
+          }
+        ]
+      },
+      {
+        "@type": "Service",
+        "@id": "https://nexbeck.com/services#service",
+        "name": "Electrician Website Design",
+        "serviceType": "Website design",
+        "provider": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Electrician Website Design Packages",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Free Audit"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Essential"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Professional"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Premium"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Website Redesign"
+              }
+            }
+          ]
+        }
+      }
+    ]
   }
   </script>
 </head>

@@ -79,12 +79,60 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Nexbeck Web Design",
-    "description": "Professional websites designed and built for Australian electricians.",
-    "priceRange": "$$ - From Under $1,000 to $2,300 AUD",
-    "areaServed": "Australia",
-    "serviceType": "Web Design for Electricians"
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://nexbeck.com/#organization",
+        "name": "Nexbeck",
+        "alternateName": "Nexbeck Web Design",
+        "url": "https://nexbeck.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://nexbeck.com/nexbeck-logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "description": "Professional websites designed and built for Australian electricians.",
+        "email": "contact@nexbeck.com",
+        "areaServed": {
+          "@type": "Country",
+          "name": "Australia"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "email": "contact@nexbeck.com",
+          "availableLanguage": "English"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://nexbeck.com/#website",
+        "url": "https://nexbeck.com/",
+        "name": "Nexbeck",
+        "publisher": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "inLanguage": "en-AU"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://nexbeck.com/#webpage",
+        "url": "https://nexbeck.com/",
+        "name": "Website Design for Australian Electricians | Nexbeck",
+        "description": "Professional websites designed for Australian electricians. Fast 7-18 day delivery, fixed transparent pricing, and 100% full ownership.",
+        "isPartOf": {
+          "@id": "https://nexbeck.com/#website"
+        },
+        "about": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "publisher": {
+          "@id": "https://nexbeck.com/#organization"
+        },
+        "inLanguage": "en-AU"
+      }
+    ]
   }
   </script>
 </head>
