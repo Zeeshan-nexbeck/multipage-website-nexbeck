@@ -58,6 +58,17 @@ function initApp() {
 
   // 11. Mobile pricing cards carousel & active card tracker
   initPricingMobileSlider();
+
+  // 12. Guarantee aria-hidden="true" on all icon elements for reading tool accessibility
+  ensureIconAccessibility();
+}
+
+function ensureIconAccessibility() {
+  document.querySelectorAll('.material-symbols-outlined').forEach((icon) => {
+    if (!icon.hasAttribute('aria-hidden')) {
+      icon.setAttribute('aria-hidden', 'true');
+    }
+  });
 }
 
 if (document.readyState === 'loading') {
@@ -993,7 +1004,7 @@ function initContactFormHandler() {
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = `
-        <span class="material-symbols-outlined" style="animation: spin 1s linear infinite;">sync</span>
+        <span class="material-symbols-outlined" aria-hidden="true" style="animation: spin 1s linear infinite;">sync</span>
         <span>Sending Request...</span>
       `;
     }
@@ -1056,7 +1067,7 @@ function initContactFormHandler() {
         submitBtn.disabled = false;
         submitBtn.innerHTML = `
           <span>Submit Form</span>
-          <span class="material-symbols-outlined">arrow_forward</span>
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
         `;
       }
     });
