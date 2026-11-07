@@ -22,11 +22,39 @@ export default defineConfig(() => {
       {
         name: 'clean-urls-and-redirects',
         configureServer(server) {
-          server.middlewares.use((req, _res, next) => {
+          server.middlewares.use((req, res, next) => {
             if (!req.url) return next();
             const [pathname, search] = req.url.split('?');
             const query = search ? `?${search}` : '';
 
+            // Permanent 301 Redirects for explicit .html URLs
+            if (pathname === '/index.html' || pathname === '/project/index.html') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/${query}`);
+              return res.end();
+            }
+            if (pathname === '/services.html' || pathname === '/project/services.html') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/services${query}`);
+              return res.end();
+            }
+            if (pathname === '/about.html' || pathname === '/project/about.html') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/about${query}`);
+              return res.end();
+            }
+            if (pathname === '/contact.html' || pathname === '/project/contact.html') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/contact${query}`);
+              return res.end();
+            }
+            if (pathname === '/faqs') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/services${query}`);
+              return res.end();
+            }
+
+            // Internal rewrite for clean URLs so Vite serves the correct HTML document
             if (pathname === '/services') {
               req.url = `/services.html${query}`;
             } else if (pathname === '/about') {
@@ -35,9 +63,7 @@ export default defineConfig(() => {
               req.url = `/contact.html${query}`;
             } else if (pathname === '/404') {
               req.url = `/404.html${query}`;
-            } else if (pathname === '/faqs') {
-              req.url = `/services.html${query}`;
-            } else if (pathname === '/project/index.html' || pathname === '/project/') {
+            } else if (pathname === '/project/') {
               req.url = `/index.html${query}`;
             } else if (pathname.startsWith('/project/')) {
               req.url = `${pathname.replace(/^\/project/, '')}${query}`;
