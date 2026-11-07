@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <script>
+    /* Safeguard window.fetch accessor for browser extensions and interceptors */
+    (function() {
+      try {
+        var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+        var _activeFetch = _origFetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3G0694H1W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N3G0694H1W');
+  </script>
+
+  <!-- Document Metadata & Viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Privacy Policy | Nexbeck</title>
+  <meta name="description" content="Read the Nexbeck Privacy Policy. Learn how we collect, handle, and protect your information when you enquire about web design for Australian electricians." />
+
+  <!-- OpenGraph Social Sharing Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexbeck.com/privacy" />
+  <meta property="og:title" content="Privacy Policy | Nexbeck" />
+  <meta property="og:description" content="Read the Nexbeck Privacy Policy. Learn how we collect, handle, and protect your information when you enquire about web design for Australian electricians." />
+  <meta property="og:image" content="https://nexbeck.com/nexbeck-social-preview.jpg" />
+  <meta property="og:image:width" content="896" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:image:alt" content="Nexbeck Privacy Policy" />
+
+  <!-- Twitter / X Social Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Privacy Policy | Nexbeck" />
+  <meta name="twitter:description" content="Read the Nexbeck Privacy Policy. Learn how we collect, handle, and protect your information when you enquire about web design for Australian electricians." />
+  <meta name="twitter:image" content="https://nexbeck.com/nexbeck-social-preview.jpg" />
+  <meta name="twitter:image:alt" content="Nexbeck Privacy Policy" />
+
+  <link rel="canonical" href="https://nexbeck.com/privacy" />
+
+  <!-- Preconnect & Preload Key Assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="images/logo.svg" as="image" type="image/svg+xml" />
+
+  <!-- Non-Blocking Typography Fonts -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" />
+  </noscript>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+
+  <!-- Shared Global Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=3.5" />
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Privacy Policy | Nexbeck",
+    "url": "https://nexbeck.com/privacy",
+    "description": "Privacy policy and data handling practices for Nexbeck website design services.",
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Nexbeck Web Design",
+      "areaServed": "Australia"
+    }
+  }
+  </script>
+</head>
+<body class="page-legal">
+
+  <!-- Subtle Ambient Background -->
+  <div class="ambient-radial-glow"></div>
+
+  <!-- Shared Header & Navigation -->
+  <header id="main-header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="brand-link" aria-label="Nexbeck Home">
+        <img src="images/logo.svg" alt="Nexbeck" class="brand-logo-img" width="48" height="38" />
+        <span class="brand-text">NEXBECK</span>
+      </a>
+
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Main Navigation">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/about" class="nav-link">About</a>
+        <a href="/contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact" class="btn-primary desktop-only-btn">
+          <span>Get a Free Quote</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open mobile navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="mobile-menu-svg">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="mobile-nav-links">
+        <a href="/" class="mobile-nav-link"><span>Home</span></a>
+        <a href="/services" class="mobile-nav-link"><span>Services</span></a>
+        <a href="/about" class="mobile-nav-link"><span>About</span></a>
+        <a href="/contact" class="mobile-nav-link"><span>Contact</span></a>
+      </div>
+      <div class="mobile-drawer-cta">
+        <a href="/contact" class="btn-primary" style="width: 100%; justify-content: center;">
+          <span>Get a Free Quote</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="legal-main-section">
+      <div class="site-wrapper">
+        <div class="legal-article-container">
+        
+        <!-- Header: Eyebrow, H1, Last Updated -->
+        <div class="legal-header">
+          <div class="hero-kicker" style="margin-bottom: 12px;">
+            <span class="hero-kicker-dot"></span>
+            <span>DATA TRANSPARENCY &amp; PRIVACY</span>
+          </div>
+          <h1 class="page-hero-title">Privacy Policy</h1>
+          <span class="legal-last-updated">Last updated: 7 November 2026</span>
+        </div>
+
+        <!-- Boxed Plain-English Summary -->
+        <div class="legal-summary-box">
+          <div class="legal-summary-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>Plain-English Summary</span>
+          </div>
+          <ul class="legal-summary-list">
+            <li>We only collect details you provide to answer your enquiry, prepare your website proposal, or complete your project.</li>
+            <li>We store contact form enquiry data for 30 days before deleting it from our form records.</li>
+            <li>We never sell your personal information or share it with third-party advertisers.</li>
+            <li>We operate from Pakistan while building websites for Australian trade businesses, using secure tools like Cloudflare, Zoho Mail, and Web3Forms.</li>
+            <li>You can ask us to view, update, or permanently delete your stored details at any time by emailing contact@nexbeck.com.</li>
+          </ul>
+        </div>
+
+        <!-- Main Legal Content (Centered Responsive Article) -->
+        <div class="legal-content">
+            
+            <section class="legal-section" id="who-we-are">
+              <h2>Who we are</h2>
+              <p>We are <strong>Nexbeck</strong>, a specialised web design service dedicated to building high-converting websites for Australian electricians and trade contractors. We operate from Pakistan, delivering websites remotely to businesses throughout Australia.</p>
+              <p>Throughout this policy, references to "we", "us", or "our" mean Nexbeck. If you have questions regarding this policy or how your details are managed, you can contact us directly at <a href="mailto:contact@nexbeck.com">contact@nexbeck.com</a>.</p>
+            </section>
+
+            <section class="legal-section" id="what-we-collect">
+              <h2>What we collect</h2>
+              <p>We only collect information that is directly necessary to communicate with you, evaluate your website needs, and deliver our design and development work. This includes:</p>
+              <ul>
+                <li><strong>Contact details:</strong> Your name, business name, email address, phone number, and physical or service area location.</li>
+                <li><strong>Trade and project details:</strong> Electrical contractor licence numbers, trade specialities, preferred domain names, current website address (if any), and design preferences.</li>
+                <li><strong>Website content and assets:</strong> Project photos, customer reviews, team bios, logos, and business copy provided for publication on your website.</li>
+                <li><strong>Technical interaction data:</strong> Basic browser metadata, general location (country/city level), and page interaction metrics collected via aggregate analytics.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="how-we-collect-it">
+              <h2>How we collect it</h2>
+              <p>We collect information through transparent channels:</p>
+              <ul>
+                <li><strong>Direct submissions:</strong> When you complete our contact or quote request forms on nexbeck.com.</li>
+                <li><strong>Direct correspondence:</strong> When you email, message, or speak with us to discuss your website project.</li>
+                <li><strong>Client onboarding briefs:</strong> When you provide trade details, text, and photos for your website build.</li>
+                <li><strong>Automated site analytics:</strong> When you browse nexbeck.com, standard analytics tools record aggregate technical data.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="why-we-use-it">
+              <h2>Why we use it</h2>
+              <p>We use your information exclusively for legitimate business purposes:</p>
+              <ul>
+                <li>To reply to your questions and discuss website package options.</li>
+                <li>To conduct free website audits and provide honest recommendations.</li>
+                <li>To prepare project proposals, quotes, and project timelines.</li>
+                <li>To build, test, and launch your electrical website according to your brief.</li>
+                <li>To send operational updates, milestone notices, and invoices.</li>
+                <li>To maintain the security and reliable operation of our website.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="who-we-share-it-with">
+              <h2>Who we share it with</h2>
+              <p><strong>We do not sell, rent, or trade personal information to anyone.</strong></p>
+              <p>To run our operations, host our website, and communicate with you, we rely on established service providers who process data strictly under our direction:</p>
+              <div class="legal-table-wrap">
+                <table class="legal-table">
+                  <thead>
+                    <tr>
+                      <th>Service Provider</th>
+                      <th>Purpose</th>
+                      <th>Data Handled</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Web3Forms</strong></td>
+                      <td>Contact form processing and message delivery</td>
+                      <td>Name, email, phone, trade service, and message content</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Zoho Mail</strong></td>
+                      <td>Business email hosting and correspondence</td>
+                      <td>Email exchanges, project briefs, and quotes</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Cloudflare</strong></td>
+                      <td>DNS routing, CDN caching, and website security</td>
+                      <td>IP addresses, server logs, and security telemetry</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Google Analytics (GA4) &amp; Search Console</strong></td>
+                      <td>Aggregate website performance analysis</td>
+                      <td>Anonymised usage patterns and search query trends</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>We do not permit these providers to use your information for their own independent marketing purposes.</p>
+            </section>
+
+            <section class="legal-section" id="overseas-handling">
+              <h2>Overseas handling</h2>
+              <p>Nexbeck is based in and operates from <strong>Pakistan</strong>, while delivering website design services to clients located in Australia.</p>
+              <p>When you contact us or engage our services, your information is received and processed by our team in Pakistan. Additionally, the infrastructure providers listed above (such as Cloudflare, Zoho Mail, Web3Forms, and Google) maintain secure server networks across multiple countries, including the United States, Europe, and Australia. We take reasonable administrative and technical precautions to ensure your data remains protected regardless of where it is processed.</p>
+            </section>
+
+            <section class="legal-section" id="cookies-and-analytics">
+              <h2>Cookies and analytics</h2>
+              <p>Our website uses basic functional cookies and aggregate analytics tools:</p>
+              <ul>
+                <li><strong>Essential functionality:</strong> Temporary session cookies that help load pages cleanly and remember display preferences.</li>
+                <li><strong>Google Analytics 4 (GA4):</strong> Collects anonymised information such as pages visited, device types, screen widths, and time spent on page. This helps us understand what content is helpful and where we can improve site performance.</li>
+                <li><strong>Google Search Console:</strong> Provides aggregate visibility on how nexbeck.com appears in organic search results.</li>
+              </ul>
+              <p>We do not use invasive third-party behavioural ad retargeting pixels (such as Meta Pixel or TikTok tracking pixels) on nexbeck.com. You can configure your browser to block or delete cookies at any time without preventing you from viewing our website content.</p>
+            </section>
+
+            <section class="legal-section" id="how-long-we-keep-it">
+              <h2>How long we keep it</h2>
+              <p>We believe in keeping data only for as long as it serves a clear purpose:</p>
+              <ul>
+                <li><strong>General enquiries:</strong> Information submitted through our contact form is retained in our form records for <strong>30 days</strong>. After 30 days, enquiry records that did not progress to an active project are cleared.</li>
+                <li><strong>Active clients:</strong> If you engage us for a website project, we retain project correspondence, briefs, invoices, and completed website source files for the duration of our relationship and a reasonable archive period to assist you with future updates or support requests.</li>
+                <li><strong>Tax and financial records:</strong> Payment receipts and invoices are retained for the standard accounting periods required by tax regulations.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="keeping-it-safe">
+              <h2>Keeping it safe</h2>
+              <p>We take practical, sensible steps to protect the information you share with us:</p>
+              <ul>
+                <li>All website traffic to nexbeck.com is encrypted using HTTPS and TLS certificates managed through Cloudflare.</li>
+                <li>Email correspondence is handled through secure, password-protected Zoho Mail business accounts with multi-factor authentication enabled.</li>
+                <li>Administrative access to hosting dashboards, code repositories, and domain accounts is restricted to authorized team members.</li>
+                <li>We do not store credit card or debit card numbers on our servers.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="your-choices">
+              <h2>Your choices</h2>
+              <p>You have full control over your personal information. At any time, you may request to:</p>
+              <ul>
+                <li><strong>Access:</strong> Request a copy of the personal details we hold about you.</li>
+                <li><strong>Correction:</strong> Ask us to update or correct inaccurate or incomplete details.</li>
+                <li><strong>Deletion:</strong> Request that we delete your contact details and message history from our active records.</li>
+              </ul>
+              <p>To make any of these requests, simply email us at <a href="mailto:contact@nexbeck.com">contact@nexbeck.com</a>. We will respond promptly within 5 business days and without charging any fees.</p>
+            </section>
+
+            <section class="legal-section" id="marketing-emails">
+              <h2>Marketing emails</h2>
+              <p>We do not send unsolicited marketing blasts, newsletter spam, or automated cold outreach to people who submit an enquiry. We communicate with you strictly regarding your specific question, quote, or project.</p>
+              <p>If we ever introduce an optional email newsletter with tips for trade websites, we will only send it to individuals who have given clear, affirmative consent, and every email will contain a single-click unsubscribe link.</p>
+            </section>
+
+            <section class="legal-section" id="complaints">
+              <h2>Complaints</h2>
+              <p>If you have a concern or complaint about how we have handled your personal information, please let us know so we can resolve it directly. Send an email to <a href="mailto:contact@nexbeck.com">contact@nexbeck.com</a> with the subject line "Privacy Concern".</p>
+              <p>We will review your message, investigate the issue, and provide a clear written response within 5 business days detailing the steps taken to address your concern.</p>
+            </section>
+
+            <section class="legal-section" id="changes-to-this-policy">
+              <h2>Changes to this policy</h2>
+              <p>We may update this Privacy Policy from time to time to reflect changes in our operational tools, service offerings, or website functionality. When we make updates, we will revise the "Last updated" date at the top of this page.</p>
+              <p>We encourage you to review this page periodically to stay informed about how we safeguard your details.</p>
+            </section>
+
+            <!-- Questions Box at bottom of page -->
+            <div class="legal-question-box">
+              <h2 class="legal-question-title" style="margin: 0;">Questions about this policy?</h2>
+              <p class="legal-question-desc">If anything in this privacy policy is unclear or if you want to request data deletion, contact our team directly. We are happy to help.</p>
+              <div class="legal-question-actions">
+                <a href="mailto:contact@nexbeck.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">
+                  <span>Email contact@nexbeck.com</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </a>
+                <a href="#main-content" class="legal-back-to-top">
+                  <span>Back to top</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Site Footer -->
+  <footer class="site-footer">
+    <div class="site-wrapper">
+      <div class="footer-grid">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <a href="/" class="brand-link" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
+            <img src="images/logo-white.svg" alt="Nexbeck" class="brand-logo-img" width="48" height="38" />
+            <span class="brand-text" style="color: #FFFFFF !important; font-weight: 800; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 0.02em; display: inline-block;">NEXBECK</span>
+          </a>
+          <p style="font-family: var(--font-body); font-size: 0.875rem; color: #D6CEBE; line-height: 1.6; max-width: 300px;">
+            Web design agency engineered for Australian electricians to win more enquiries, get found locally, and scale online.
+          </p>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #34d399;"></span>
+            <span style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; font-weight: 600;">AUSTRALIA-WIDE SERVICE</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links-list">
+            <li><a href="/" class="footer-link">Home</a></li>
+            <li><a href="/services" class="footer-link">Services &amp; Pricing</a></li>
+            <li><a href="/about" class="footer-link">About Nexbeck</a></li>
+            <li><a href="/contact" class="footer-link">Get a Free Quote</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Website Packages</span>
+          <ul class="footer-links-list">
+            <li><a href="/services#services" class="footer-link">Free Audit ($0 AUD)</a></li>
+            <li><a href="/services#pricing" class="footer-link">Essential (Under $1,000 AUD)</a></li>
+            <li><a href="/services#pricing" class="footer-link">Professional ($1,000–$1,500 AUD)</a></li>
+            <li><a href="/services#pricing" class="footer-link">Premium ($1,500–$2,300 AUD)</a></li>
+            <li><a href="/services#services" class="footer-link">Website Redesign</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Direct Contact</span>
+          <ul class="footer-links-list">
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Email: <a href="mailto:contact@nexbeck.com" class="footer-link">contact@nexbeck.com</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Direct Line: <a href="tel:+923149647176" class="footer-link">+92 3149647176</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE; margin-top: 4px;">
+              Hours: Mon–Fri, 8:00 AM – 6:00 PM AEST
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span>&copy; 2026 Nexbeck. All rights reserved.</span>
+          <span aria-hidden="true" style="opacity: 0.5;">&bull;</span>
+          <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+          <span aria-hidden="true" style="opacity: 0.5;">&bull;</span>
+          <a href="/terms" class="footer-legal-link">Terms of Service</a>
+        </p>
+        <p style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; letter-spacing: 0.04em;">
+          QUALITY • SPEED (7–18 DAYS) • FIXED PRICE
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js?v=3.3"></script>
+</body>
+</html>

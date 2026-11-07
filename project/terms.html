@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <script>
+    /* Safeguard window.fetch accessor for browser extensions and interceptors */
+    (function() {
+      try {
+        var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+        var _activeFetch = _origFetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3G0694H1W"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-N3G0694H1W');
+  </script>
+
+  <!-- Document Metadata & Viewport -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Terms of Service | Nexbeck</title>
+  <meta name="description" content="Read the Nexbeck Terms of Service for Australian electricians. Transparent fixed pricing, milestone payments, delivery timelines, and full ownership." />
+
+  <!-- OpenGraph Social Sharing Metadata -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nexbeck.com/terms" />
+  <meta property="og:title" content="Terms of Service | Nexbeck" />
+  <meta property="og:description" content="Read the Nexbeck Terms of Service for Australian electricians. Transparent fixed pricing, milestone payments, delivery timelines, and full ownership." />
+  <meta property="og:image" content="https://nexbeck.com/nexbeck-social-preview.jpg" />
+  <meta property="og:image:width" content="896" />
+  <meta property="og:image:height" content="1200" />
+  <meta property="og:image:alt" content="Nexbeck Terms of Service" />
+
+  <!-- Twitter / X Social Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Terms of Service | Nexbeck" />
+  <meta name="twitter:description" content="Read the Nexbeck Terms of Service for Australian electricians. Transparent fixed pricing, milestone payments, delivery timelines, and full ownership." />
+  <meta name="twitter:image" content="https://nexbeck.com/nexbeck-social-preview.jpg" />
+  <meta name="twitter:image:alt" content="Nexbeck Terms of Service" />
+
+  <link rel="canonical" href="https://nexbeck.com/terms" />
+
+  <!-- Preconnect & Preload Key Assets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" href="images/logo.svg" as="image" type="image/svg+xml" />
+
+  <!-- Non-Blocking Typography Fonts -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" />
+  </noscript>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
+
+  <!-- Shared Global Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=3.5" />
+
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Terms of Service | Nexbeck",
+    "url": "https://nexbeck.com/terms",
+    "description": "Terms of Service and commercial client agreement for Nexbeck website design packages.",
+    "publisher": {
+      "@type": "ProfessionalService",
+      "name": "Nexbeck Web Design",
+      "areaServed": "Australia"
+    }
+  }
+  </script>
+</head>
+<body class="page-legal">
+
+  <!-- Subtle Ambient Background -->
+  <div class="ambient-radial-glow"></div>
+
+  <!-- Shared Header & Navigation -->
+  <header id="main-header" class="site-header">
+    <div class="header-container">
+      <a href="/" class="brand-link" aria-label="Nexbeck Home">
+        <img src="images/logo.svg" alt="Nexbeck" class="brand-logo-img" width="48" height="38" />
+        <span class="brand-text">NEXBECK</span>
+      </a>
+
+      <nav class="desktop-nav" id="desktop-nav" aria-label="Main Navigation">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/about" class="nav-link">About</a>
+        <a href="/contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="/contact" class="btn-primary desktop-only-btn">
+          <span>Get a Free Quote</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <button type="button" id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Open mobile navigation menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" id="mobile-menu-svg">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobile-drawer" class="mobile-drawer">
+      <div class="mobile-nav-links">
+        <a href="/" class="mobile-nav-link"><span>Home</span></a>
+        <a href="/services" class="mobile-nav-link"><span>Services</span></a>
+        <a href="/about" class="mobile-nav-link"><span>About</span></a>
+        <a href="/contact" class="mobile-nav-link"><span>Contact</span></a>
+      </div>
+      <div class="mobile-drawer-cta">
+        <a href="/contact" class="btn-primary" style="width: 100%; justify-content: center;">
+          <span>Get a Free Quote</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="legal-main-section">
+      <div class="site-wrapper">
+        <div class="legal-article-container">
+        
+        <!-- Header: Eyebrow, H1, Last Updated -->
+        <div class="legal-header">
+          <div class="hero-kicker" style="margin-bottom: 12px;">
+            <span class="hero-kicker-dot"></span>
+            <span>CLIENT AGREEMENT</span>
+          </div>
+          <h1 class="page-hero-title">Terms of Service</h1>
+          <span class="legal-last-updated">Last updated: 7 November 2026</span>
+        </div>
+
+        <!-- Boxed Plain-English Summary -->
+        <div class="legal-summary-box">
+          <div class="legal-summary-title">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-text)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="16" x2="12" y2="12"></line>
+              <line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+            <span>Plain-English Summary</span>
+          </div>
+          <ul class="legal-summary-list">
+            <li>All prices are quoted in Australian Dollars (AUD) and include GST with zero hidden fees.</li>
+            <li>Payments are split across 3 milestones: 30% after the plan is agreed, 30% when the frontend is complete, and 40% when approved and ready to go live.</li>
+            <li>You own 100% of your website code, design assets, and content once final payment is made. You are the registered owner of any domain we register.</li>
+            <li>Delivery timelines (7 to 18 business days) begin once we receive your project brief and first milestone payment. Client delays pause the timeline.</li>
+            <li>If nothing has been built yet and you cancel, a full refund is available. You only pay for work actually completed.</li>
+          </ul>
+        </div>
+
+        <!-- Main Legal Content (Centered Responsive Article) -->
+        <div class="legal-content">
+            
+            <section class="legal-section" id="about-these-terms">
+              <h2>About these terms</h2>
+              <p>Welcome to Nexbeck. These Terms of Service set out the clear, mutual agreement between <strong>Nexbeck</strong> ("we", "us", "our") and our clients ("you", "your"). We operate from Pakistan, delivering custom web design and development services to electrical contractors and trade businesses across Australia.</p>
+              <p>These terms are written in plain Australian English to be fair, transparent, and balanced for both sides. They ensure you know exactly what to expect regarding pricing, milestone payments, turnaround times, revisions, and ownership.</p>
+            </section>
+
+            <section class="legal-section" id="services-and-packages">
+              <h2>Our services and packages</h2>
+              <p>We provide custom, responsive website design, development, and launch services tailored specifically for trade businesses. We offer three primary packages:</p>
+              <ul>
+                <li><strong>Essential Package ($890 AUD, Under $1,000):</strong> Clean 3-page foundation (Home, Services, Contact) engineered for owner-operators needing a professional online presence. Includes 1 round of revisions and 7-day delivery.</li>
+                <li><strong>Professional Package ($1,390 AUD, $1,000–$1,500):</strong> Complete 5-page setup (Home, Services, About, Projects/Gallery, Contact) with suburban service area landing pages and trade review integration. Includes 3 rounds of revisions and 7–14 day delivery.</li>
+                <li><strong>Premium Package ($1,990 AUD, $1,500–$2,300):</strong> Multi-page authority platform with advanced quote builder or cost calculator, emergency electrical callout features, and multi-suburb coverage. Includes 5 rounds of revisions and 14–18 day delivery.</li>
+              </ul>
+              <p>All packages include mobile optimisation, Google Analytics setup, fast Cloudflare hosting readiness, contact form integration, and baseline on-page SEO.</p>
+            </section>
+
+            <section class="legal-section" id="quotes-and-acceptance">
+              <h2>Quotes and acceptance</h2>
+              <p>Before any project begins, we provide a clear written quote outlining the selected package, exact deliverables, fixed price in AUD (including GST), and estimated delivery timeline.</p>
+              <p>A project is accepted when you confirm the quote in writing (by email or electronic message) and pay the initial project milestone. Once accepted, we never change the agreed project price or deliverables without your prior written consent.</p>
+            </section>
+
+            <section class="legal-section" id="payments">
+              <h2>Payments</h2>
+              <p>All prices are fixed and quoted in <strong>Australian Dollars (AUD)</strong> and <strong>include GST</strong>. To ensure complete fairness and keep both parties aligned throughout the build, payments are divided into three clear milestones:</p>
+              <div class="legal-table-wrap">
+                <table class="legal-table">
+                  <thead>
+                    <tr>
+                      <th>Milestone</th>
+                      <th>Amount</th>
+                      <th>When Due</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Milestone 1</strong></td>
+                      <td>30% of total</td>
+                      <td>After the site plan, wireframe, and brief are agreed upon</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Milestone 2</strong></td>
+                      <td>30% of total</td>
+                      <td>When the frontend design and interactive pages are fully built</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Milestone 3</strong></td>
+                      <td>40% of total</td>
+                      <td>When you have approved the site and it is ready to go live</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>Invoices are payable within 7 business days of issue via electronic bank transfer or approved card payment. Work on the next phase commences upon receipt of the corresponding milestone payment.</p>
+            </section>
+
+            <section class="legal-section" id="what-we-need-from-you">
+              <h2>What we need from you</h2>
+              <p>To deliver your website on schedule, we need reasonable collaboration from you, including:</p>
+              <ul>
+                <li>Your business logo, high-resolution photos of your past electrical work, and any supplier or trade brand logos you are authorized to display.</li>
+                <li>Your trade contractor licence number and Australian Business Number (ABN).</li>
+                <li>Accurate descriptions of your core services and primary geographic service areas.</li>
+                <li>Access to your existing domain name registrar or DNS manager (if you already own a domain).</li>
+                <li>Timely feedback on project milestones and revision requests.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="delivery-timeline">
+              <h2>Delivery timeline</h2>
+              <p>Our standard delivery timeframes by package are:</p>
+              <ul>
+                <li><strong>Essential:</strong> 7 calendar days</li>
+                <li><strong>Professional:</strong> 7 to 14 calendar days</li>
+                <li><strong>Premium:</strong> 14 to 18 calendar days</li>
+              </ul>
+              <p>The delivery clock begins on the business day following both: (a) receipt of your completed project brief with required assets, and (b) receipt of the first milestone payment. If you require extra time to review drafts or provide content, the project clock is simply paused until you respond—ensuring you are never rushed.</p>
+            </section>
+
+            <section class="legal-section" id="revisions">
+              <h2>Revisions</h2>
+              <p>Every package includes structured revision rounds to ensure your website looks and functions exactly as you want:</p>
+              <ul>
+                <li><strong>Essential Package:</strong> 1 structured revision round</li>
+                <li><strong>Professional Package:</strong> 3 structured revision rounds</li>
+                <li><strong>Premium Package:</strong> 5 structured revision rounds</li>
+              </ul>
+              <p>A revision round consists of a consolidated list of requested text edits, image swaps, layout tweaks, or colour adjustments submitted together. Revisions allow us to refine agreed deliverables. Requests for completely new features or extra pages outside the initial scope will be quoted separately before any work is undertaken.</p>
+            </section>
+
+            <section class="legal-section" id="ownership">
+              <h2>Ownership and handover</h2>
+              <p><strong>You own your website.</strong> Once the final milestone payment (Milestone 3) is completed:</p>
+              <ul>
+                <li>You own 100% of the custom website code, HTML/CSS/JavaScript files, graphics, and written content created for your project.</li>
+                <li>We hand over all source files, login credentials, and deployment keys directly to you.</li>
+                <li>If we assist in registering a new domain name on your behalf, you are registered as the sole legal registrant and owner of that domain.</li>
+                <li>We do not lock your site into proprietary platforms or hold your code hostage. You are free to host, modify, or transfer your website wherever you choose.</li>
+              </ul>
+              <p>We reserve the right to display the completed website in our portfolio and marketing materials as an example of our work, unless you request otherwise in writing.</p>
+            </section>
+
+            <section class="legal-section" id="domain-and-hosting">
+              <h2>Domain and hosting add-on</h2>
+              <p>For clients who prefer a completely hands-off setup, we offer an optional domain registration and high-performance hosting add-on for <strong>$149 AUD per year</strong>.</p>
+              <ul>
+                <li>This includes an Australian domain registration (.com.au or .com), SSL security certification, DNS setup, and global Cloudflare edge hosting.</li>
+                <li>This add-on renews annually. We will send you an email reminder at least 30 days before any scheduled renewal date.</li>
+                <li>There are no lock-in contracts or exit penalties. You can cancel at any time before the renewal date with a simple email. If you cancel, we will transfer your domain and website files to your chosen provider at no extra charge.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="licence-numbers-and-trade-claims">
+              <h2>Licence numbers and trade claims</h2>
+              <p>When building your website, we display the business details, licence numbers, accreditations, and trade claims (e.g. "licensed &amp; insured", Master Electricians membership, CEC solar accreditation) that you provide to us.</p>
+              <p>You are solely responsible for ensuring that all trade licence numbers, business names, ABNs, and regulatory statements provided are valid, accurate, and current. You are also responsible for verifying that your marketing claims satisfy your relevant state or territory electrical licensing regulator (such as Energy Safe Victoria, Fair Trading NSW, Electrical Safety Office QLD, Consumer and Business Services SA, or Building Commission WA).</p>
+            </section>
+
+            <section class="legal-section" id="seo">
+              <h2>SEO</h2>
+              <p>Every website we build includes clean semantic HTML, fast loading speeds, clean URL structures, mobile responsiveness, Schema.org trade structured data, OpenGraph social cards, and XML sitemaps. These foundational technical elements give your site the best possible opportunity to be crawled and ranked by search engines.</p>
+              <p>However, search engine ranking algorithms (such as Google's) are independent, constantly evolving, and influenced by competitor activity, local market density, and third-party citations. Therefore, <strong>we do not guarantee specific numerical search rankings or page-one placements</strong>, and any agency that does is misleading you.</p>
+            </section>
+
+            <section class="legal-section" id="free-website-audit">
+              <h2>Free website audit</h2>
+              <p>We provide a free website audit for trade businesses upon request. This audit is a practical, honest technical and visual review of your existing website (or competitor baseline) covering speed, mobile usability, contact clarity, and search crawlability.</p>
+              <p>The audit is 100% free with zero obligation to hire us. The findings and recommendations are provided for your information only, without warranties of any kind.</p>
+            </section>
+
+            <section class="legal-section" id="cancellation">
+              <h2>Cancellation and refunds</h2>
+              <p>We stand behind our work and believe in fair, straightforward commercial relationships:</p>
+              <ul>
+                <li><strong>Refund if nothing is built:</strong> If you accept a quote and pay Milestone 1, but cancel before we have commenced wireframing or design work, you are entitled to a full refund of your payment.</li>
+                <li><strong>Cancellation during development:</strong> Either party may terminate a project at any stage by providing written notice. In such an event, you will only be charged for milestones that have been completed. Any unspent portion of milestone payments for unstarted stages will be promptly refunded.</li>
+                <li><strong>Work completed to date:</strong> If a project is cancelled partway through, you will receive all completed source files and assets corresponding to the milestones paid for.</li>
+              </ul>
+            </section>
+
+            <section class="legal-section" id="support-after-launch">
+              <h2>Support after launch</h2>
+              <p>We want your launch to be completely seamless. Every website package includes <strong>30 days of post-launch warranty support</strong> at no extra cost.</p>
+              <p>During this 30-day window, we will promptly fix any bugs, display errors, broken links, or contact form delivery issues that arise. For ongoing content updates, new pages, or design additions beyond the 30-day window, we offer hourly support or simple fixed-price update quotes.</p>
+            </section>
+
+            <section class="legal-section" id="limits-of-liability">
+              <h2>Limits of liability</h2>
+              <p>Nothing in these terms is intended to exclude, restrict, or modify any non-excludable statutory rights or consumer guarantees that you may have under the Australian Consumer Law (Competition and Consumer Act 2010).</p>
+              <p>Subject to applicable law, our total liability arising out of or in connection with any project will not exceed the total fees actually paid by you to Nexbeck for the specific project in question. Neither party will be liable to the other for indirect, incidental, or consequential losses (such as loss of anticipated trade profits, business interruption, or data loss caused by third-party hosting outages).</p>
+            </section>
+
+            <section class="legal-section" id="confidentiality">
+              <h2>Confidentiality</h2>
+              <p>Both parties agree to treat each other's sensitive information as strictly confidential. This includes non-public pricing agreements, trade account details, customer databases, business credentials, and server logins.</p>
+              <p>We will never disclose your confidential business information to third parties, except as strictly necessary to deliver the agreed services or when required by lawful court order.</p>
+            </section>
+
+            <section class="legal-section" id="changes-to-these-terms">
+              <h2>Changes to these terms</h2>
+              <p>We may update these terms occasionally to reflect changes in our service offerings, technical processes, or operational practices. When updates are published, the "Last updated" date at the top will be updated accordingly.</p>
+              <p><strong>Crucially: changes to these terms never apply retroactively to an ongoing or already accepted project without your express written agreement.</strong> Your project is governed by the terms agreed to at the time your quote was accepted.</p>
+            </section>
+
+            <section class="legal-section" id="governing-law-and-disputes">
+              <h2>Governing law and disputes</h2>
+              <p>We believe in treating clients with respect and resolving questions through open conversation. If an issue or disagreement arises at any point, both parties agree to <strong>talk first</strong> in good faith to resolve the matter informally before seeking external mediation or legal proceedings.</p>
+              <p>If an informal resolution cannot be reached after 30 days of good faith discussion, any formal proceedings will be governed by applicable legal principles with an emphasis on mutual fairness and proportional dispute resolution.</p>
+            </section>
+
+            <section class="legal-section" id="contact">
+              <h2>Contact</h2>
+              <p>If you have any questions about these Terms of Service or wish to discuss an upcoming project, please contact us:</p>
+              <ul>
+                <li><strong>Email:</strong> <a href="mailto:contact@nexbeck.com">contact@nexbeck.com</a></li>
+              </ul>
+            </section>
+
+            <!-- Questions Box at bottom of page -->
+            <div class="legal-question-box">
+              <h2 class="legal-question-title" style="margin: 0;">Questions about these terms?</h2>
+              <p class="legal-question-desc">We are always happy to discuss scope, payment milestones, or timelines before starting. Reach out directly to our team.</p>
+              <div class="legal-question-actions">
+                <a href="mailto:contact@nexbeck.com" class="btn-primary" style="padding: 10px 20px; font-size: 0.875rem;">
+                  <span>Email contact@nexbeck.com</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </a>
+                <a href="#main-content" class="legal-back-to-top">
+                  <span>Back to top</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Shared Site Footer -->
+  <footer class="site-footer">
+    <div class="site-wrapper">
+      <div class="footer-grid">
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <a href="/" class="brand-link" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none;">
+            <img src="images/logo-white.svg" alt="Nexbeck" class="brand-logo-img" width="48" height="38" />
+            <span class="brand-text" style="color: #FFFFFF !important; font-weight: 800; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 0.02em; display: inline-block;">NEXBECK</span>
+          </a>
+          <p style="font-family: var(--font-body); font-size: 0.875rem; color: #D6CEBE; line-height: 1.6; max-width: 300px;">
+            Web design agency engineered for Australian electricians to win more enquiries, get found locally, and scale online.
+          </p>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span style="width: 7px; height: 7px; border-radius: 50%; background: #34d399;"></span>
+            <span style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; font-weight: 600;">AUSTRALIA-WIDE SERVICE</span>
+          </div>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Navigation</span>
+          <ul class="footer-links-list">
+            <li><a href="/" class="footer-link">Home</a></li>
+            <li><a href="/services" class="footer-link">Services &amp; Pricing</a></li>
+            <li><a href="/about" class="footer-link">About Nexbeck</a></li>
+            <li><a href="/contact" class="footer-link">Get a Free Quote</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Website Packages</span>
+          <ul class="footer-links-list">
+            <li><a href="/services#services" class="footer-link">Free Audit ($0 AUD)</a></li>
+            <li><a href="/services#pricing" class="footer-link">Essential (Under $1,000 AUD)</a></li>
+            <li><a href="/services#pricing" class="footer-link">Professional ($1,000–$1,500 AUD)</a></li>
+            <li><a href="/services#pricing" class="footer-link">Premium ($1,500–$2,300 AUD)</a></li>
+            <li><a href="/services#services" class="footer-link">Website Redesign</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <span class="footer-col-title">Direct Contact</span>
+          <ul class="footer-links-list">
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Email: <a href="mailto:contact@nexbeck.com" class="footer-link">contact@nexbeck.com</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.875rem; color: #E8E2D8;">
+              Direct Line: <a href="tel:+923149647176" class="footer-link">+92 3149647176</a>
+            </li>
+            <li style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE; margin-top: 4px;">
+              Hours: Mon–Fri, 8:00 AM – 6:00 PM AEST
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p style="font-family: var(--font-body); font-size: 0.8125rem; color: #D6CEBE; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span>&copy; 2026 Nexbeck. All rights reserved.</span>
+          <span aria-hidden="true" style="opacity: 0.5;">&bull;</span>
+          <a href="/privacy" class="footer-legal-link">Privacy Policy</a>
+          <span aria-hidden="true" style="opacity: 0.5;">&bull;</span>
+          <a href="/terms" class="footer-legal-link">Terms of Service</a>
+        </p>
+        <p style="font-family: var(--font-ui); font-size: 0.75rem; color: #D6CEBE; letter-spacing: 0.04em;">
+          QUALITY • SPEED (7–18 DAYS) • FIXED PRICE
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="script.js?v=3.3"></script>
+</body>
+</html>

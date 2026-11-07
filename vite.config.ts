@@ -48,6 +48,16 @@ export default defineConfig(() => {
               res.setHeader('Location', `/contact${query}`);
               return res.end();
             }
+            if (pathname === '/privacy.html' || pathname === '/project/privacy.html') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/privacy${query}`);
+              return res.end();
+            }
+            if (pathname === '/terms.html' || pathname === '/project/terms.html') {
+              res.statusCode = 301;
+              res.setHeader('Location', `/terms${query}`);
+              return res.end();
+            }
             if (pathname === '/faqs') {
               res.statusCode = 301;
               res.setHeader('Location', `/services${query}`);
@@ -61,6 +71,10 @@ export default defineConfig(() => {
               req.url = `/about.html${query}`;
             } else if (pathname === '/contact') {
               req.url = `/contact.html${query}`;
+            } else if (pathname === '/privacy') {
+              req.url = `/privacy.html${query}`;
+            } else if (pathname === '/terms') {
+              req.url = `/terms.html${query}`;
             } else if (pathname === '/404') {
               req.url = `/404.html${query}`;
             } else if (pathname === '/project/') {
@@ -82,6 +96,8 @@ export default defineConfig(() => {
           services: path.resolve(__dirname, 'project/services.html'),
           about: path.resolve(__dirname, 'project/about.html'),
           contact: path.resolve(__dirname, 'project/contact.html'),
+          privacy: path.resolve(__dirname, 'project/privacy.html'),
+          terms: path.resolve(__dirname, 'project/terms.html'),
           not_found: path.resolve(__dirname, 'project/404.html'),
         },
       },
