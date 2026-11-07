@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    /* Safeguard window.fetch accessor for browser extensions and interceptors */
+    (function() {
+      try {
+        var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+        var _activeFetch = _origFetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3G0694H1W"></script>
   <script>
@@ -162,7 +178,7 @@
         </div>
 
         <h1 class="page-hero-title">
-          A Better Way for Australian Electrician to Build Online
+          A Better Way for Australian Electricians to Build Online
         </h1>
 
         <p class="page-hero-subtitle">
@@ -203,11 +219,11 @@
           </h2>
 
           <p style="font-family: var(--font-body); font-size: 1.05rem; font-weight: 500; color: var(--text-main); line-height: 1.6;">
-            Running a Sparky businesses is already demanding. Getting a website should not become another complicated project.
+            Running a sparky business is already demanding. Getting a website should not become another complicated project.
           </p>
 
           <p style="font-family: var(--font-body); font-size: 0.9375rem; color: var(--text-muted); line-height: 1.65;">
-            Electrician looking for a website often find themselves between two frustrating extremes: generic templates that fail to represent the business properly, or agency processes that introduce unnecessary complexity, unclear communication, and costs that are difficult to understand.
+            Electricians looking for a website often find themselves between two frustrating extremes: generic templates that fail to represent the business properly, or agency processes that introduce unnecessary complexity, unclear communication, and costs that are difficult to understand.
           </p>
 
           <p style="font-family: var(--font-body); font-size: 0.9375rem; color: var(--text-muted); line-height: 1.65;">
@@ -416,7 +432,7 @@
             <div class="milestone-badge">01</div>
             <h3 class="milestone-title">15-Minute Brief</h3>
             <p class="milestone-desc">
-             Complete a simple online form, or message us directly at a time that suits you. We'll discuss your project — your service suburbs, primary specialties, and how you'd prefer we stay in touch.
+             Complete a simple online form, or message us directly at a time that suits you. We'll discuss your project — your service suburbs, primary specialities, and how you'd prefer we stay in touch.
             </p>
           </div>
 
@@ -425,7 +441,7 @@
             <div class="milestone-badge">02</div>
             <h3 class="milestone-title">Custom Design &amp; Build</h3>
             <p class="milestone-desc">
-              We design and code your electrical website from the ground up, optimizing for fast mobile loading, prominent call buttons, and local suburb keywords.
+              We design and code your electrical website from the ground up, optimising for fast mobile loading, prominent call buttons, and local suburb keywords.
             </p>
           </div>
 
@@ -434,7 +450,7 @@
             <div class="milestone-badge">03</div>
             <h3 class="milestone-title">Mobile Staging Review</h3>
             <p class="milestone-desc">
-              We send a private staging link directly to your smartphone. Check your photos, test the dialer buttons, review the industry-specific copywriting, and request adjustments.
+              We send a private staging link directly to your smartphone. Check your photos, test the dialler buttons, review the industry-specific copywriting, and request adjustments.
             </p>
           </div>
 
@@ -463,7 +479,7 @@
           </span>
           <h2 class="section-title">Frequently Asked Questions About Nexbeck</h2>
           <p class="section-subtitle">
-            Straightforward answers about our philosophy, how we collaborate and what you can expect.
+            Straightforward answers about our philosophy, how we collaborate, and what you can expect.
           </p>
         </div>
 
@@ -476,7 +492,7 @@
           </button>
           <div class="faq-editorial-panel">
             <div class="faq-editorial-content">
-              Generalist agencies build generic brochure sites that don't understand how local homeowners search, evaluate licences, or request quotes. By specializing exclusively in Australian electricians, we build sites specifically engineered around REC credentials, suburb targeting, and fast tap-to-call mobile conversions.
+              Generalist agencies build generic brochure sites that don't understand how local homeowners search, evaluate licences, or request quotes. By specialising exclusively in Australian electricians, we build sites specifically engineered around REC credentials, suburb targeting, and fast tap-to-call mobile conversions.
             </div>
           </div>
         </div>
@@ -528,7 +544,7 @@
           </button>
           <div class="faq-editorial-panel">
             <div class="faq-editorial-content">
-              Just a 15-minute intake brief. We collect your business name, licence number, target suburbs, and core electrical specialties. We handle the copywriting, structuring, SEO, and coding so you can stay focused on client jobs.
+              Just a 15-minute intake brief. We collect your business name, licence number, target suburbs, and core electrical specialities. We handle the copywriting, structuring, SEO, and coding so you can stay focused on client jobs.
             </div>
           </div>
         </div>

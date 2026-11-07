@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    /* Safeguard window.fetch accessor for browser extensions and interceptors */
+    (function() {
+      try {
+        var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+        var _activeFetch = _origFetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3G0694H1W"></script>
   <script>
@@ -68,7 +84,7 @@
     "description": "Fixed-price websites designed and built for Australian electricians.",
     "priceRange": "$$ - From Under $1,000 to $2,300 AUD",
     "areaServed": "Australia",
-    "serviceType": "Web Design for Electricians."
+    "serviceType": "Web Design for Electricians"
   }
   </script>
 </head>
@@ -146,7 +162,7 @@
       <div class="page-hero-container">
         <div class="hero-kicker">
           <span class="hero-kicker-dot"></span>
-          <span>Website Design Services for Aussie sparkies</span>
+          <span>Website Design Services for Aussie Sparkies</span>
         </div>
 
         <h1 class="page-hero-title">
@@ -197,11 +213,11 @@
             <ul class="service-editorial-highlights">
               <li class="service-editorial-highlight-item">
                 <span class="material-symbols-outlined">check_circle</span>
-                <span>Safeguards your established Google search rankings and domain equity</span>
+                <span>Keep URLs, add redirects, check Search Console</span>
               </li>
               <li class="service-editorial-highlight-item">
                 <span class="material-symbols-outlined">check_circle</span>
-                <span>Upgrades to lightweight, mobile-first static architecture with zero downtime</span>
+                <span>Designed carefully for mobile users, keeping their experience smooth and uninterrupted</span>
               </li>
               <li class="service-editorial-highlight-item">
                 <span class="material-symbols-outlined">check_circle</span>
@@ -224,7 +240,7 @@
             <span class="service-editorial-kicker">02 / Ground-Up Builds</span>
             <h3 class="service-editorial-title">Custom Website Build</h3>
             <p class="service-editorial-desc">
-              Take control of your inbound pipeline with a bespoke digital storefront built specifically for your electrical business. Position your brand as the go to specialist in your area, attract clients who value quality workmanship, and break free from relying on expensive directory leads or word of mouth alone.
+              Take control of your inbound pipeline with a bespoke digital storefront built specifically for your electrical business. Position your brand as the go-to specialist in your area, attract clients who value quality workmanship, and break free from relying on expensive directory leads or word of mouth alone.
             </p>
 
             <ul class="service-editorial-highlights">
@@ -234,7 +250,7 @@
               </li>
               <li class="service-editorial-highlight-item">
                 <span class="material-symbols-outlined">check_circle</span>
-                <span>1-tap emergency phone dialers and frictionless mobile quote intake</span>
+                <span>1-tap emergency phone diallers and frictionless mobile quote intake</span>
               </li>
               <li class="service-editorial-highlight-item">
                 <span class="material-symbols-outlined">check_circle</span>
@@ -336,7 +352,7 @@
               <ul class="pricing-clean-features">
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
-                  <span>Full redesign &amp; speed modernization</span>
+                  <span>Full redesign &amp; speed modernisation</span>
                 </li>
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
@@ -434,10 +450,6 @@
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
                   <span>Delivered in 7 days</span>
-                </li>
-                <li class="pricing-clean-feature-item">
-                  <span class="material-symbols-outlined">check_circle</span>
-                  <span>Pages: Home, Services, Contact, Call-to-Action</span>
                 </li>
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
@@ -593,7 +605,7 @@
               <ul class="pricing-clean-features">
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
-                  <span>Full redesign &amp; speed modernization</span>
+                  <span>Full redesign &amp; speed modernisation</span>
                 </li>
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
@@ -691,10 +703,6 @@
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
                   <span>Delivered in 7 days</span>
-                </li>
-                <li class="pricing-clean-feature-item">
-                  <span class="material-symbols-outlined">check_circle</span>
-                  <span>Pages: Home, Services, Contact, Call-to-Action</span>
                 </li>
                 <li class="pricing-clean-feature-item">
                   <span class="material-symbols-outlined">check_circle</span>
@@ -837,7 +845,7 @@
         <div class="deliverable-manifest-item">
           <span class="material-symbols-outlined deliverable-manifest-icon">image</span>
           <div>
-            <h3 class="deliverable-manifest-name">Image Optimization</h3>
+            <h3 class="deliverable-manifest-name">Image Optimisation</h3>
             <p class="deliverable-manifest-desc">Next-gen WebP image compression, responsive sizing, and lazy loading for instant mobile display.</p>
           </div>
         </div>
@@ -883,7 +891,7 @@
           <span class="material-symbols-outlined deliverable-manifest-icon">mail</span>
           <div>
             <h3 class="deliverable-manifest-name">Contact &amp; Quote Intake Forms</h3>
-            <p class="deliverable-manifest-desc">Mobile-optimized enquiry forms routing customer job requests directly to your primary email inbox.</p>
+            <p class="deliverable-manifest-desc">Mobile-optimised enquiry forms routing customer job requests directly to your primary email inbox.</p>
           </div>
         </div>
 
@@ -920,7 +928,7 @@
         </span>
         <h2 class="section-title">Hosting Transparency: $0/Month Self-Hosted or $149/Year All-Inclusive</h2>
         <p class="section-subtitle">
-          Most web agencies charge Australian tradesmen $250 to $400 every single month for "hosting and maintenance" on bloated WordPress sites. Here is our honest, straightforward approach:
+          Most web agencies charge Australian tradies $250 to $400 every single month for "hosting and maintenance" on bloated WordPress sites. Here is our honest, straightforward approach:
         </p>
       </div>
 
@@ -930,7 +938,7 @@
           <span class="hosting-editorial-price" style="color: #000000;">$0 Setup</span>
           <h3 class="hosting-editorial-title">Bring Your Own Hosting</h3>
           <p class="hosting-editorial-desc">
-            If you already have your own domain and hosting provider, setup and deployment is 100% free. We configure DNS records and launch your site with zero added fees or configuration surcharges.
+            If you already have your own domain and hosting provider, setup and deployment are 100% free. We configure DNS records and launch your site with zero added fees or configuration surcharges.
           </p>
           <div class="hosting-editorial-badge">
             <span class="material-symbols-outlined">check_circle</span>
@@ -1011,7 +1019,7 @@
           </span>
           <h2 class="section-title">Frequently Asked Questions About Our Services</h2>
           <p class="section-subtitle">
-            Clear answers for electrical contractor before getting started.
+            Clear answers for electrical contractors before they get started.
           </p>
         </div>
 

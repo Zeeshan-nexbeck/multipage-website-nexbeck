@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    /* Safeguard window.fetch accessor for browser extensions and interceptors */
+    (function() {
+      try {
+        var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+        var _activeFetch = _origFetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3G0694H1W"></script>
   <script>
@@ -15,13 +31,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Website Design for Australian Electricians | Nexbeck</title>
-  <meta name="description" content="Professional websites designed for Australian electricians. Fast 7-14 day delivery, fixed transparent pricing, and 100% full ownership." />
+  <meta name="description" content="Professional websites designed for Australian electricians. Fast 7-18 day delivery, fixed transparent pricing, and 100% full ownership." />
 
   <!-- OpenGraph Social Sharing Metadata -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nexbeck.com/" />
   <meta property="og:title" content="Website Design for Australian Electricians | Nexbeck" />
-  <meta property="og:description" content="Professional websites designed for Australian electricians. Fast 7-14 day delivery, fixed transparent pricing, and 100% full ownership." />
+  <meta property="og:description" content="Professional websites designed for Australian electricians. Fast 7-18 day delivery, fixed transparent pricing, and 100% full ownership." />
   <meta property="og:image" content="https://nexbeck.com/nexbeck-social-preview.jpg" />
   <meta property="og:image:width" content="896" />
   <meta property="og:image:height" content="1200" />
@@ -30,7 +46,7 @@
   <!-- Twitter / X Social Cards -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Website Design for Australian Electricians | Nexbeck" />
-  <meta name="twitter:description" content="Professional websites designed for Australian electricians. Fast 7-14 day delivery, fixed transparent pricing, and 100% full ownership." />
+  <meta name="twitter:description" content="Professional websites designed for Australian electricians. Fast 7-18 day delivery, fixed transparent pricing, and 100% full ownership." />
   <meta name="twitter:image" content="https://nexbeck.com/nexbeck-social-preview.jpg" />
   <meta name="twitter:image:alt" content="Nexbeck — Website Design for Australian Electricians" />
 
@@ -281,7 +297,7 @@
               </li>
               <li style="display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 0.875rem; color: var(--text-main);">
                 <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-success); flex-shrink: 0;">check_circle</span>
-                <span><strong>1-Tap emergency dialers</strong> &amp; rapid quote flow</span>
+                <span><strong>1-Tap emergency diallers</strong> &amp; rapid quote flow</span>
               </li>
               <li style="display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 0.875rem; color: var(--text-main);">
                 <span class="material-symbols-outlined" style="font-size: 18px; color: var(--color-success); flex-shrink: 0;">check_circle</span>
@@ -397,7 +413,7 @@
             <h3 class="tradie-comp-title">A Digital Asset You Actually Own</h3>
             <p class="tradie-comp-price" style="color: var(--color-accent); font-size: 1.375rem;">From Under $1,000 AUD (Fixed One-Time)</p>
             <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--text-muted); margin-top: 6px; line-height: 1.55;">
-              Nexbeck gives you a dedicated website built around your business, designed to turn people who find you online into direct enquiries. Delivered within 7–18 day with one time payment without any monthly fees.
+              Nexbeck gives you a dedicated website built around your business, designed to turn people who find you online into direct enquiries. Delivered within 7–18 days with a one-time payment and zero monthly fees.
             </p>
 
             <ul class="tradie-comp-list">
@@ -415,12 +431,12 @@
               </li>
               <li class="tradie-comp-item positive">
                 <span class="material-symbols-outlined">check_circle</span>
-                <span>Just 1 booked high ticket job pays off your entire website</span>
+                <span>Just 1 booked high-ticket job pays off your entire website</span>
               </li>
             </ul>
           </div>
           <div style="padding: 12px 14px; background: rgba(201, 138, 44, 0.12); border-radius: var(--radius-sm); font-size: 0.8125rem; color: var(--text-main); font-weight: 700; border: 1px solid var(--color-accent-border);">
-            ✓  Your digital presence, decoded and optimized 
+            ✓  Your digital presence, decoded and optimised 
           </div>
         </div>
       </div>
@@ -583,7 +599,7 @@
               Word of mouth wins the recommendation. Your website closes the deal.
             </h2>
             <p style="font-family: var(--font-body); font-size: 1rem; color: var(--text-muted); line-height: 1.65;">
-              Australian homeowners don't just call blind anymore. When a neighbor or builder recommends your name, the customer searches your business on their smartphone while standing in their kitchen. If your site looks professional, loads instantly, and shows your REC licence, they dial immediately.
+              Australian homeowners don't just call blind anymore. When a neighbour or builder recommends your name, the customer searches your business on their smartphone while standing in their kitchen. If your site looks professional, loads instantly, and shows your REC licence, they dial immediately.
             </p>
 
             <div class="editorial-lead-quote">
@@ -716,7 +732,7 @@
             </button>
             <div class="faq-editorial-panel">
               <div class="faq-editorial-content">
-                Yes, 100%. We understand Australian state trade licensing laws (REC in Victoria, Electrical Contractor Licence in NSW, Queensland Electrical Contractor Licences, etc.). We prominently integrate your licence number, Master Electricians / NECA affiliations, and AS/NZS 3000 compliance markers directly into the header, footer, and quote forms so prospective customers know you are a verified professional.
+                Yes, absolutely. We pay close attention to Australian state trade licensing guidelines, including REC in Victoria, and Electrical Contractor Licences in NSW and Queensland. We work with you to prominently place your licence numbers, Master Electricians or NECA affiliations, and AS/NZS 3000 compliance markers into your header, footer, and forms. This helps ensure your site meets local standards and clearly shows prospective customers that you are a verified professional.
               </div>
             </div>
           </div>
@@ -729,7 +745,7 @@
             </button>
             <div class="faq-editorial-panel">
               <div class="faq-editorial-content">
-                Just 15 minutes of your time. We ask for your business name, electrical licence number (e.g. REC or Contractor Licence), primary service suburbs, the services you want to push (switchboards, solar, EV chargers, general domestic/commercial), and your preferred phone number. We handle drafting the trade copy and organizing the layout.
+                Just 15 minutes of your time. We ask for your business name, electrical licence number (e.g. REC or Contractor Licence), primary service suburbs, the services you want to push (switchboards, solar, EV chargers, general domestic/commercial), and your preferred phone number. We handle drafting the trade copy and organising the layout.
               </div>
             </div>
           </div>

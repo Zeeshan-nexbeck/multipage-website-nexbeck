@@ -4,6 +4,25 @@
  * Pure Vanilla JavaScript — Zero Framework Dependencies
  */
 
+// Safeguard window.fetch accessor for browser extensions and interceptors
+(function() {
+  try {
+    if (typeof window !== 'undefined') {
+      var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+      var _activeFetch = _origFetch;
+      var desc = Object.getOwnPropertyDescriptor(window, 'fetch');
+      if (!desc || desc.configurable) {
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      }
+    }
+  } catch (e) {}
+})();
+
 function initApp() {
   // 1. Smooth native anchor scrolling
   initSmoothAnchorScrolling();
@@ -722,7 +741,7 @@ function initContactFormHandler() {
         packageSelect.value = 'redesign';
       } else if (selectedPkg === 'audit') {
         packageSelect.value = 'audit';
-      } else if (selectedPkg === 'general' || selectedPkg === 'general_inquiry' || selectedPkg === 'general-inquiry' || selectedPkg === 'inquiry') {
+      } else if (selectedPkg === 'general' || selectedPkg === 'general_inquiry' || selectedPkg === 'general-inquiry' || selectedPkg === 'inquiry' || selectedPkg === 'general_enquiry' || selectedPkg === 'general-enquiry' || selectedPkg === 'enquiry') {
         packageSelect.value = 'general';
       } else if (selectedPkg === 'custom') {
         packageSelect.value = 'custom';

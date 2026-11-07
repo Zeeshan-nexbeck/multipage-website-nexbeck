@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+    /* Safeguard window.fetch accessor for browser extensions and interceptors */
+    (function() {
+      try {
+        var _origFetch = window.fetch ? window.fetch.bind(window) : undefined;
+        var _activeFetch = _origFetch;
+        Object.defineProperty(window, 'fetch', {
+          get: function() { return _activeFetch; },
+          set: function(fn) { _activeFetch = typeof fn === 'function' ? fn : _origFetch; },
+          configurable: true,
+          enumerable: true
+        });
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N3G0694H1W"></script>
   <script>
@@ -176,7 +192,7 @@
               Request Your Free Quote Online
             </h2>
             <p style="font-family: var(--font-body); font-size: 0.875rem; color: var(--text-muted); margin-top: 4px;">
-              Takes less than 2 minutes. Simple and straightforward project inquiry.
+              Takes less than 2 minutes. Simple and straightforward project enquiry.
             </p>
           </div>
 
@@ -237,7 +253,7 @@
             <!-- Package Selection -->
             <div class="form-group-wrap">
               <label for="package-select" class="form-label-txt">
-                <span>Select Package / Inquiry Type</span>
+                <span>Select Package / Enquiry Type</span>
                 <span style="color: var(--color-accent);">*</span>
               </label>
               <select id="package-select" name="package" class="form-field-select" required>
@@ -247,7 +263,7 @@
                 <option value="redesign">Website Redesign (Custom Quote)</option>
                 <option value="audit">Free Website Audit ($0 AUD)</option>
                 <option value="custom">Custom Trade Project</option>
-                <option value="general">General inquiry</option>
+                <option value="general">General enquiry</option>
               </select>
             </div>
 
@@ -277,7 +293,7 @@
                 <span class="material-symbols-outlined" style="font-size: 18px;">arrow_forward</span>
               </button>
               <p style="font-family: var(--font-ui); font-size: 0.6875rem; color: var(--text-dim); text-align: center; margin-top: 8px;">
-                🔒 Confidential inquiry. We respect your privacy and never share your details.
+                🔒 Confidential enquiry. We respect your privacy and never share your details.
               </p>
             </div>
           </form>
