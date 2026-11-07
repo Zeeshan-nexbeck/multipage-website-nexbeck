@@ -225,17 +225,10 @@ function initScrollAnimations() {
   }, observerOptions);
 
   const targets = document.querySelectorAll('.reveal-on-scroll, .reveal-stagger');
-  const vh = window.innerHeight || document.documentElement.clientHeight;
 
-  // Immediately display only elements already well within upper viewport on load
+  // Asynchronously observe targets via IntersectionObserver with zero forced layout/reflow
   targets.forEach((target) => {
-    const rect = target.getBoundingClientRect();
-    if (rect.top < vh * 0.65 && rect.bottom > 80) {
-      target.classList.add('is-visible');
-      target.style.willChange = 'auto';
-    } else {
-      observer.observe(target);
-    }
+    observer.observe(target);
   });
 }
 
@@ -463,24 +456,34 @@ function initProjectShowcaseToggle() {
 
 /* ==========================================================================
    SCALED VIEWPORT ENGINE FOR LAPTOP & IPHONE MOCKUPS
-   Dynamically computes responsive scale factors to fit layout containers cleanly.
+   Dynamically computes responsive scale factors with rAF to eliminate forced reflows.
    ========================================================================== */
 function setupMockupIframeScaling(selector, baseWidth, cssVar) {
   const displays = document.querySelectorAll(selector);
   if (!displays.length) return;
 
+  let rafScheduled = false;
   function updateScales() {
-    displays.forEach((display) => {
-      const width = display.clientWidth;
-      if (width > 0) {
-        const scale = width / baseWidth;
-        display.style.setProperty(cssVar, scale.toString());
-      }
+    if (rafScheduled) return;
+    rafScheduled = true;
+    requestAnimationFrame(() => {
+      rafScheduled = false;
+      displays.forEach((display) => {
+        const width = display.clientWidth;
+        if (width > 0) {
+          const scale = width / baseWidth;
+          display.style.setProperty(cssVar, scale.toString());
+        }
+      });
     });
   }
 
-  // Initial calculation
-  updateScales();
+  // Defer initial calculation to next animation frame to prevent synchronous reflow
+  if (window.requestAnimationFrame) {
+    requestAnimationFrame(updateScales);
+  } else {
+    updateScales();
+  }
 
   // ResizeObserver for fluid responsive adjustments
   if (window.ResizeObserver) {
@@ -488,7 +491,7 @@ function setupMockupIframeScaling(selector, baseWidth, cssVar) {
     displays.forEach((display) => ro.observe(display));
   }
 
-  window.addEventListener('resize', updateScales);
+  window.addEventListener('resize', updateScales, { passive: true });
 
   // Recalculate when view toggle buttons (Desktop | Mobile) are clicked
   const toggleBtns = document.querySelectorAll('.showcase-toggle-btn');
